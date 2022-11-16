@@ -1,0 +1,30 @@
+---
+import Header from '@/components/Header';
+---
+
+<!DOCTYPE html>
+<html
+  lang="en"
+  class="scroll-smooth selection:bg-ctp-blue selection:text-ctp-base"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>About - Victor Ragojos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800;900&display=swap"
+    />
+  </head>
+
+  <body
+    class="h-screen w-screen overflow-y-auto overflow-x-hidden bg-ctp-base text-ctp-text"
+  >
+    <Header client:load url={Astro.url} />
+
+    <slot />
+  </body>
+</html>
