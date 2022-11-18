@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       animation: {
         scrollDown: 'scrollDown 1s ease-in-out infinite',
+        slideLeft: 'slideLeft 12s linear infinite',
       },
       keyframes: {
         scrollDown: {
@@ -21,6 +22,14 @@ module.exports = {
           '100%': {
             top: '90%',
             opacity: 0,
+          },
+        },
+        slideLeft: {
+          '0%': {
+            transform: 'translateX(0%)',
+          },
+          '100%': {
+            transform: 'translateX(-100%)',
           },
         },
       },

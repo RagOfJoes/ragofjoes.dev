@@ -29,6 +29,7 @@ const Header = (props: HeaderProps) => {
   // Animate height depending on scroll position
   const window = useWindowSize();
   const { scrollY } = useScroll({
+    axis: 'y',
     offset: ['start end', 'end end'],
   });
   const height = useTransform(scrollY, [0, window.height], ['8rem', '6rem']);
