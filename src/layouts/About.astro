@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import RelativeTime from 'dayjs/plugin/relativeTime';
 
 import Header from '@/components/Header';
+import Seo from '@/components/Seo.astro';
 
 dayjs.extend(RelativeTime);
 ---
@@ -13,16 +14,9 @@ dayjs.extend(RelativeTime);
   class="scroll-smooth selection:bg-ctp-blue selection:text-ctp-base"
 >
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>About - Victor Ragojos</title>
+    <Seo />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Rubik:wght@400;500;600;700;800;900&display=swap"
-    />
+    <title>About - Victor Ragojos</title>
   </head>
 
   <body

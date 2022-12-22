@@ -1,173 +1,286 @@
-import { useState } from 'react';
+import { createEffect, createSignal, For, Show } from 'solid-js';
 
-import * as Popover from '@radix-ui/react-popover';
+import { Motion, MotionComponentProps, Presence } from '@motionone/solid';
 import clsx from 'clsx';
-import {
-  AnimatePresence,
-  motion,
-  useMotionTemplate,
-  useScroll,
-  useTransform,
-} from 'framer-motion';
-import { TbMenu } from 'react-icons/tb/index';
+import { transform } from 'framer-motion';
+import { HiSolidMenuAlt4, HiSolidX } from 'solid-icons/hi';
 
-import useWindowSize from '@/hooks/useWindowSize';
+import Dialog, {
+  DialogContainer,
+  DialogContent,
+  DialogPortal,
+  DialogTrigger,
+} from '../Dialog';
+import { HeaderProps } from './types';
+import { useWindowScrollPosition } from '@/hooks/useWindowScrollPosition';
+import { useWindowSize } from '@/hooks/useWindowSize';
 import { ROUTES, SOCIALS } from '@/lib/constants';
 
-const opacity =
-  'duration-120 ease-linear hover:opacity-100 opacity-40 transition';
+const opacity = clsx(
+  'duration-120 ease-linear opacity-40 transition',
 
-export type HeaderProps = {
-  url: URL;
+  // Hover
+  'hover:opacity-100'
+);
+
+const triggerAnimation: MotionComponentProps = {
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
+  transition: {
+    duration: 0.08,
+    // easing: 'linear',
+  },
 };
 
 const Header = (props: HeaderProps) => {
   const { url } = props;
 
-  const [open, toggleOpen] = useState(false);
+  const [isOpen, toggleIsOpen] = createSignal(false);
+  const [navHeight, setNavHeight] = createSignal(8);
 
-  // Animate height depending on scroll position
-  const window = useWindowSize();
-  const { scrollY } = useScroll({
-    axis: 'y',
-    offset: ['start end', 'end end'],
+  const size = useWindowSize();
+  const scroll = useWindowScrollPosition();
+
+  createEffect(() => {
+    if (size.height === 0) {
+      return;
+    }
+
+    const convert = transform([0, size.height], [8, 6]);
+    const newHeight = convert(scroll.y);
+
+    setNavHeight(newHeight);
   });
-  const height = useTransform(scrollY, [0, window.height], ['8rem', '6rem']);
-  const popoverHeight = useMotionTemplate`calc(100vh - ${height})`;
 
   return (
-    <header className="fixed inset-0 bottom-auto z-[9999]">
-      <motion.nav
-        style={{ height }}
-        className={clsx(
-          'duration-120 flex w-full border-b border-b-ctp-surface0 bg-ctp-base transition-[backdrop-filter,background-color] ease-linear will-change-[width,height] max-md:justify-between',
-          !open && 'bg-transparent backdrop-blur-lg'
+    <header
+      class={clsx(
+        'fixed inset-0 bottom-auto z-[9999] flex justify-center border-b border-b-ctp-surface0 bg-ctp-base transition-[backdrop-filter,background-color] ease-linear',
+
+        {
+          'bg-transparent backdrop-blur-lg': !isOpen(),
+        }
+      )}
+    >
+      <nav
+        class={clsx(
+          'duration-120 flex w-full will-change-[width,height]',
+
+          // Large Breakpoint
+          'lg:max-w-6xl',
+          // Medium Breakpoint
+          'max-md:justify-between'
         )}
+        style={{
+          height: `${navHeight()}rem`,
+        }}
       >
-        <div className="flex basis-1/3 items-center px-8 max-lg:basis-1/2">
-          <a href="/" className={opacity}>
+        <div
+          class={clsx(
+            'flex basis-1/3 items-center px-8',
+
+            // Large Breakpoint
+            'max-lg:basis-1/2'
+          )}
+        >
+          <a href="/" class={opacity}>
             V
           </a>
         </div>
 
-        <div className="flex basis-2/3 max-lg:basis-1/4 max-md:hidden">
-          <div className="flex basis-1/2 items-center justify-center gap-24 border-l border-l-ctp-surface0 px-8 max-lg:hidden max-lg:basis-1/3 max-lg:gap-12">
-            {ROUTES.map((route) => (
-              <a
-                key={route.href}
-                href={route.href}
-                className={`${
-                  route.href === url.pathname
-                    ? 'text-ctp-blue opacity-100'
-                    : opacity
-                }`}
-              >
-                {route.title}
-              </a>
-            ))}
+        <div
+          class={clsx(
+            'flex basis-2/3',
+
+            // Large Breakpoint
+            'max-lg:basis-1/4',
+            // Medium Breakpoint
+            'max-md:hidden'
+          )}
+        >
+          <div
+            class={clsx(
+              'flex basis-1/2 items-center justify-center gap-24 border-l border-l-ctp-surface0 px-8',
+
+              // Large Breakpoint
+              'max-lg:hidden max-lg:basis-1/3 max-lg:gap-12'
+            )}
+          >
+            <For each={ROUTES}>
+              {(route) => (
+                <a
+                  href={route.href}
+                  class={clsx(opacity, {
+                    'text-ctp-blue opacity-100': route.href === url.pathname,
+                  })}
+                >
+                  {route.title}
+                </a>
+              )}
+            </For>
           </div>
 
-          <div className="flex grow items-center justify-center gap-12 border-l border-l-ctp-surface0 px-8 max-lg:gap-10">
-            {SOCIALS.map((link) => (
-              <a
-                target="_blank"
-                key={link.href}
-                href={link.href}
-                className={opacity}
-                rel="me noopener noreferrer"
-                aria-label={`Go to my ${link.title} profile`}
-              >
-                {link.icon({})}
-              </a>
-            ))}
+          <div
+            class={clsx(
+              'flex grow items-center justify-center gap-12 border-l border-l-ctp-surface0 px-8',
+
+              // Large Breakpoint
+              'max-lg:gap-10'
+            )}
+          >
+            <For each={SOCIALS}>
+              {(link) => (
+                <a
+                  target="_blank"
+                  href={link.href}
+                  class={opacity}
+                  rel="me noopener noreferrer"
+                  aria-label={`Go to my ${link.title} profile`}
+                >
+                  {link.icon({})}
+                </a>
+              )}
+            </For>
           </div>
 
-          <div className="flex grow items-center justify-center gap-4 border-l border-l-ctp-surface0 px-8 max-lg:hidden">
-            <a href="/Resume.pdf" className={opacity}>
+          <div
+            class={clsx(
+              'flex grow items-center justify-center gap-4 border-l border-l-ctp-surface0 px-8',
+
+              // Large Breakpoint
+              'max-lg:hidden'
+            )}
+          >
+            <a href="/Resume.pdf" class={opacity}>
               RESUME
             </a>
           </div>
         </div>
 
-        <AnimatePresence>
-          <Popover.Root
-            modal
-            open={open}
-            onOpenChange={(newOpen) => toggleOpen(newOpen)}
+        <div
+          class={clsx(
+            'hidden border-l border-l-ctp-surface0',
+
+            // Large Breakpoint
+            'max-lg:flex max-lg:basis-1/4'
+          )}
+        >
+          <Dialog
+            onOpen={() => {
+              document.body.style.cssText = 'overflow:hidden';
+              toggleIsOpen(true);
+            }}
+            onClose={() => {
+              document.body.style.cssText = '';
+
+              toggleIsOpen(false);
+            }}
           >
-            <Popover.Trigger asChild>
-              <button
-                aria-label="Open navigation menu"
-                className={clsx(
-                  'hidden items-center justify-center gap-3 border-l border-l-ctp-surface0 bg-transparent px-8 py-0 max-lg:flex max-lg:basis-1/4',
-                  opacity
-                )}
+            <DialogTrigger
+              aria-label="Open navigation menu"
+              class={clsx(opacity, 'w-full')}
+            >
+              <Presence initial={false} exitBeforeEnter>
+                <Show
+                  when={isOpen()}
+                  fallback={
+                    <Motion.div
+                      {...triggerAnimation}
+                      class="flex w-full items-center justify-center gap-2 bg-transparent px-8 py-0"
+                    >
+                      <p>MENU</p>
+
+                      <HiSolidMenuAlt4 />
+                    </Motion.div>
+                  }
+                >
+                  <Motion.div
+                    {...triggerAnimation}
+                    class="flex w-full items-center justify-center gap-2 bg-transparent px-8 py-0"
+                  >
+                    <p>CLOSE</p>
+
+                    <HiSolidX />
+                  </Motion.div>
+                </Show>
+              </Presence>
+            </DialogTrigger>
+
+            <DialogPortal>
+              <DialogContainer
+                class="fixed inset-0"
+                style={{
+                  transform: `translate3d(0, ${navHeight()}rem, 0)`,
+                }}
               >
-                <p>MENU</p>
-
-                <TbMenu />
-              </button>
-            </Popover.Trigger>
-
-            <Popover.Portal>
-              <Popover.PopoverContent asChild>
-                <motion.div
-                  key="NavMobileMenu"
-                  className="flex w-screen flex-col justify-center gap-24 overflow-y-auto bg-ctp-base p-8"
-                  style={{ height: popoverHeight }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{
-                    duration: 0.12,
+                <DialogContent
+                  class={clsx('flex w-screen overflow-y-auto bg-ctp-base')}
+                  style={{
+                    height: `calc(100vh - ${navHeight()}rem)`,
                   }}
                 >
-                  <div className="flex flex-col justify-center gap-8">
-                    {ROUTES.map((route) => (
-                      <a
-                        key={route.href}
-                        href={route.href}
-                        className={clsx(
-                          'text-center font-sans-serif text-4xl font-black',
-                          route.href === url.pathname
-                            ? 'text-ctp-blue opacity-100'
-                            : opacity
-                        )}
+                  <Presence initial={false} exitBeforeEnter>
+                    <Show when={isOpen()}>
+                      <Motion.div
+                        class="my-auto flex w-screen flex-col justify-center gap-24 bg-ctp-base p-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{
+                          duration: 0.12,
+                        }}
                       >
-                        {route.title}
-                      </a>
-                    ))}
+                        <div class="flex flex-col justify-center gap-8">
+                          <For each={ROUTES}>
+                            {(route) => (
+                              <a
+                                href={route.href}
+                                class={clsx(
+                                  'text-center font-sans-serif text-4xl font-black',
+                                  route.href === url.pathname
+                                    ? 'text-ctp-blue opacity-100'
+                                    : opacity
+                                )}
+                              >
+                                {route.title}
+                              </a>
+                            )}
+                          </For>
+                          <a
+                            href="/Resume.pdf"
+                            class={`text-center font-sans-serif text-4xl font-black ${opacity}`}
+                          >
+                            RESUME
+                          </a>
+                        </div>
 
-                    <a
-                      href="/Resume.pdf"
-                      className={`text-center font-sans-serif text-4xl font-black ${opacity}`}
-                    >
-                      RESUME
-                    </a>
-                  </div>
-
-                  <div className="flex flex-col items-center gap-8">
-                    <div className="flex items-center justify-center gap-12 px-8">
-                      {SOCIALS.map((link) => (
-                        <a
-                          target="_blank"
-                          key={link.href}
-                          href={link.href}
-                          className={opacity}
-                          rel="me noopener noreferrer"
-                          aria-label={`Go to my ${link.title} profile`}
-                        >
-                          {link.icon({ size: 24 })}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              </Popover.PopoverContent>
-            </Popover.Portal>
-          </Popover.Root>
-        </AnimatePresence>
-      </motion.nav>
+                        <div class="flex flex-col items-center gap-8">
+                          <div class="flex items-center justify-center gap-12 px-8">
+                            <For each={SOCIALS}>
+                              {(link) => (
+                                <a
+                                  target="_blank"
+                                  href={link.href}
+                                  class={opacity}
+                                  rel="me noopener noreferrer"
+                                  aria-label={`Go to my ${link.title} profile`}
+                                >
+                                  {link.icon({ size: 24 })}
+                                </a>
+                              )}
+                            </For>
+                          </div>
+                        </div>
+                      </Motion.div>
+                    </Show>
+                  </Presence>
+                </DialogContent>
+              </DialogContainer>
+            </DialogPortal>
+          </Dialog>
+        </div>
+      </nav>
     </header>
   );
 };

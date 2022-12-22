@@ -1,13 +1,13 @@
 import dayjs from 'dayjs';
-import { IconType } from 'react-icons';
-import { ImGithub, ImLinkedin2, ImTwitter } from 'react-icons/im/index';
+import type { IconTypes } from 'solid-icons';
+import { ImGithub, ImLinkedin2, ImTwitter } from 'solid-icons/im';
 
 export const ROUTES = [
   { href: '/', title: 'ABOUT' },
   { href: '/projects', title: 'PROJECTS' },
 ];
 
-export const SOCIALS: { href: string; icon: IconType; title: string }[] = [
+export const SOCIALS: { href: string; icon: IconTypes; title: string }[] = [
   {
     href: 'https://github.com/RagOfJoes',
     icon: ImGithub,
