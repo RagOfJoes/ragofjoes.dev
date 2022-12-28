@@ -1,8 +1,8 @@
 import { createEffect, createSignal, For, Show } from 'solid-js';
 
-import { Motion, MotionComponentProps, Presence } from '@motionone/solid';
+import { Motion, Presence } from '@motionone/solid';
+import type { Options } from '@motionone/solid';
 import clsx from 'clsx';
-import { transform } from 'framer-motion';
 import { HiSolidMenuAlt4, HiSolidX } from 'solid-icons/hi';
 
 import Dialog, {
@@ -12,10 +12,11 @@ import Dialog, {
   DialogTrigger,
 } from '../Dialog';
 import Logo from '../Logo';
-import { HeaderProps } from './types';
+import type { HeaderProps } from './types';
 import { useWindowScrollPosition } from '@/hooks/useWindowScrollPosition';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import { ROUTES, SOCIALS } from '@/lib/constants';
+import transform from '@/lib/transform';
 
 const opacity = clsx(
   'duration-120 ease-linear opacity-40 transition',
@@ -24,7 +25,7 @@ const opacity = clsx(
   'hover:opacity-100'
 );
 
-const triggerAnimation: MotionComponentProps = {
+const triggerVariant: Options = {
   initial: { opacity: 0, y: 10 },
   animate: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -10 },
@@ -184,7 +185,7 @@ const Header = (props: HeaderProps) => {
                   when={isOpen()}
                   fallback={
                     <Motion.div
-                      {...triggerAnimation}
+                      {...triggerVariant}
                       class="flex w-full items-center justify-center gap-2 bg-transparent px-8 py-0"
                     >
                       <p>MENU</p>
@@ -194,7 +195,7 @@ const Header = (props: HeaderProps) => {
                   }
                 >
                   <Motion.div
-                    {...triggerAnimation}
+                    {...triggerVariant}
                     class="flex w-full items-center justify-center gap-2 bg-transparent px-8 py-0"
                   >
                     <p>CLOSE</p>
