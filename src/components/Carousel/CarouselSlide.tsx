@@ -1,14 +1,14 @@
 import { For } from 'solid-js';
 
 import { Motion } from '@motionone/solid';
+import type { Options } from '@motionone/solid';
 import clsx from 'clsx';
-import { Variants } from 'framer-motion';
 import { OcArrowleft2, OcArrowright2 } from 'solid-icons/oc';
 
 import { useCarouselContext } from './Context';
 import type { CarouselSlideProps } from './types';
 
-const horizontalVariants: Variants = {
+const horizontalVariants: Options = {
   initial: {
     opacity: 0,
     x: 40,
@@ -23,7 +23,7 @@ const horizontalVariants: Variants = {
   },
 };
 
-const verticalVariants: Variants = {
+const verticalVariants: Options = {
   initial: {
     opacity: 0,
     y: 40,
