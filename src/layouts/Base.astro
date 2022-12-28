@@ -43,6 +43,20 @@ dayjs.extend(RelativeTime);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/socialImage.webp" />
+
+    <!-- Web Vitals -->
+    <script>
+      import { webVitals } from '@/lib/vitals';
+
+      const analyticsId = import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID;
+      if (analyticsId) {
+        webVitals({
+          path: location.pathname,
+          params: location.search,
+          analyticsId,
+        });
+      }
+    </script>
   </head>
 
   <body
