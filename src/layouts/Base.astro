@@ -57,7 +57,7 @@ dayjs.extend(RelativeTime);
         });
       }
     </script>
-    <script defer src="/_vercel/insights/script.js"></script>
+    {!import.meta.env.DEV && <script defer src="/_vercel/insights/script.js" />}
   </head>
 
   <body

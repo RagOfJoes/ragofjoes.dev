@@ -26,7 +26,7 @@ export const PROJECTS = [
       'An iOS library that extracts the ColorTheme from an image. It uses the Octree Color Quantization Algorithm to build the image’s distinct color palette.',
     image: '/octreePalette-preview.webp',
     tags: ['Mobile', 'iOS', 'Swift 5.0'],
-    title: 'OctreePalette',
+    title: 'Octree Palette',
     url: 'https://github.com/RagOfJoes/OctreePalette',
   },
   {

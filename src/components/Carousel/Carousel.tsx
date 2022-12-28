@@ -31,10 +31,10 @@ const Carousel = (props: CarouselProps) => {
 
   return (
     <CarouselProvider value={context}>
-      <div class="relative h-screen overflow-y-visible pt-32">
+      <div class="relative h-screen pt-32">
         <Presence initial={false} exitBeforeEnter>
           <Rerun on={context.current()}>
-            <div class="relative h-full overflow-y-visible">
+            <div class="relative h-full">
               {props.slides.map((slide, index) => {
                 return (
                   <Show when={index === context.current()}>

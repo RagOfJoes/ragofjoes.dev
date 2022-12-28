@@ -49,7 +49,7 @@ const CarouselItem = (props: CarouselSlideProps) => {
         'absolute top-0 left-0 grid h-full w-full grid-cols-[2fr_1fr] grid-rows-[2fr_1fr] overflow-y-visible',
 
         // Large Breakpoint
-        'max-lg:h-[max(900px,100%)] max-lg:grid-cols-none max-lg:grid-rows-[1.5fr_repeat(3,0.75fr)_0.25fr]'
+        'max-lg:min-h-[900px] max-lg:grid-cols-none max-lg:grid-rows-[1.5fr_repeat(3,0.75fr)_0.25fr]'
       )}
     >
       <div
@@ -148,12 +148,12 @@ const CarouselItem = (props: CarouselSlideProps) => {
           <Motion.svg
             {...horizontalVariants}
             transition={{ delay: 0.1 }}
-            fill="currentColor"
+            width={40}
             height={40}
             stroke-width="0"
-            style="overflow: visible;"
+            fill="currentColor"
             viewBox="0 0 16 16"
-            width={40}
+            style="overflow: visible;"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
