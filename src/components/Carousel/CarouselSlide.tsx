@@ -46,10 +46,10 @@ const CarouselItem = (props: CarouselSlideProps) => {
   return (
     <article
       class={clsx(
-        'absolute top-0 left-0 grid h-full w-full grid-cols-[2fr_1fr] grid-rows-[2fr_1fr] overflow-y-visible',
+        'absolute top-0 left-0 grid h-full w-full grid-cols-[2fr_1fr] grid-rows-[2fr_1fr]',
 
         // Large Breakpoint
-        'max-lg:min-h-[900px] max-lg:grid-cols-none max-lg:grid-rows-[1.5fr_repeat(3,0.75fr)_0.25fr]'
+        'max-lg:min-h-[calc(900px+8rem)] max-lg:grid-cols-none max-lg:grid-rows-[1.5fr_repeat(3,0.75fr)_0.25fr]'
       )}
     >
       <div
