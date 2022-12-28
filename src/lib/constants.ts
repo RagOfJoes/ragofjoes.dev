@@ -59,7 +59,7 @@ export const PROJECTS = [
 
 export const ROUTES = [
   { href: '/', title: 'ABOUT' },
-  { href: '/projects', title: 'PROJECTS' },
+  { href: '/projects/', title: 'PROJECTS' },
 ];
 
 export const SOCIALS: { href: string; icon: IconTypes; title: string }[] = [

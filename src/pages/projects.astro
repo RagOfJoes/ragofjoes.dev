@@ -1,0 +1,11 @@
+---
+import Carousel from '@/components/Carousel';
+import BaseLayout from '@/layouts/Base.astro';
+import { PROJECTS } from '@/lib/constants';
+---
+
+<BaseLayout title="Projects - Victor Ragojos">
+  <main class="overflow-x-hidden">
+    <Carousel client:load slides={PROJECTS} />
+  </main>
+</BaseLayout>
