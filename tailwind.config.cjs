@@ -6,7 +6,7 @@ module.exports = {
     extend: {
       animation: {
         scrollDown: 'scrollDown 1s ease-in-out infinite',
-        slideLeft: 'slideLeft 12s linear infinite',
+        slideLeft: 'slideLeft 18s linear infinite',
       },
       keyframes: {
         scrollDown: {
