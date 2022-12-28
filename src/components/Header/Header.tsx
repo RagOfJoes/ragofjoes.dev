@@ -11,6 +11,7 @@ import Dialog, {
   DialogPortal,
   DialogTrigger,
 } from '../Dialog';
+import Logo from '../Logo';
 import { HeaderProps } from './types';
 import { useWindowScrollPosition } from '@/hooks/useWindowScrollPosition';
 import { useWindowSize } from '@/hooks/useWindowSize';
@@ -29,7 +30,6 @@ const triggerAnimation: MotionComponentProps = {
   exit: { opacity: 0, y: -10 },
   transition: {
     duration: 0.08,
-    // easing: 'linear',
   },
 };
 
@@ -67,8 +67,6 @@ const Header = (props: HeaderProps) => {
         class={clsx(
           'duration-120 flex w-full will-change-[width,height]',
 
-          // Large Breakpoint
-          'lg:max-w-6xl',
           // Medium Breakpoint
           'max-md:justify-between'
         )}
@@ -84,8 +82,8 @@ const Header = (props: HeaderProps) => {
             'max-lg:basis-1/2'
           )}
         >
-          <a href="/" class={opacity}>
-            V
+          <a href="/" class={opacity} aria-label="Go to home page">
+            <Logo size={40} />
           </a>
         </div>
 
@@ -146,7 +144,7 @@ const Header = (props: HeaderProps) => {
 
           <div
             class={clsx(
-              'flex grow items-center justify-center gap-4 border-l border-l-ctp-surface0 px-8',
+              'flex grow items-center justify-center border-l border-l-ctp-surface0 px-8',
 
               // Large Breakpoint
               'max-lg:hidden'

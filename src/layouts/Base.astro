@@ -5,6 +5,16 @@ import RelativeTime from 'dayjs/plugin/relativeTime';
 import Header from '@/components/Header';
 import Seo from '@/components/Seo.astro';
 
+export type Props = {
+  title?: string;
+  description?: string;
+};
+
+const {
+  title = 'About - Victor Ragojos',
+  description = "I'm a software engineer that specializes in building fun and useful applications. I'm currently focusing on building and maintaining products at Offset.",
+} = Astro.props;
+
 dayjs.extend(RelativeTime);
 ---
 
@@ -16,7 +26,8 @@ dayjs.extend(RelativeTime);
   <head>
     <Seo />
 
-    <title>About - Victor Ragojos</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
   </head>
 
   <body

@@ -1,4 +1,6 @@
 ---
+import clsx from 'clsx';
+
 export type Props = {
   slides: string[];
 };
@@ -7,13 +9,32 @@ const { slides } = Astro.props;
 ---
 
 <div
-  class="group flex h-48 border-y border-y-ctp-surface0 hover:bg-ctp-overlay0/10"
+  class={clsx(
+    'group flex h-48 border-y border-y-ctp-surface0',
+
+    // Hover
+    'hover:bg-ctp-overlay0/10'
+  )}
 >
   {
     Array.from({ length: 2 }).map(() => (
-      <div class="flex h-full shrink-0 animate-slideLeft items-center gap-6 will-change-transform group-hover:animate-[slideLeft_12s_linear_infinite_paused]">
+      <div
+        class={clsx(
+          'flex h-full shrink-0 animate-slideLeft items-center gap-6 will-change-transform',
+
+          // Group Hover
+          'group-hover:animate-[slideLeft_12s_linear_infinite_paused]'
+        )}
+      >
         {slides.map((slide) => (
-          <div class="flex select-none items-center gap-6 first:ml-6">
+          <div
+            class={clsx(
+              'flex select-none items-center gap-6',
+
+              // First
+              'first:ml-6'
+            )}
+          >
             <p class="font-sans-serif text-3xl font-black text-ctp-blue">
               &bull;
             </p>
