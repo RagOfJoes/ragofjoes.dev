@@ -34,6 +34,12 @@ const triggerVariant: Options = {
   },
 };
 
+const isCurrentLink = (url: URL, slug: string): boolean => {
+  const urlStripped = url.pathname.replaceAll('/', '');
+
+  return urlStripped === slug;
+};
+
 const Header = (props: HeaderProps) => {
   const { url } = props;
 
@@ -111,7 +117,7 @@ const Header = (props: HeaderProps) => {
                 <a
                   href={route.href}
                   class={clsx(opacity, {
-                    'text-ctp-blue opacity-100': route.href === url.pathname,
+                    'text-ctp-blue opacity-100': isCurrentLink(url, route.slug),
                   })}
                 >
                   {route.title}
@@ -237,7 +243,7 @@ const Header = (props: HeaderProps) => {
                                 href={route.href}
                                 class={clsx(
                                   'text-center font-sans-serif text-4xl font-black',
-                                  route.href === url.pathname
+                                  isCurrentLink(url, route.slug)
                                     ? 'text-ctp-blue opacity-100'
                                     : opacity
                                 )}
