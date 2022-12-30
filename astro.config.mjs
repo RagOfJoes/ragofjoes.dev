@@ -5,4 +5,5 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   integrations: [solid(), tailwind()],
+  site: 'https://www.ragofjoes.dev',
 });
