@@ -4,7 +4,7 @@ import type { Metric } from 'web-vitals';
 
 export type WebVitalsOpts = {
   analyticsID: string;
-  url: URL;
+  location: Location;
 };
 
 const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
@@ -20,8 +20,8 @@ const getConnectionSpeed = (): string => {
 };
 
 const sendToAnalytics = (metric: Metric, options: WebVitalsOpts) => {
-  const { analyticsID, url } = options;
-  const { href, pathname, search } = url;
+  const { analyticsID, location } = options;
+  const { href, pathname, search } = location;
 
   const page = Object.entries(search).reduce(
     (acc, [key, value]) => acc.replace(value, `[${key}]`),

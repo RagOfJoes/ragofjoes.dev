@@ -50,7 +50,7 @@ dayjs.extend(RelativeTime);
 
       webVitals({
         analyticsID: import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID,
-        url: Astro.url,
+        location: location,
       });
     </script>
     {!import.meta.env.DEV && <script defer src="/_vercel/insights/script.js" />}
