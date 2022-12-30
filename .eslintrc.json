@@ -42,14 +42,20 @@
   },
   "overrides": [
     {
+      "env": {
+        "astro/astro": true,
+        "es2020": true,
+        "node": true
+      },
       "extends": ["plugin:prettier/recommended"],
       "files": ["**/*.astro"],
       "parser": "astro-eslint-parser",
       "parserOptions": {
         "extraFileExtensions": [".astro"],
-        "parser": "@typescript-eslint/parser"
+        "parser": "@typescript-eslint/parser",
+        "sourceType": "module"
       },
-      "plugins": ["@typescript-eslint", "astro", "solid"],
+      "plugins": ["@typescript-eslint", "astro"],
       "rules": {},
       "settings": {
         "import/resolver": {
