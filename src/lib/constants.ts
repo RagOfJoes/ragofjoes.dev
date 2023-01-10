@@ -69,7 +69,7 @@ export const SOCIALS: { href: string; icon: IconTypes; title: string }[] = [
     title: 'GitHub',
   },
   {
-    href: 'https://linkedin.com/RagOfJoes',
+    href: 'https://linkedin.com/in/RagOfJoes',
     icon: ImLinkedin2,
     title: 'LinkedIn',
   },
