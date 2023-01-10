@@ -11,7 +11,7 @@ export type Props = {
 };
 
 const {
-  title = 'About - Victor Ragojos',
+  title = 'Victor Ragojos',
   description = "I'm a software engineer that specializes in building fun and useful applications. I'm currently focusing on building and maintaining products at Offset.",
 } = Astro.props;
 
@@ -20,6 +20,7 @@ dayjs.extend(RelativeTime);
 
 <!DOCTYPE html>
 <html
+  dir="ltr"
   lang="en"
   class="scroll-smooth selection:bg-ctp-blue selection:text-ctp-base"
 >
@@ -27,13 +28,12 @@ dayjs.extend(RelativeTime);
     <Seo />
 
     <title>{title}</title>
-    <meta name="description" content={description} />
 
     <!-- Open Graph -->
     <meta property="og:url" content="https://www.ragofjoes.dev" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta name="description" property="og:description" content={description} />
     <meta property="og:image" content="/socialImage.webp" />
 
     <!-- Twitter -->

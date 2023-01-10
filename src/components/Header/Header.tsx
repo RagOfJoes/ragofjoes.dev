@@ -104,7 +104,7 @@ const Header = (props: HeaderProps) => {
             'max-md:hidden'
           )}
         >
-          <div
+          <ul
             class={clsx(
               'flex basis-1/2 items-center justify-center gap-24 border-l border-l-ctp-surface0 px-8',
 
@@ -114,19 +114,24 @@ const Header = (props: HeaderProps) => {
           >
             <For each={ROUTES}>
               {(route) => (
-                <a
-                  href={route.href}
-                  class={clsx(opacity, {
-                    'text-ctp-blue opacity-100': isCurrentLink(url, route.slug),
-                  })}
-                >
-                  {route.title}
-                </a>
+                <li class="flex items-center">
+                  <a
+                    href={route.href}
+                    class={clsx(opacity, {
+                      'text-ctp-blue opacity-100': isCurrentLink(
+                        url,
+                        route.slug
+                      ),
+                    })}
+                  >
+                    {route.title}
+                  </a>
+                </li>
               )}
             </For>
-          </div>
+          </ul>
 
-          <div
+          <ul
             class={clsx(
               'flex grow items-center justify-center gap-12 border-l border-l-ctp-surface0 px-8',
 
@@ -136,18 +141,20 @@ const Header = (props: HeaderProps) => {
           >
             <For each={SOCIALS}>
               {(link) => (
-                <a
-                  target="_blank"
-                  href={link.href}
-                  class={opacity}
-                  rel="me noopener noreferrer"
-                  aria-label={`Go to my ${link.title} profile`}
-                >
-                  {link.icon({})}
-                </a>
+                <li class="flex items-center">
+                  <a
+                    target="_blank"
+                    href={link.href}
+                    class={opacity}
+                    rel="me noopener noreferrer"
+                    aria-label={`Go to my ${link.title} profile`}
+                  >
+                    {link.icon({})}
+                  </a>
+                </li>
               )}
             </For>
-          </div>
+          </ul>
 
           <div
             class={clsx(
@@ -236,46 +243,53 @@ const Header = (props: HeaderProps) => {
                           duration: 0.12,
                         }}
                       >
-                        <div class="flex flex-col justify-center gap-8">
+                        <ul class="flex flex-col items-center justify-center gap-8">
                           <For each={ROUTES}>
                             {(route) => (
-                              <a
-                                href={route.href}
-                                class={clsx(
-                                  'text-center font-sans-serif text-4xl font-black',
-                                  isCurrentLink(url, route.slug)
-                                    ? 'text-ctp-blue opacity-100'
-                                    : opacity
-                                )}
-                              >
-                                {route.title}
-                              </a>
+                              <li class="flex items-center">
+                                <a
+                                  href={route.href}
+                                  class={clsx(
+                                    'text-center font-sans-serif text-4xl font-black',
+                                    isCurrentLink(url, route.slug)
+                                      ? 'text-ctp-blue opacity-100'
+                                      : opacity
+                                  )}
+                                >
+                                  {route.title}
+                                </a>
+                              </li>
                             )}
                           </For>
-                          <a
-                            href="/Resume.pdf"
-                            class={`text-center font-sans-serif text-4xl font-black ${opacity}`}
-                          >
-                            RESUME
-                          </a>
-                        </div>
+
+                          <li class="flex items-center">
+                            <a
+                              href="/Resume.pdf"
+                              class={`text-center font-sans-serif text-4xl font-black ${opacity}`}
+                            >
+                              RESUME
+                            </a>
+                          </li>
+                        </ul>
 
                         <div class="flex flex-col items-center gap-8">
-                          <div class="flex items-center justify-center gap-12 px-8">
+                          <ul class="flex items-center justify-center gap-12 px-8">
                             <For each={SOCIALS}>
                               {(link) => (
-                                <a
-                                  target="_blank"
-                                  href={link.href}
-                                  class={opacity}
-                                  rel="me noopener noreferrer"
-                                  aria-label={`Go to my ${link.title} profile`}
-                                >
-                                  {link.icon({ size: 24 })}
-                                </a>
+                                <li class="flex items-center">
+                                  <a
+                                    target="_blank"
+                                    href={link.href}
+                                    class={opacity}
+                                    rel="me noopener noreferrer"
+                                    aria-label={`Go to my ${link.title} profile`}
+                                  >
+                                    {link.icon({ size: 24 })}
+                                  </a>
+                                </li>
                               )}
                             </For>
-                          </div>
+                          </ul>
                         </div>
                       </Motion.div>
                     </Show>

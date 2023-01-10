@@ -1,6 +1,6 @@
 {
-  "short_name": "Portfolio",
-  "name": "About - Victor Ragojos",
+  "name": "Victor Ragojos",
+  "short_name": "Victor Ragojos",
   "start_url": "https://www.ragofjoes.dev/",
   "display": "standalone",
   "background_color": "#1E1E2E",
