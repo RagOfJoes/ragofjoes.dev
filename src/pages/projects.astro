@@ -4,8 +4,11 @@ import BaseLayout from '@/layouts/Base.astro';
 import { PROJECTS } from '@/lib/constants';
 ---
 
-<BaseLayout title="Projects - Victor Ragojos">
-  <main class="overflow-x-hidden overflow-y-visible">
+<BaseLayout
+  title="Projects - Victor Ragojos"
+  description="Check out my recent works, side projects, and, what technologies excite me."
+>
+  <main>
     <Carousel client:load slides={PROJECTS} />
   </main>
 </BaseLayout>
