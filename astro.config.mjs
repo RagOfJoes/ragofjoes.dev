@@ -15,5 +15,5 @@ export default defineConfig({
     solid(),
     tailwind(),
   ],
-  site: 'https://www.ragofjoes.dev',
+  site: 'https://www.ragofjoes.dev/',
 });
