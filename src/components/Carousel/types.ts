@@ -8,8 +8,12 @@ export type CarouselProps = {
 
 export type CarouselSlideProps = FlatArray<CarouselProps['slides'], 1>;
 
-export type UseCarousel = {
-  current: Accessor<number>;
-  next: () => void;
-  previous: () => void;
-};
+export type UseCarousel = [
+  state: {
+    current: Accessor<number>;
+  },
+  actions: {
+    next: () => void;
+    previous: () => void;
+  }
+];

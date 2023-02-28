@@ -5,7 +5,7 @@ import { normalizeProps, useMachine } from '@zag-js/solid';
 
 import { DialogProps, UseDialog } from './types';
 
-const useDialog = (props: DialogProps): UseDialog => {
+function useDialog(props: DialogProps): UseDialog {
   const { onClose = () => {}, onOpen = () => {} } = props;
 
   const [state, send] = useMachine(
@@ -32,6 +32,6 @@ const useDialog = (props: DialogProps): UseDialog => {
     api,
     dialogProps: props,
   };
-};
+}
 
 export default useDialog;

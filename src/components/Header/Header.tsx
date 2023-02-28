@@ -5,24 +5,28 @@ import type { Options } from '@motionone/solid';
 import clsx from 'clsx';
 import { HiSolidMenuAlt4, HiSolidX } from 'solid-icons/hi';
 
-import Dialog, {
+import type { HeaderProps } from './types';
+import {
+  Dialog,
   DialogContainer,
   DialogContent,
   DialogPortal,
   DialogTrigger,
-} from '../Dialog';
-import Logo from '../Logo';
-import type { HeaderProps } from './types';
+} from '@/components/Dialog';
+import Logo from '@/components/Logo';
 import { useWindowScrollPosition } from '@/hooks/useWindowScrollPosition';
 import { useWindowSize } from '@/hooks/useWindowSize';
 import { ROUTES, SOCIALS } from '@/lib/constants';
+import isCurrentLink from '@/lib/isCurrentLink';
 import transform from '@/lib/transform';
 
 const opacity = clsx(
-  'duration-120 ease-linear opacity-40 transition',
+  'duration-120 text-rsp-subtle/60 transition ease-linear',
 
+  // Aria
+  'aria-[current=page]:text-rsp-rose aria-[current=page]:opacity-100',
   // Hover
-  'hover:opacity-100'
+  'hover:text-rsp-text'
 );
 
 const triggerVariant: Options = {
@@ -34,13 +38,7 @@ const triggerVariant: Options = {
   },
 };
 
-const isCurrentLink = (url: URL, slug: string): boolean => {
-  const urlStripped = url.pathname.replaceAll('/', '');
-
-  return urlStripped === slug;
-};
-
-const Header = (props: HeaderProps) => {
+function Header(props: HeaderProps) {
   const { url } = props;
 
   const [isOpen, toggleIsOpen] = createSignal(false);
@@ -63,7 +61,7 @@ const Header = (props: HeaderProps) => {
   return (
     <header
       class={clsx(
-        'fixed inset-0 bottom-auto z-[9999] flex justify-center border-b border-b-ctp-surface0 bg-ctp-base transition-[backdrop-filter,background-color] ease-linear',
+        'fixed inset-0 bottom-auto z-[9999] flex justify-center border-b bg-rsp-base transition-[backdrop-filter,background-color] ease-linear',
 
         {
           'bg-transparent backdrop-blur-lg': !isOpen(),
@@ -89,7 +87,16 @@ const Header = (props: HeaderProps) => {
             'max-lg:basis-1/2'
           )}
         >
-          <a href="/" class={opacity} aria-label="Go to home page">
+          <a
+            href="/"
+            class={clsx(
+              'duration-120 opacity-40 transition ease-linear',
+
+              // Hover
+              'hover:opacity-100'
+            )}
+            aria-label="Go to home page"
+          >
             <Logo size={40} />
           </a>
         </div>
@@ -106,7 +113,7 @@ const Header = (props: HeaderProps) => {
         >
           <ul
             class={clsx(
-              'flex basis-1/2 items-center justify-center gap-24 border-l border-l-ctp-surface0 px-8',
+              'flex basis-1/2 items-center justify-center gap-24 border-l px-8',
 
               // Large Breakpoint
               'max-lg:hidden max-lg:basis-1/3 max-lg:gap-12'
@@ -116,13 +123,9 @@ const Header = (props: HeaderProps) => {
               {(route) => (
                 <li class="flex items-center">
                   <a
+                    class={opacity}
                     href={route.href}
-                    class={clsx(opacity, {
-                      'text-ctp-blue opacity-100': isCurrentLink(
-                        url,
-                        route.slug
-                      ),
-                    })}
+                    aria-current={isCurrentLink(url, route.slug) && 'page'}
                   >
                     {route.title}
                   </a>
@@ -133,7 +136,7 @@ const Header = (props: HeaderProps) => {
 
           <ul
             class={clsx(
-              'flex grow items-center justify-center gap-12 border-l border-l-ctp-surface0 px-8',
+              'flex grow items-center justify-center gap-12 border-l px-8',
 
               // Large Breakpoint
               'max-lg:gap-10'
@@ -158,7 +161,7 @@ const Header = (props: HeaderProps) => {
 
           <div
             class={clsx(
-              'flex grow items-center justify-center border-l border-l-ctp-surface0 px-8',
+              'flex grow items-center justify-center border-l px-8',
 
               // Large Breakpoint
               'max-lg:hidden'
@@ -172,7 +175,7 @@ const Header = (props: HeaderProps) => {
 
         <div
           class={clsx(
-            'hidden border-l border-l-ctp-surface0',
+            'hidden border-l',
 
             // Large Breakpoint
             'max-lg:flex max-lg:basis-1/4'
@@ -227,7 +230,7 @@ const Header = (props: HeaderProps) => {
                 }}
               >
                 <DialogContent
-                  class={clsx('flex w-screen overflow-y-auto bg-ctp-base')}
+                  class={clsx('flex w-screen overflow-y-auto bg-rsp-base')}
                   style={{
                     height: `calc(100vh - ${navHeight()}rem)`,
                   }}
@@ -235,7 +238,7 @@ const Header = (props: HeaderProps) => {
                   <Presence initial={false} exitBeforeEnter>
                     <Show when={isOpen()}>
                       <Motion.div
-                        class="my-auto flex w-screen flex-col justify-center gap-24 bg-ctp-base p-8"
+                        class="my-auto flex w-screen flex-col justify-center gap-24 bg-rsp-base p-8"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
@@ -249,11 +252,12 @@ const Header = (props: HeaderProps) => {
                               <li class="flex items-center">
                                 <a
                                   href={route.href}
+                                  aria-current={
+                                    isCurrentLink(url, route.slug) && 'page'
+                                  }
                                   class={clsx(
-                                    'text-center font-sans-serif text-4xl font-black',
-                                    isCurrentLink(url, route.slug)
-                                      ? 'text-ctp-blue opacity-100'
-                                      : opacity
+                                    opacity,
+                                    'text-center font-sans-serif text-4xl font-black'
                                   )}
                                 >
                                   {route.title}
@@ -302,6 +306,6 @@ const Header = (props: HeaderProps) => {
       </nav>
     </header>
   );
-};
+}
 
 export default Header;

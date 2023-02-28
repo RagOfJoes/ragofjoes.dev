@@ -38,13 +38,14 @@ const verticalVariants: Options = {
   },
 };
 
-const CarouselItem = (props: CarouselSlideProps) => {
+export function CarouselItem(props: CarouselSlideProps) {
   const { description, image, tags, title, url } = props;
 
-  const { next, previous } = useCarouselContext();
+  const [, { next, previous }] = useCarouselContext();
 
   return (
     <article
+      lang="en"
       class={clsx(
         'absolute top-0 left-0 grid h-full w-full grid-cols-[2fr_1fr] grid-rows-[2fr_1fr]',
 
@@ -62,12 +63,12 @@ const CarouselItem = (props: CarouselSlideProps) => {
       >
         <Motion.div
           {...horizontalVariants}
-          class="relative h-full w-full overflow-hidden rounded-[10px] border border-ctp-surface1/80"
+          class="relative h-full w-full overflow-hidden rounded-[10px] border"
         >
-          <div class="flex h-4 w-full items-center gap-1.5 bg-ctp-surface0/80 px-4">
-            {Array.from({ length: 3 }).map(() => (
-              <span class="h-2.5 w-2.5 rounded-full bg-ctp-surface1" />
-            ))}
+          <div class="flex h-4 w-full items-center gap-1.5 bg-rsp-surface px-4 py-3">
+            <For each={Array.from({ length: 3 })}>
+              {() => <span class="h-2.5 w-2.5 rounded-full bg-rsp-muted/30" />}
+            </For>
           </div>
 
           <div
@@ -86,15 +87,15 @@ const CarouselItem = (props: CarouselSlideProps) => {
         <div class="flex w-full flex-wrap gap-2">
           <For each={tags}>
             {(tag, index) => (
-              <Motion.div
+              <Motion.ul
                 {...horizontalVariants}
                 transition={{
                   delay: 0.05 * index(),
                 }}
-                class="rounded-full border border-ctp-blue py-1 px-2"
+                class="rounded-full border border-rsp-rose py-1 px-2"
               >
-                <p class="text-xs text-ctp-blue">{tag}</p>
-              </Motion.div>
+                <li class="text-xs text-rsp-rose">{tag}</li>
+              </Motion.ul>
             )}
           </For>
         </div>
@@ -102,13 +103,13 @@ const CarouselItem = (props: CarouselSlideProps) => {
 
       <div
         class={clsx(
-          'flex h-full flex-col justify-end border-l border-l-ctp-surface0 px-16 py-12',
+          'flex h-full flex-col justify-end border-l px-16 py-12',
 
           // Large Breakpoint
-          'max-lg:order-3 max-lg:border-l-0 max-lg:border-t max-lg:border-t-ctp-surface0 max-lg:px-8'
+          'max-lg:order-3 max-lg:border-l-0 max-lg:border-t max-lg:px-8'
         )}
       >
-        <Motion.p {...verticalVariants} class="text-ctp-overlay0">
+        <Motion.p {...verticalVariants} class="text-rsp-subtle">
           {description}
         </Motion.p>
       </div>
@@ -124,10 +125,10 @@ const CarouselItem = (props: CarouselSlideProps) => {
       >
         <div
           class={clsx(
-            'flex h-full w-full items-center justify-between gap-4 border-t border-t-ctp-surface0 py-8 px-16',
+            'flex h-full w-full items-center justify-between gap-4 border-t py-8 px-16',
 
             // Hover
-            'hover:bg-ctp-overlay0/10',
+            'hover:bg-rsp-muted/10',
 
             // Large Breakpoint
             'max-lg:px-8'
@@ -166,10 +167,10 @@ const CarouselItem = (props: CarouselSlideProps) => {
 
       <div
         class={clsx(
-          'flex h-full border-l border-t border-l-ctp-surface0 border-t-ctp-surface0',
+          'flex h-full border-l border-t',
 
           // Large Breakpoint
-          'max-lg:order-4 max-lg:border-l-0 max-lg:border-b max-lg:border-b-ctp-surface0'
+          'max-lg:order-4 max-lg:border-l-0 max-lg:border-b'
         )}
       >
         <Motion.button
@@ -182,7 +183,7 @@ const CarouselItem = (props: CarouselSlideProps) => {
             'flex items-center justify-center',
 
             // Hover
-            'hover:bg-ctp-overlay0/10'
+            'hover:bg-rsp-muted/10'
           )}
         >
           <OcArrowleft2 size={44} />
@@ -195,10 +196,10 @@ const CarouselItem = (props: CarouselSlideProps) => {
           animate={{ width: '50%' }}
           onClick={next}
           class={clsx(
-            'flex items-center justify-center border-l border-l-ctp-surface0',
+            'flex items-center justify-center border-l',
 
             // Hover
-            'hover:bg-ctp-overlay0/10'
+            'hover:bg-rsp-muted/10'
           )}
         >
           <OcArrowright2 size={44} />
@@ -206,6 +207,6 @@ const CarouselItem = (props: CarouselSlideProps) => {
       </div>
     </article>
   );
-};
+}
 
 export default CarouselItem;

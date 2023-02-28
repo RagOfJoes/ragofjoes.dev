@@ -5,7 +5,7 @@ import { Portal as SolidPortal } from 'solid-js/web';
 import { useDialogContext } from './Context';
 import { DialogPortalProps } from './types';
 
-const Portal = (props: DialogPortalProps) => {
+export function DialogPortal(props: DialogPortalProps) {
   const { api } = useDialogContext();
 
   return (
@@ -13,6 +13,4 @@ const Portal = (props: DialogPortalProps) => {
       <SolidPortal>{props.children}</SolidPortal>
     </Show>
   );
-};
-
-export default Portal;
+}

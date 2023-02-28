@@ -3,12 +3,10 @@ import { mergeProps } from 'solid-js';
 import { useDialogContext } from './Context';
 import type { DialogContentProps } from './types';
 
-const Content = (props: DialogContentProps) => {
+export function DialogContent(props: DialogContentProps) {
   const { api } = useDialogContext();
 
   const mergedProps = mergeProps(api().contentProps, props);
 
   return <div {...mergedProps} />;
-};
-
-export default Content;
+}

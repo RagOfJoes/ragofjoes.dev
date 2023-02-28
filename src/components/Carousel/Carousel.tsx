@@ -1,27 +1,27 @@
-import { Show } from 'solid-js';
+import { For, Show } from 'solid-js';
 
 import { Presence } from '@motionone/solid';
 
-import Rerun from '../Rerun';
 import CarouselSlide from './CarouselSlide';
 import { CarouselProvider } from './Context';
 import type { CarouselProps } from './types';
 import useCarousel from './useCarousel';
+import Rerun from '../Rerun';
 import addEventListener from '@/lib/addEventListener';
 
-const Carousel = (props: CarouselProps) => {
-  const context = useCarousel(props);
+function Carousel(props: CarouselProps) {
+  const [state, actions] = useCarousel(props);
 
   if (!import.meta.env.SSR) {
     addEventListener(window, 'keydown', (e: KeyboardEvent) => {
       switch (e.key) {
         case 'h':
         case 'ArrowLeft':
-          context.previous();
+          actions.previous();
           break;
         case 'l':
         case 'ArrowRight':
-          context.next();
+          actions.next();
           break;
         default:
           break;
@@ -30,14 +30,14 @@ const Carousel = (props: CarouselProps) => {
   }
 
   return (
-    <CarouselProvider value={context}>
+    <CarouselProvider value={[state, actions]}>
       <div class="relative h-screen pt-32">
         <Presence initial={false} exitBeforeEnter>
-          <Rerun on={context.current()}>
+          <Rerun on={state.current()}>
             <div class="relative h-full">
-              {props.slides.map((slide, index) => {
-                return (
-                  <Show when={index === context.current()}>
+              <For each={props.slides}>
+                {(slide, i) => (
+                  <Show when={i() === state.current()}>
                     <CarouselSlide
                       url={slide.url}
                       tags={slide.tags}
@@ -46,14 +46,14 @@ const Carousel = (props: CarouselProps) => {
                       description={slide.description}
                     />
                   </Show>
-                );
-              })}
+                )}
+              </For>
             </div>
           </Rerun>
         </Presence>
       </div>
     </CarouselProvider>
   );
-};
+}
 
 export default Carousel;
