@@ -21,9 +21,9 @@ export type CreateContextReturn<T> = [
   SolidContext<T>
 ];
 
-export const createContext = <T>(
+export function createContext<T>(
   args: CreateContextArgs<T>
-): CreateContextReturn<T> => {
+): CreateContextReturn<T> {
   const {
     defaultValue,
     strict = true,
@@ -53,4 +53,4 @@ export const createContext = <T>(
   };
 
   return [Context.Provider, useContext, Context] as CreateContextReturn<T>;
-};
+}

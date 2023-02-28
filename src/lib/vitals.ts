@@ -9,7 +9,7 @@ export type WebVitalsOpts = {
 
 const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
 
-const getConnectionSpeed = (): string => {
+function getConnectionSpeed(): string {
   // @ts-ignore
   if (navigator.connection && navigator.connection.effectiveType) {
     // @ts-ignore
@@ -17,9 +17,9 @@ const getConnectionSpeed = (): string => {
   }
 
   return '';
-};
+}
 
-const sendToAnalytics = (metric: Metric, options: WebVitalsOpts) => {
+function sendToAnalytics(metric: Metric, options: WebVitalsOpts) {
   const { analyticsID, location } = options;
   const { href, pathname, search } = location;
 
@@ -54,9 +54,9 @@ const sendToAnalytics = (metric: Metric, options: WebVitalsOpts) => {
     keepalive: true,
     method: 'POST',
   });
-};
+}
 
-const webVitals = (options: WebVitalsOpts) => {
+function webVitals(options: WebVitalsOpts) {
   try {
     onFID((metric) => sendToAnalytics(metric, options));
     onTTFB((metric) => sendToAnalytics(metric, options));
@@ -66,6 +66,6 @@ const webVitals = (options: WebVitalsOpts) => {
   } catch (e) {
     console.error('[WebVitals]', e);
   }
-};
+}
 
 export default webVitals;

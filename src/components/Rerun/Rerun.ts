@@ -3,7 +3,7 @@ import type { JSX } from 'solid-js';
 
 import type { RerunProps } from './types';
 
-const Rerun = <T>(props: RerunProps<T>): Accessor<JSX.Element> => {
+function Rerun<T>(props: RerunProps<T>): Accessor<JSX.Element> {
   const key =
     typeof props.on === 'function' || Array.isArray(props.on)
       ? props.on
@@ -18,6 +18,6 @@ const Rerun = <T>(props: RerunProps<T>): Accessor<JSX.Element> => {
         : child;
     })
   );
-};
+}
 
 export default Rerun;

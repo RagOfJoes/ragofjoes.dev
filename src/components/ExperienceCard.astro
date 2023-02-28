@@ -15,8 +15,8 @@ const { company, description, end, job, start } = Astro.props;
 const DATE_FORMAT = 'MMM D, YYYY';
 ---
 
-<div class="rounded-lg border-2 border-ctp-overlay0/10 bg-ctp-overlay0/10 p-4">
-  <p class="text-sm font-medium text-ctp-overlay1">
+<div class="rounded-lg border bg-rsp-surface p-4">
+  <p class="text-sm font-medium text-rsp-muted">
     {start.format(DATE_FORMAT)} -{' '}
     {end.isSame(dayjs(), 'date') ? 'Present' : end.format(DATE_FORMAT)}
     ({start.from(end, true)})
@@ -31,12 +31,12 @@ const DATE_FORMAT = 'MMM D, YYYY';
   >
     {company}
   </h3>
-  <h4 class="text-sm font-bold uppercase text-ctp-blue">{job}</h4>
+  <h4 class="text-sm font-bold uppercase text-rsp-rose">{job}</h4>
 
   <ul class="mt-6 list-inside list-none">
     {
       description.map((text) => (
-        <li class="flex items-center gap-2 text-ctp-subtext0 [&:not(:first-child)]:mt-2">
+        <li class="flex items-center gap-2 text-rsp-subtle [&:not(:first-child)]:mt-2">
           <svg
             class="shrink-0"
             fill="currentColor"

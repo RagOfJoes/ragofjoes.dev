@@ -1,20 +1,20 @@
-const clamp = (min: number, max: number, v: number) => {
+function clamp(min: number, max: number, v: number) {
   return Math.min(Math.max(v, min), max);
-};
+}
 
-const mix = (min: number, max: number, progress: number) => {
-  return -progress * min + progress * max + min;
-};
+function mix(min: number, max: number, percentage: number) {
+  return -percentage * min + percentage * max + min;
+}
 
-const progress = (min: number, max: number, value: number) => {
+function progress(min: number, max: number, value: number) {
   return max - min === 0 ? 1 : (value - min) / (max - min);
-};
+}
 
 /**
  * Transforms value by mapping input range to output range
  *
  */
-const transform = (input: number[], output: number[]) => {
+function transform(input: number[], output: number[]) {
   if (input.length !== output.length) {
     throw new Error('[transform]: Input must have the same length as output');
   }
@@ -33,6 +33,6 @@ const transform = (input: number[], output: number[]) => {
       clamp(0, 1, progress(input[i]!, input[i + 1]!, t))
     );
   };
-};
+}
 
 export default transform;

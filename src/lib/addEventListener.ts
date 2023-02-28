@@ -1,11 +1,11 @@
 import { onRootCleanup } from '@solid-primitives/utils';
 
-const addEventListener = <
+function addEventListener<
   T extends Window | Document | HTMLElement | EventTarget
 >(
   obj: T,
   ...args: Parameters<T['addEventListener']> | [string, Function | null, ...any]
-): void => {
+): void {
   obj.addEventListener(
     ...(args as Parameters<HTMLElement['addEventListener']>)
   );
@@ -15,6 +15,6 @@ const addEventListener = <
       ...(args as Parameters<HTMLElement['addEventListener']>)
     );
   });
-};
+}
 
 export default addEventListener;

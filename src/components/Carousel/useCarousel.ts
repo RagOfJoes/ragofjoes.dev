@@ -22,11 +22,7 @@ const useCarousel = (props: CarouselProps): UseCarousel => {
     setCurrent(current() - 1);
   };
 
-  return {
-    current,
-    next,
-    previous,
-  };
+  return [{ current }, { next, previous }];
 };
 
 export default useCarousel;
