@@ -8,6 +8,9 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
+	adapter: vercelStatic({
+		analytics: true,
+	}),
 	integrations: [
 		sitemap({
 			changefreq: "weekly",
@@ -16,9 +19,6 @@ export default defineConfig({
 		}),
 		solid(),
 		tailwind(),
-		vercelStatic({
-			analytics: true,
-		}),
 	],
 	site: "https://www.ragofjoes.dev/",
 });
