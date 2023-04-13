@@ -1,18 +1,18 @@
 ---
-import dayjs from 'dayjs';
-import RelativeTime from 'dayjs/plugin/relativeTime';
+import dayjs from "dayjs";
+import RelativeTime from "dayjs/plugin/relativeTime";
 
-import Header from '@/components/Header';
-import Seo from '@/components/Seo.astro';
+import Header from "@/components/Header";
+import Seo from "@/components/Seo.astro";
 
 export type Props = {
-  title?: string;
-  description?: string;
+	title?: string;
+	description?: string;
 };
 
 const {
-  title = 'Victor Ragojos',
-  description = "I'm a software engineer that specializes in building fun and useful applications. I'm currently focusing on building and maintaining products at Offset.",
+	title = "Victor Ragojos",
+	description = "I'm a software engineer that specializes in building fun and useful applications. I'm currently focusing on building and maintaining products at Offset.",
 } = Astro.props;
 
 dayjs.extend(RelativeTime);
@@ -20,47 +20,36 @@ dayjs.extend(RelativeTime);
 
 <!DOCTYPE html>
 <html
-  dir="ltr"
-  lang="en"
-  class="scroll-smooth selection:bg-rsp-rose selection:text-rsp-base"
+	dir="ltr"
+	lang="en"
+	class="scroll-smooth selection:bg-rsp-rose selection:text-rsp-base"
 >
-  <head>
-    <Seo />
+	<head>
+		<Seo />
 
-    <title>{title}</title>
+		<title>{title}</title>
 
-    <!-- Open Graph -->
-    <meta property="og:url" content="https://www.ragofjoes.dev" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta name="description" property="og:description" content={description} />
-    <meta property="og:image" content="/socialImage.webp" />
+		<!-- Open Graph -->
+		<meta property="og:url" content="https://www.ragofjoes.dev" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta name="description" property="og:description" content={description} />
+		<meta property="og:image" content="/socialImage.webp" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="ragofjoes.dev" />
-    <meta property="twitter:url" content="https://www.ragofjoes.dev" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/socialImage.webp" />
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta property="twitter:domain" content="ragofjoes.dev" />
+		<meta property="twitter:url" content="https://www.ragofjoes.dev" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content="/socialImage.webp" />
+	</head>
 
-    <!-- Web Vitals -->
-    <script>
-      import webVitals from '@/lib/vitals';
+	<body
+		class="h-screen w-screen overflow-y-auto overflow-x-hidden bg-rsp-base text-rsp-text"
+	>
+		<Header client:load url={Astro.url} />
 
-      webVitals({
-        analyticsID: import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID,
-        location: location,
-      });
-    </script>
-    {!import.meta.env.DEV && <script defer src="/_vercel/insights/script.js" />}
-  </head>
-
-  <body
-    class="h-screen w-screen overflow-y-auto overflow-x-hidden bg-rsp-base text-rsp-text"
-  >
-    <Header client:load url={Astro.url} />
-
-    <slot />
-  </body>
+		<slot />
+	</body>
 </html>
