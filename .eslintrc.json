@@ -1,86 +1,90 @@
 {
-  "root": true,
-  "extends": ["airbnb-base", "plugin:prettier/recommended"],
-  "plugins": ["unused-imports"],
-  "rules": {
-    "import/extensions": "off",
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "internal"],
-        "pathGroups": [
-          {
-            "pattern": "solid-js",
-            "group": "external",
-            "position": "before"
-          }
-        ],
-        "pathGroupsExcludedImportTypes": ["solid-js"],
-        "newlines-between": "always",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
-      }
-    ],
-    "max-len": [
-      "error",
-      {
-        "ignoreComments": false,
-        "ignoreTemplateLiterals": false,
-        "ignoreTrailingComments": false,
-        "tabWidth": 2
-      }
-    ],
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "error",
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ]
-  },
-  "overrides": [
-    {
-      "env": {
-        "astro/astro": true,
-        "es2020": true,
-        "node": true
-      },
-      "extends": ["plugin:prettier/recommended"],
-      "files": ["**/*.astro"],
-      "parser": "astro-eslint-parser",
-      "parserOptions": {
-        "extraFileExtensions": [".astro"],
-        "parser": "@typescript-eslint/parser",
-        "sourceType": "module"
-      },
-      "plugins": ["@typescript-eslint", "astro"],
-      "rules": {},
-      "settings": {
-        "import/resolver": {
-          "alias": {
-            "extensions": [".js", ".jsx", ".ts", ".tsx"],
-            "map": [["@", "./src"]]
-          }
-        }
-      }
-    },
-    {
-      "extends": ["airbnb-typescript/base", "plugin:prettier/recommended"],
-      "files": ["**/*.ts", "**/*.tsx"],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "project": "./tsconfig.json"
-      },
-      "plugins": ["@typescript-eslint", "solid"],
-      "rules": {
-        "@typescript-eslint/no-unused-vars": "off",
-        "import/extensions": "off",
-        "import/prefer-default-export": "off",
-        "no-restricted-exports": "off",
-        "prefer-destructuring": "off"
-      }
-    }
-  ]
+	"root": true,
+	"extends": ["airbnb-base", "plugin:prettier/recommended"],
+	"plugins": ["unused-imports"],
+	"rules": {
+		"import/extensions": "off",
+		"import/order": [
+			"error",
+			{
+				"groups": ["builtin", "external", "internal"],
+				"pathGroups": [
+					{
+						"pattern": "solid-js",
+						"group": "external",
+						"position": "before"
+					},
+					{
+						"group": "internal",
+						"pattern": "@/**"
+					}
+				],
+				"pathGroupsExcludedImportTypes": ["solid-js"],
+				"newlines-between": "always",
+				"alphabetize": {
+					"order": "asc",
+					"caseInsensitive": true
+				}
+			}
+		],
+		"max-len": [
+			"error",
+			{
+				"ignoreComments": false,
+				"ignoreTemplateLiterals": false,
+				"ignoreTrailingComments": false,
+				"tabWidth": 2
+			}
+		],
+		"unused-imports/no-unused-imports": "error",
+		"unused-imports/no-unused-vars": [
+			"error",
+			{
+				"argsIgnorePattern": "^_"
+			}
+		]
+	},
+	"overrides": [
+		{
+			"env": {
+				"astro/astro": true,
+				"es2020": true,
+				"node": true
+			},
+			"extends": ["plugin:prettier/recommended"],
+			"files": ["**/*.astro"],
+			"parser": "astro-eslint-parser",
+			"parserOptions": {
+				"extraFileExtensions": [".astro"],
+				"parser": "@typescript-eslint/parser",
+				"sourceType": "module"
+			},
+			"plugins": ["@typescript-eslint", "astro"],
+			"rules": {},
+			"settings": {
+				"import/resolver": {
+					"alias": {
+						"extensions": [".js", ".jsx", ".ts", ".tsx"],
+						"map": [["@", "./src"]]
+					}
+				}
+			}
+		},
+		{
+			"extends": ["airbnb-typescript/base", "plugin:prettier/recommended"],
+			"files": ["**/*.ts", "**/*.tsx"],
+			"parser": "@typescript-eslint/parser",
+			"parserOptions": {
+				"project": "./tsconfig.json"
+			},
+			"plugins": ["@typescript-eslint", "solid"],
+			"rules": {
+				"@typescript-eslint/no-unused-vars": "off",
+				"import/extensions": "off",
+				"import/prefer-default-export": "off",
+				"no-restricted-exports": "off",
+				"prefer-destructuring": "off"
+			}
+		}
+	]
 }

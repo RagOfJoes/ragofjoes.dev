@@ -4,28 +4,28 @@
  */
 
 import {
-  $PROXY,
-  $TRACK,
-  Accessor,
-  createEffect,
-  on,
-  onCleanup,
-} from 'solid-js';
+	$PROXY,
+	$TRACK,
+	Accessor,
+	createEffect,
+	on,
+	onCleanup,
+} from "solid-js";
 
-import { makeEventListener } from '@solid-primitives/event-listener';
-import { createSharedRoot } from '@solid-primitives/rootless';
+import { makeEventListener } from "@solid-primitives/event-listener";
+import { createSingletonRoot } from "@solid-primitives/rootless";
+import { createStaticStore } from "@solid-primitives/static-store";
 import {
-  asArray,
-  createStaticStore,
-  handleDiffArray,
-  Many,
-  MaybeAccessor,
-} from '@solid-primitives/utils';
+	asArray,
+	handleDiffArray,
+	Many,
+	MaybeAccessor,
+} from "@solid-primitives/utils";
 
 export type ResizeHandler = (
-  rect: DOMRectReadOnly,
-  element: Element,
-  entry: ResizeObserverEntry
+	rect: DOMRectReadOnly,
+	element: Element,
+	entry: ResizeObserverEntry
 ) => void;
 
 /**
@@ -36,26 +36,26 @@ export type ResizeHandler = (
  * @returns `observe` and `unobserve` functions
  */
 export function makeResizeObserver<T extends Element>(
-  callback: ResizeObserverCallback,
-  options?: ResizeObserverOptions
+	callback: ResizeObserverCallback,
+	options?: ResizeObserverOptions
 ): {
-  observe: (ref: T) => void;
-  unobserve: (ref: T) => void;
+	observe: (ref: T) => void;
+	unobserve: (ref: T) => void;
 } {
-  if (import.meta.env.SSR) {
-    return {
-      observe: () => {},
-      unobserve: () => {},
-    };
-  }
+	if (import.meta.env.SSR) {
+		return {
+			observe: () => {},
+			unobserve: () => {},
+		};
+	}
 
-  const resizeObserver = new ResizeObserver(callback);
-  onCleanup(resizeObserver.disconnect.bind(resizeObserver));
+	const resizeObserver = new ResizeObserver(callback);
+	onCleanup(resizeObserver.disconnect.bind(resizeObserver));
 
-  return {
-    observe: (ref) => resizeObserver.observe(ref, options),
-    unobserve: resizeObserver.unobserve.bind(resizeObserver),
-  };
+	return {
+		observe: (ref) => resizeObserver.observe(ref, options),
+		unobserve: resizeObserver.unobserve.bind(resizeObserver),
+	};
 }
 
 /**
@@ -74,74 +74,74 @@ export function makeResizeObserver<T extends Element>(
  * ```
  */
 export function createResizeObserver(
-  targets: MaybeAccessor<Many<Element>>,
-  onResize: ResizeHandler,
-  options?: ResizeObserverOptions
+	targets: MaybeAccessor<Many<Element>>,
+	onResize: ResizeHandler,
+	options?: ResizeObserverOptions
 ): void {
-  if (import.meta.env.SSR) {
-    return;
-  }
+	if (import.meta.env.SSR) {
+		return;
+	}
 
-  const previousMap = new WeakMap<Element, { width: number; height: number }>();
+	const previousMap = new WeakMap<Element, { width: number; height: number }>();
 
-  function handleObserverCallback(entries: ResizeObserverEntry[]) {
-    entries.forEach((entry) => {
-      const { contentRect, target } = entry;
-      const width = Math.round(contentRect.width);
-      const height = Math.round(contentRect.height);
-      const previous = previousMap.get(target);
-      if (!previous || previous.width !== width || previous.height !== height) {
-        onResize(contentRect, entry.target, entry);
-        previousMap.set(target, { width, height });
-      }
-    });
-  }
+	function handleObserverCallback(entries: ResizeObserverEntry[]) {
+		entries.forEach((entry) => {
+			const { contentRect, target } = entry;
+			const width = Math.round(contentRect.width);
+			const height = Math.round(contentRect.height);
+			const previous = previousMap.get(target);
+			if (!previous || previous.width !== width || previous.height !== height) {
+				onResize(contentRect, entry.target, entry);
+				previousMap.set(target, { width, height });
+			}
+		});
+	}
 
-  const { observe, unobserve } = makeResizeObserver(
-    handleObserverCallback,
-    options
-  );
+	const { observe, unobserve } = makeResizeObserver(
+		handleObserverCallback,
+		options
+	);
 
-  let refs: Accessor<Element[]> | undefined;
-  // is an signal
-  if (typeof targets === 'function') {
-    refs = () => asArray(targets()).slice();
-  }
-  // is a store array
-  else if (Array.isArray(targets) && $PROXY in targets) {
-    refs = () => {
-      // track top-level store array
-      return (targets as any)[$TRACK].slice();
-    };
-  }
-  // is not reactive
-  else {
-    asArray(targets).forEach(observe);
-    return;
-  }
+	let refs: Accessor<Element[]> | undefined;
+	// is an signal
+	if (typeof targets === "function") {
+		refs = () => asArray(targets()).slice();
+	}
+	// is a store array
+	else if (Array.isArray(targets) && $PROXY in targets) {
+		refs = () => {
+			// track top-level store array
+			return (targets as any)[$TRACK].slice();
+		};
+	}
+	// is not reactive
+	else {
+		asArray(targets).forEach(observe);
+		return;
+	}
 
-  createEffect(
-    on(refs, (current, prev = []) =>
-      handleDiffArray(current, prev, observe, unobserve)
-    )
-  );
+	createEffect(
+		on(refs, (current, prev = []) =>
+			handleDiffArray(current, prev, observe, unobserve)
+		)
+	);
 }
 
 /**
  * @returns object with width and height dimensions of window, page and screen.
  */
 export function getWindowSize(): {
-  width: number;
-  height: number;
+	width: number;
+	height: number;
 } {
-  if (import.meta.env.SSR) {
-    return { width: 0, height: 0 };
-  }
+	if (import.meta.env.SSR) {
+		return { width: 0, height: 0 };
+	}
 
-  return {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
+	return {
+		width: window.innerWidth,
+		height: window.innerHeight,
+	};
 }
 
 /**
@@ -154,19 +154,19 @@ export function getWindowSize(): {
  * })
  */
 export function createWindowSize(): {
-  readonly width: number;
-  readonly height: number;
+	readonly width: number;
+	readonly height: number;
 } {
-  if (import.meta.env.SSR) {
-    return getWindowSize();
-  }
+	if (import.meta.env.SSR) {
+		return getWindowSize();
+	}
 
-  const [size, setSize] = createStaticStore(getWindowSize());
+	const [size, setSize] = createStaticStore(getWindowSize());
 
-  const updateSize = () => setSize(getWindowSize());
-  makeEventListener(window, 'resize', updateSize);
+	const updateSize = () => setSize(getWindowSize());
+	makeEventListener(window, "resize", updateSize);
 
-  return size;
+	return size;
 }
 
 /**
@@ -181,4 +181,4 @@ export function createWindowSize(): {
  * })
  */
 export const useWindowSize: typeof createWindowSize =
-  /* #__PURE__ */ createSharedRoot(createWindowSize);
+	/* #__PURE__ */ createSingletonRoot(createWindowSize);

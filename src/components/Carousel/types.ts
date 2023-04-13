@@ -1,19 +1,19 @@
-import { Accessor } from 'solid-js';
+import { Accessor } from "solid-js";
 
-import { PROJECTS } from '@/lib/constants';
+import { PROJECTS } from "@/lib/constants";
 
 export type CarouselProps = {
-  slides: typeof PROJECTS;
+	slides: typeof PROJECTS;
 };
 
-export type CarouselSlideProps = FlatArray<CarouselProps['slides'], 1>;
+export type CarouselSlideProps = FlatArray<CarouselProps["slides"], 1>;
 
 export type UseCarousel = [
-  state: {
-    current: Accessor<number>;
-  },
-  actions: {
-    next: () => void;
-    previous: () => void;
-  }
+	state: {
+		current: Accessor<number>;
+	},
+	actions: {
+		next: () => void;
+		previous: () => void;
+	}
 ];

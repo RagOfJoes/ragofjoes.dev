@@ -1,12 +1,12 @@
-import type { Accessor, JSX } from 'solid-js';
+import type { Accessor, JSX } from "solid-js";
 
-import { connect } from '@zag-js/dialog';
-import { Portal } from 'solid-js/web';
+import { connect } from "@zag-js/dialog";
+import { Portal } from "solid-js/web";
 
 export type DialogProps = {
-  children?: JSX.Element;
-  onClose?: () => void;
-  onOpen?: () => void;
+	children?: JSX.Element;
+	onClose?: () => void;
+	onOpen?: () => void;
 };
 
 export type DialogTriggerProps = JSX.HTMLAttributes<HTMLButtonElement>;
@@ -18,6 +18,6 @@ export type DialogContainerProps = JSX.HTMLAttributes<HTMLDivElement>;
 export type DialogContentProps = JSX.HTMLAttributes<HTMLDivElement>;
 
 export type UseDialog = {
-  api: Accessor<ReturnType<typeof connect>>;
-  dialogProps: DialogProps;
+	api: Accessor<ReturnType<typeof connect>>;
+	dialogProps: DialogProps;
 };

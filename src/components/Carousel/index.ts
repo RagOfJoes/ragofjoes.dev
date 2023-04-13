@@ -1,2 +1,2 @@
-export * from './types';
-export { default } from './Carousel';
+export * from "./types";
+export { default } from "./Carousel";

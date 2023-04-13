@@ -1,8 +1,9 @@
-import type { UseCarousel } from './types';
-import { createContext } from '@/lib/createContext';
+import { createContext } from "@/lib/createContext";
+
+import type { UseCarousel } from "./types";
 
 export const [CarouselProvider, useCarouselContext] =
-  createContext<UseCarousel>({
-    strict: true,
-    name: 'CarouselContext',
-  });
+	createContext<UseCarousel>({
+		strict: true,
+		name: "CarouselContext",
+	});

@@ -1,12 +1,12 @@
-import { mergeProps } from 'solid-js';
+import { mergeProps } from "solid-js";
 
-import { useDialogContext } from './Context';
-import type { DialogTriggerProps } from './types';
+import { useDialogContext } from "./Context";
+import type { DialogTriggerProps } from "./types";
 
 export function DialogTrigger(props: DialogTriggerProps) {
-  const { api } = useDialogContext();
+	const { api } = useDialogContext();
 
-  const mergedProps = mergeProps(props, api().triggerProps);
+	const mergedProps = mergeProps(props, api().triggerProps);
 
-  return <button {...mergedProps} />;
+	return <button {...mergedProps} />;
 }

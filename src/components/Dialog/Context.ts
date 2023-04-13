@@ -1,7 +1,8 @@
-import type { UseDialog } from './types';
-import { createContext } from '@/lib/createContext';
+import { createContext } from "@/lib/createContext";
+
+import type { UseDialog } from "./types";
 
 export const [DialogProvider, useDialogContext] = createContext<UseDialog>({
-  strict: true,
-  name: 'DialogContext',
+	strict: true,
+	name: "DialogContext",
 });
