@@ -20,5 +20,12 @@ export default defineConfig({
 		solid(),
 		tailwind(),
 	],
+	vite: {
+		define: {
+			"import.meta.env.PUBLIC_VERCEL_ANALYTICS_ID": JSON.stringify(
+				process.env.VERCEL_ANALYTICS_ID
+			),
+		},
+	},
 	site: "https://www.ragofjoes.dev/",
 });
