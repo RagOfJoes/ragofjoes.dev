@@ -2,7 +2,7 @@ import { splitProps } from "solid-js";
 
 import { IconProps } from "solid-icons";
 
-function Logo(props: IconProps) {
+export function Logo(props: IconProps) {
 	const [{ size }, other] = splitProps(props, ["color", "size"]);
 
 	return (
@@ -40,5 +40,3 @@ function Logo(props: IconProps) {
 		</svg>
 	);
 }
-
-export default Logo;

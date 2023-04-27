@@ -2,6 +2,7 @@ import { createEffect, createSignal, For, Show } from "solid-js";
 
 import type { Options } from "@motionone/solid";
 import { Motion, Presence } from "@motionone/solid";
+import { useWindowSize } from "@solid-primitives/resize-observer";
 import clsx from "clsx";
 import { HiSolidMenuAlt4, HiSolidX } from "solid-icons/hi";
 
@@ -12,9 +13,8 @@ import {
 	DialogPortal,
 	DialogTrigger,
 } from "@/components/Dialog";
-import Logo from "@/components/Logo";
+import { Logo } from "@/components/Logo";
 import { useWindowScrollPosition } from "@/hooks/useWindowScrollPosition";
-import { useWindowSize } from "@/hooks/useWindowSize";
 import { ROUTES, SOCIALS } from "@/lib/constants";
 import isCurrentLink from "@/lib/isCurrentLink";
 import transform from "@/lib/transform";
@@ -39,7 +39,7 @@ const triggerVariant: Options = {
 	},
 };
 
-function Header(props: HeaderProps) {
+export function Header(props: HeaderProps) {
 	const { url } = props;
 
 	const [isOpen, toggleIsOpen] = createSignal(false);
@@ -308,5 +308,3 @@ function Header(props: HeaderProps) {
 		</header>
 	);
 }
-
-export default Header;

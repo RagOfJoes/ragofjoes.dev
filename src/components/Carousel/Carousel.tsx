@@ -2,15 +2,15 @@ import { For, Show } from "solid-js";
 
 import { Presence } from "@motionone/solid";
 
-import Rerun from "@/components/Rerun";
+import { Rerun } from "@/components/Rerun";
 import addEventListener from "@/lib/addEventListener";
 
-import CarouselSlide from "./CarouselSlide";
+import { CarouselSlide } from "./CarouselSlide";
 import { CarouselProvider } from "./Context";
 import type { CarouselProps } from "./types";
 import useCarousel from "./useCarousel";
 
-function Carousel(props: CarouselProps) {
+export function Carousel(props: CarouselProps) {
 	const [state, actions] = useCarousel(props);
 
 	if (!import.meta.env.SSR) {
@@ -56,5 +56,3 @@ function Carousel(props: CarouselProps) {
 		</CarouselProvider>
 	);
 }
-
-export default Carousel;

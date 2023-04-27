@@ -38,7 +38,7 @@ const verticalVariants: Options = {
 	},
 };
 
-export function CarouselItem(props: CarouselSlideProps) {
+export function CarouselSlide(props: CarouselSlideProps) {
 	const { description, image, tags, title, url } = props;
 
 	const [, { next, previous }] = useCarouselContext();
@@ -208,5 +208,3 @@ export function CarouselItem(props: CarouselSlideProps) {
 		</article>
 	);
 }
-
-export default CarouselItem;
