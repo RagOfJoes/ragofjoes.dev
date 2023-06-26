@@ -22,7 +22,7 @@ import transform from "@/lib/transform";
 import type { HeaderProps } from "./types";
 
 const opacity = clsx(
-	"duration-120 fill-rsp-subtle/60 text-rsp-subtle/60 transition ease-linear",
+	"text-rsp-subtle/60",
 
 	// aria
 	"aria-[current=page]:text-rsp-rose aria-[current=page]:opacity-100",
@@ -153,7 +153,7 @@ export function Header(props: HeaderProps) {
 										rel="me noopener noreferrer"
 										target="_blank"
 									>
-										{link.icon({})}
+										{link.icon({ class: "fill-rsp-subtle/60" })}
 									</a>
 								</li>
 							)}
@@ -306,7 +306,10 @@ export function Header(props: HeaderProps) {
 																		rel="me noopener noreferrer"
 																		target="_blank"
 																	>
-																		{link.icon({ size: 24 })}
+																		{link.icon({
+																			class: "fill-rsp-subtle/60",
+																			size: 24,
+																		})}
 																	</a>
 																</li>
 															)}
