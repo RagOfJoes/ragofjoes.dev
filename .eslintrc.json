@@ -1,6 +1,6 @@
 {
 	"root": true,
-	"extends": ["airbnb-base", "plugin:prettier/recommended"],
+	"extends": ["airbnb-base", "prettier"],
 	"plugins": ["unused-imports"],
 	"rules": {
 		"import/extensions": "off",
@@ -51,7 +51,7 @@
 				"es2020": true,
 				"node": true
 			},
-			"extends": ["plugin:prettier/recommended"],
+			"extends": ["prettier"],
 			"files": ["**/*.astro"],
 			"parser": "astro-eslint-parser",
 			"parserOptions": {
@@ -71,7 +71,7 @@
 			}
 		},
 		{
-			"extends": ["airbnb-typescript/base", "plugin:prettier/recommended"],
+			"extends": ["airbnb-typescript/base", "prettier"],
 			"files": ["**/*.ts", "**/*.tsx"],
 			"parser": "@typescript-eslint/parser",
 			"parserOptions": {
