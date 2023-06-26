@@ -4,7 +4,7 @@ import type { Options } from "@motionone/solid";
 import { Motion, Presence } from "@motionone/solid";
 import { useWindowSize } from "@solid-primitives/resize-observer";
 import clsx from "clsx";
-import { HiSolidMenuAlt4, HiSolidX } from "solid-icons/hi";
+import { HiSolidBars2, HiSolidXMark } from "solid-icons/hi";
 
 import {
 	Dialog,
@@ -207,7 +207,7 @@ export function Header(props: HeaderProps) {
 										>
 											<p>MENU</p>
 
-											<HiSolidMenuAlt4 />
+											<HiSolidBars2 />
 										</Motion.div>
 									}
 								>
@@ -217,7 +217,7 @@ export function Header(props: HeaderProps) {
 									>
 										<p>CLOSE</p>
 
-										<HiSolidX />
+										<HiSolidXMark />
 									</Motion.div>
 								</Show>
 							</Presence>
