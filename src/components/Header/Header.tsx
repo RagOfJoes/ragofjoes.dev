@@ -4,7 +4,7 @@ import type { Options } from "@motionone/solid";
 import { Motion, Presence } from "@motionone/solid";
 import { useWindowSize } from "@solid-primitives/resize-observer";
 import clsx from "clsx";
-import { HiSolidBars2, HiSolidXMark } from "solid-icons/hi";
+import { HiSolidXMark } from "solid-icons/hi";
 
 import {
 	Dialog,
@@ -22,11 +22,11 @@ import transform from "@/lib/transform";
 import type { HeaderProps } from "./types";
 
 const opacity = clsx(
-	"duration-120 text-rsp-subtle/60 transition ease-linear",
+	"duration-120 fill-rsp-subtle/60 text-rsp-subtle/60 transition ease-linear",
 
-	// Aria
+	// aria
 	"aria-[current=page]:text-rsp-rose aria-[current=page]:opacity-100",
-	// Hover
+	// hover
 	"hover:text-rsp-text"
 );
 
@@ -147,11 +147,11 @@ export function Header(props: HeaderProps) {
 							{(link) => (
 								<li class="flex items-center">
 									<a
-										target="_blank"
-										href={link.href}
-										class={opacity}
-										rel="me noopener noreferrer"
 										aria-label={`Go to my ${link.title} profile`}
+										class={opacity}
+										href={link.href}
+										rel="me noopener noreferrer"
+										target="_blank"
 									>
 										{link.icon({})}
 									</a>
@@ -197,17 +197,34 @@ export function Header(props: HeaderProps) {
 							aria-label="Open navigation menu"
 							class={clsx(opacity, "w-full")}
 						>
-							<Presence initial={false} exitBeforeEnter>
+							<Presence exitBeforeEnter initial={false}>
 								<Show
 									when={isOpen()}
 									fallback={
 										<Motion.div
 											{...triggerVariant}
-											class="flex w-full items-center justify-center gap-2 bg-transparent px-8 py-0"
+											class="flex w-full items-center justify-center gap-2 bg-transparent fill-rsp-subtle/60 px-8 py-0"
 										>
 											<p>MENU</p>
 
-											<HiSolidBars2 />
+											{/* On mount solid-icons doesn't fully render icon */}
+											<svg
+												fill="none"
+												stroke-width="0"
+												xmlns="http://www.w3.org/2000/svg"
+												stroke="currentColor"
+												viewBox="0 0 24 24"
+												height="1em"
+												width="1em"
+												style="overflow: visible;"
+											>
+												<path
+													fill="currentColor"
+													fill-rule="evenodd"
+													d="M3 9a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 9Zm0 6.75a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
+													clip-rule="evenodd"
+												></path>
+											</svg>
 										</Motion.div>
 									}
 								>
@@ -283,11 +300,11 @@ export function Header(props: HeaderProps) {
 															{(link) => (
 																<li class="flex items-center">
 																	<a
-																		target="_blank"
-																		href={link.href}
-																		class={opacity}
-																		rel="me noopener noreferrer"
 																		aria-label={`Go to my ${link.title} profile`}
+																		class={opacity}
+																		href={link.href}
+																		rel="me noopener noreferrer"
+																		target="_blank"
 																	>
 																		{link.icon({ size: 24 })}
 																	</a>

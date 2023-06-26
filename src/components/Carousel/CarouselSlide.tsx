@@ -180,7 +180,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					animate={{ width: "50%" }}
 					onClick={previous}
 					class={clsx(
-						"flex items-center justify-center",
+						"flex items-center justify-center fill-rsp-text",
 
 						// Hover
 						"hover:bg-rsp-muted/10"
@@ -196,7 +196,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					animate={{ width: "50%" }}
 					onClick={next}
 					class={clsx(
-						"flex items-center justify-center border-l",
+						"flex items-center justify-center border-l fill-rsp-text",
 
 						// Hover
 						"hover:bg-rsp-muted/10"
