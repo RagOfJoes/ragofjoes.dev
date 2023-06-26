@@ -14,6 +14,7 @@ export const PROJECTS = [
 			"Go",
 			"OAuth2",
 			"MySQL",
+			"OpenTelemetry",
 			"Docker",
 			"Terraform",
 			"DigitalOcean",
