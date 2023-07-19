@@ -16,6 +16,6 @@ export function Rerun<T>(props: RerunProps<T>): JSX.Element {
 			return typeof child === "function" && child.length > 0
 				? (child as any)(a, b)
 				: child;
-		})
+		}),
 	) as unknown as JSX.Element;
 }

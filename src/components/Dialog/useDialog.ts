@@ -14,7 +14,7 @@ function useDialog(props: DialogProps): UseDialog {
 			closeOnOutsideClick: true,
 			id: createUniqueId(),
 			preventScroll: false,
-		})
+		}),
 	);
 
 	const api = createMemo(() => dialog.connect(state, send, normalizeProps));

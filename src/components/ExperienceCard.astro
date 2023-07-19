@@ -19,7 +19,7 @@ const DATE_FORMAT = "MMM D, YYYY";
 	<p class="text-sm font-medium text-rsp-muted">
 		{start.format(DATE_FORMAT)} -{" "}
 		{end.isSame(dayjs(), "date") ? "Present" : end.format(DATE_FORMAT)}
-		({start.from(end, true)})
+		 ({start.from(end, true)})
 	</p>
 	<h3
 		class={clsx(
@@ -27,7 +27,7 @@ const DATE_FORMAT = "MMM D, YYYY";
 
 			// Medium Breakpoint
 
-			"max-md:text-2xl"
+			"max-md:text-2xl",
 		)}
 	>
 		{company}

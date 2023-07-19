@@ -50,7 +50,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 				"absolute left-0 top-0 grid h-full w-full grid-cols-[2fr_1fr] grid-rows-[2fr_1fr]",
 
 				// Large Breakpoint
-				"max-lg:min-h-[calc(900px+8rem)] max-lg:grid-cols-none max-lg:grid-rows-[1.5fr_repeat(3,0.75fr)_0.25fr]"
+				"max-lg:min-h-[calc(900px+8rem)] max-lg:grid-cols-none max-lg:grid-rows-[1.5fr_repeat(3,0.75fr)_0.25fr]",
 			)}
 		>
 			<div
@@ -58,7 +58,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					"flex h-full flex-col items-center justify-center gap-4 px-16 py-12",
 
 					// Large Breakpoint
-					"max-lg:order-1 max-lg:px-8 max-lg:py-10"
+					"max-lg:order-1 max-lg:px-8 max-lg:py-10",
 				)}
 			>
 				<Motion.div
@@ -76,7 +76,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 							"h-full w-full bg-cover bg-center object-cover opacity-40 transition-opacity duration-300",
 
 							// Hover
-							"hover:opacity-100"
+							"hover:opacity-100",
 						)}
 						style={{
 							"background-image": `url(${image})`,
@@ -106,7 +106,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					"flex h-full flex-col justify-end border-l px-16 py-12",
 
 					// Large Breakpoint
-					"max-lg:order-3 max-lg:border-l-0 max-lg:border-t max-lg:px-8"
+					"max-lg:order-3 max-lg:border-l-0 max-lg:border-t max-lg:px-8",
 				)}
 			>
 				<Motion.p {...verticalVariants} class="text-rsp-subtle">
@@ -120,7 +120,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					"flex h-full w-full",
 
 					// Large Breakpoint
-					"max-lg:order-2"
+					"max-lg:order-2",
 				)}
 			>
 				<div
@@ -131,7 +131,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 						"hover:bg-rsp-muted/10",
 
 						// Large Breakpoint
-						"max-lg:px-8"
+						"max-lg:px-8",
 					)}
 				>
 					<Motion.h1
@@ -140,7 +140,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 							"font-sans-serif text-5xl font-black",
 
 							// Large Breakpoint
-							"max-lg:text-4xl"
+							"max-lg:text-4xl",
 						)}
 					>
 						{title}
@@ -170,7 +170,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					"flex h-full border-l border-t",
 
 					// Large Breakpoint
-					"max-lg:order-4 max-lg:border-b max-lg:border-l-0"
+					"max-lg:order-4 max-lg:border-b max-lg:border-l-0",
 				)}
 			>
 				<Motion.button
@@ -183,7 +183,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 						"flex items-center justify-center fill-rsp-text",
 
 						// Hover
-						"hover:bg-rsp-muted/10"
+						"hover:bg-rsp-muted/10",
 					)}
 				>
 					<OcArrowleft2 size={44} />
@@ -199,7 +199,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 						"flex items-center justify-center border-l fill-rsp-text",
 
 						// Hover
-						"hover:bg-rsp-muted/10"
+						"hover:bg-rsp-muted/10",
 					)}
 				>
 					<OcArrowright2 size={44} />

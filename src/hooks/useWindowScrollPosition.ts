@@ -17,7 +17,7 @@ export function isScrollable(node: Element): boolean {
 
 	const style = window.getComputedStyle(node);
 	return /(auto|scroll)/.test(
-		style.overflow + style.overflowX + style.overflowY
+		style.overflow + style.overflowX + style.overflowY,
 	);
 }
 
@@ -92,13 +92,13 @@ export function createScrollPosition(target: MaybeAccessor<Element | Window>): {
 	readonly y: number;
 };
 export function createScrollPosition(
-	target: MaybeAccessor<Element | Window | undefined>
+	target: MaybeAccessor<Element | Window | undefined>,
 ): {
 	readonly x: number | null;
 	readonly y: number | null;
 };
 export function createScrollPosition(
-	target: MaybeAccessor<Element | Window | undefined> = window
+	target: MaybeAccessor<Element | Window | undefined> = window,
 ): {
 	readonly x: number | null;
 	readonly y: number | null;
@@ -112,7 +112,7 @@ export function createScrollPosition(
 
 	if (typeof target === "function") {
 		createComputed(
-			on(target, (ref) => setPos(getScrollPosition(ref)), { defer: true })
+			on(target, (ref) => setPos(getScrollPosition(ref)), { defer: true }),
 		);
 		onMount(updatePos);
 	}

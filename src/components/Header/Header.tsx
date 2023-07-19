@@ -27,7 +27,7 @@ const opacity = clsx(
 	// aria
 	"aria-[current=page]:text-rsp-rose aria-[current=page]:opacity-100",
 	// hover
-	"hover:text-rsp-text"
+	"hover:text-rsp-text",
 );
 
 const triggerVariant: Options = {
@@ -66,7 +66,7 @@ export function Header(props: HeaderProps) {
 
 				{
 					"bg-transparent backdrop-blur-lg": !isOpen(),
-				}
+				},
 			)}
 		>
 			<nav
@@ -74,7 +74,7 @@ export function Header(props: HeaderProps) {
 					"duration-120 flex w-full will-change-[width,height]",
 
 					// Medium Breakpoint
-					"max-md:justify-between"
+					"max-md:justify-between",
 				)}
 				style={{
 					height: `${navHeight()}rem`,
@@ -85,7 +85,7 @@ export function Header(props: HeaderProps) {
 						"flex basis-1/3 items-center px-8",
 
 						// Large Breakpoint
-						"max-lg:basis-1/2"
+						"max-lg:basis-1/2",
 					)}
 				>
 					<a
@@ -94,7 +94,7 @@ export function Header(props: HeaderProps) {
 							"duration-120 opacity-40 transition ease-linear",
 
 							// Hover
-							"hover:opacity-100"
+							"hover:opacity-100",
 						)}
 						aria-label="Go to home page"
 					>
@@ -109,7 +109,7 @@ export function Header(props: HeaderProps) {
 						// Large Breakpoint
 						"max-lg:basis-1/4",
 						// Medium Breakpoint
-						"max-md:hidden"
+						"max-md:hidden",
 					)}
 				>
 					<ul
@@ -117,7 +117,7 @@ export function Header(props: HeaderProps) {
 							"flex basis-1/2 items-center justify-center gap-24 border-l px-8",
 
 							// Large Breakpoint
-							"max-lg:hidden max-lg:basis-1/3 max-lg:gap-12"
+							"max-lg:hidden max-lg:basis-1/3 max-lg:gap-12",
 						)}
 					>
 						<For each={ROUTES}>
@@ -140,7 +140,7 @@ export function Header(props: HeaderProps) {
 							"flex grow items-center justify-center gap-12 border-l px-8",
 
 							// Large Breakpoint
-							"max-lg:gap-10"
+							"max-lg:gap-10",
 						)}
 					>
 						<For each={SOCIALS}>
@@ -165,7 +165,7 @@ export function Header(props: HeaderProps) {
 							"flex grow items-center justify-center border-l px-8",
 
 							// Large Breakpoint
-							"max-lg:hidden"
+							"max-lg:hidden",
 						)}
 					>
 						<a href="/Resume.pdf" class={opacity}>
@@ -179,7 +179,7 @@ export function Header(props: HeaderProps) {
 						"hidden border-l",
 
 						// Large Breakpoint
-						"max-lg:flex max-lg:basis-1/4"
+						"max-lg:flex max-lg:basis-1/4",
 					)}
 				>
 					<Dialog
@@ -275,7 +275,7 @@ export function Header(props: HeaderProps) {
 																	}
 																	class={clsx(
 																		opacity,
-																		"text-center font-sans-serif text-4xl font-black"
+																		"text-center font-sans-serif text-4xl font-black",
 																	)}
 																>
 																	{route.title}

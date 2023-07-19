@@ -29,7 +29,7 @@ function transform(input: number[], output: number[]) {
 		return mix(
 			output[i]!,
 			output[i + 1]!,
-			clamp(0, 1, progress(input[i]!, input[i + 1]!, t))
+			clamp(0, 1, progress(input[i]!, input[i + 1]!, t)),
 		);
 	};
 }

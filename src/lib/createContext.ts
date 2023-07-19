@@ -18,11 +18,11 @@ export type CreateContextArgs<T> = {
 export type CreateContextReturn<T> = [
 	ContextProviderComponent<T>,
 	() => T,
-	SolidContext<T>
+	SolidContext<T>,
 ];
 
 export function createContext<T>(
-	args: CreateContextArgs<T>
+	args: CreateContextArgs<T>,
 ): CreateContextReturn<T> {
 	const {
 		defaultValue,
@@ -41,7 +41,7 @@ export function createContext<T>(
 		if (!context && strict) {
 			const error = new Error(
 				errorMessage ??
-					`${hookName} returned \`undefined\`. Must wrap component within ${providerName}`
+					`${hookName} returned \`undefined\`. Must wrap component within ${providerName}`,
 			);
 
 			error.name = "ContextError";

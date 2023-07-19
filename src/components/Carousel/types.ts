@@ -15,5 +15,5 @@ export type UseCarousel = [
 	actions: {
 		next: () => void;
 		previous: () => void;
-	}
+	},
 ];
