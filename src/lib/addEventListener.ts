@@ -1,6 +1,6 @@
 import { tryOnCleanup } from "@solid-primitives/utils";
 
-function addEventListener<
+export function addEventListener<
 	T extends Window | Document | HTMLElement | EventTarget,
 >(
 	obj: T,
@@ -16,5 +16,3 @@ function addEventListener<
 		);
 	});
 }
-
-export default addEventListener;

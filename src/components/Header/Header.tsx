@@ -16,8 +16,8 @@ import {
 import { Logo } from "@/components/Logo";
 import { useWindowScrollPosition } from "@/hooks/useWindowScrollPosition";
 import { ROUTES, SOCIALS } from "@/lib/constants";
-import isCurrentLink from "@/lib/isCurrentLink";
-import transform from "@/lib/transform";
+import { isCurrentLink } from "@/lib/isCurrentLink";
+import { transform } from "@/lib/transform";
 
 import type { HeaderProps } from "./types";
 

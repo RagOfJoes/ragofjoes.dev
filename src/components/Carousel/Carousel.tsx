@@ -3,7 +3,7 @@ import { For, Show } from "solid-js";
 import { Presence } from "@motionone/solid";
 
 import { Rerun } from "@/components/Rerun";
-import addEventListener from "@/lib/addEventListener";
+import { addEventListener } from "@/lib/addEventListener";
 
 import { CarouselSlide } from "./CarouselSlide";
 import { CarouselProvider } from "./Context";

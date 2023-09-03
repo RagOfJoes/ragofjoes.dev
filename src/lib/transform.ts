@@ -13,7 +13,7 @@ function progress(min: number, max: number, value: number) {
 /**
  * Transforms value by mapping input range to output range
  */
-function transform(input: number[], output: number[]) {
+export function transform(input: number[], output: number[]) {
 	if (input.length !== output.length) {
 		throw new Error("[transform]: Input must have the same length as output");
 	}
@@ -33,5 +33,3 @@ function transform(input: number[], output: number[]) {
 		);
 	};
 }
-
-export default transform;
