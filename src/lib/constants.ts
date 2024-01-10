@@ -5,9 +5,16 @@ import { ImGithub, ImLinkedin2, ImTwitter } from "solid-icons/im";
 export const PROJECTS = [
 	{
 		description:
-			"Offset Tent is a tool that synchronizes your Basecamp cards and GitHub issues. It allows you to keep your team up to date with the latest changes made to your codebases.",
+			"Offset Tent is an automation tool that synchronizes Basecamp cards/todos and GitHub issues/pull requests. It allows you to keep your team up to date with the latest changes made to your codebases.",
 		image: "/offsetTent-preview.webp",
-		tags: ["Go", "OAuth2", "MySQL", "Docker", "GitHub Actions"],
+		tags: [
+			"Go",
+			"OAuth2",
+			"MySQL",
+			"OpenTelemetry",
+			"Docker",
+			"GitHub Actions",
+		],
 		title: "Offset Tent",
 		url: "https://tent.offsetdevops.com/",
 	},
