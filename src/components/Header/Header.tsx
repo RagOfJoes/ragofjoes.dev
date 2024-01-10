@@ -98,7 +98,9 @@ export function Header(props: HeaderProps) {
 						)}
 						aria-label="Go to home page"
 					>
-						<Logo size={40} />
+						<Logo size={40}></Logo>
+
+						<span class="sr-only">Got to home page</span>
 					</a>
 				</div>
 
@@ -154,6 +156,8 @@ export function Header(props: HeaderProps) {
 										target="_blank"
 									>
 										{link.icon({ class: "fill-rsp-subtle/60" })}
+
+										<span class="sr-only">Go to my {link.title} profile</span>
 									</a>
 								</li>
 							)}
@@ -310,6 +314,10 @@ export function Header(props: HeaderProps) {
 																			class: "fill-rsp-subtle/60",
 																			size: 24,
 																		})}
+
+																		<span class="sr-only">
+																			Go to my {link.title} profile
+																		</span>
 																	</a>
 																</li>
 															)}
