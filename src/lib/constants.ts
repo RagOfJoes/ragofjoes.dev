@@ -100,13 +100,11 @@ export const WORK_EXPERIENCE = [
 	{
 		company: "Offset",
 		description: [
-			"Spearheaded the creation of a low coded solution, enabling clients to seamlessly integrate our Cart and CMS services into their pre-existing websites",
-			"Refactored legacy PHP MVC framework to enhance compatibility with React, resulting in a reduction of duplicated and fragile code by up to 60%",
-			"Rewrote and implemented frontend build tools to products cutting down compilation times by up to 200%. Enhanced security measures were implemented, uncovering known vulnerabilities within frontend dependencies",
-			"Closely collaborated with both the Project Manager and CTO to expand and strengthen our development team",
-			"Integrated Docker into our codebase to reduce environmental discrepancies and streamline the setup process for local development environments",
+			"Lead the migration from Webpack to Vite for front-end build processes across all of Offset's products, slashing compilation times by 200% and streamlining the development workflow company wide. This overhaul significantly reduced configuration complexity and enabled enhanced security measures",
+			"Orchestrated a comprehensive refactoring of a legacy PHP MVC framework, significantly reducing abstraction layers and simplifying the codebase. Implemented a more direct integration with Vite, eliminating inline scripts and enabling more efficient asset bundling. This streamlined architecture reduced duplicated and fragile code by 60%, enhancing system performance and accelerating page load times",
+			"Architected and implemented a comprehensive Docker-based development environment, standardizing the entire codebase across multiple products. This initiative eliminated 'works on my machine' issues, reduced new developer onboarding time by 50%, and ensured consistent behavior between local, staging, and production environments"
 		],
-		end: dayjs(),
+		end: dayjs("10/16/2024", "MM/DD/YYYY"),
 		job: "Product Engineer",
 		link: "https://www.offsetpartners.com/",
 		start: dayjs("07/07/2019", "MM/DD/YYYY"),
