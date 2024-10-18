@@ -100,9 +100,10 @@ export const WORK_EXPERIENCE = [
 	{
 		company: "Offset",
 		description: [
-			"Lead the migration from Webpack to Vite for front-end build processes across all of Offset's products, slashing compilation times by 200% and streamlining the development workflow company wide. This overhaul significantly reduced configuration complexity and enabled enhanced security measures",
-			"Orchestrated a comprehensive refactoring of a legacy PHP MVC framework, significantly reducing abstraction layers and simplifying the codebase. Implemented a more direct integration with Vite, eliminating inline scripts and enabling more efficient asset bundling. This streamlined architecture reduced duplicated and fragile code by 60%, enhancing system performance and accelerating page load times",
-			"Architected and implemented a comprehensive Docker-based development environment, standardizing the entire codebase across multiple products. This initiative eliminated 'works on my machine' issues, reduced new developer onboarding time by 50%, and ensured consistent behavior between local, staging, and production environments"
+			"Spearheaded migration from Webpack to Vite, reducing build times by 200% and bundle sizes by 40%. Optimizations improved performance and accessibility for millions of users with slower connections or devices",
+			"Orchestrated a comprehensive refactoring of the core PHP MVC framework, reducing codebase complexity by 60%. Implemented efficient database query optimizations and caching strategies, resulting in 50% faster API response times",
+			"Architected and implemented a comprehensive Docker-based development environment, standardizing codebase across products. Eliminated environment inconsistencies, cut onboarding time by 50%, and ensured parity across local, staging, and production",
+			"Introduced CI/CD pipelines using GitHub Actions, automating tests, deployment, and release processes. Reduced manual QA time by 80% and increase release frequency by 3x",
 		],
 		end: dayjs("10/16/2024", "MM/DD/YYYY"),
 		job: "Software Engineer",
@@ -112,9 +113,9 @@ export const WORK_EXPERIENCE = [
 	{
 		company: "Napa Valley College",
 		description: [
-			"Assisted fellow classmates by offering guidance on diverse study techniques for exams, projects, and assignments",
-			"Presented different ways to visualize, understand, and enjoy complex programming topics",
-			"Closely collaborated with professors to address teaching and assignment related concerns, fostering an improved learning experience",
+			"Developed innovate methods to explain complex programming concepts, enhancing student comprehension and engagement",
+			"Guided peers on effective study strategies for exams and projects, improving overall academic performance",
+			"Partnered with professors to refine teaching approaches and assignments, optimizing the learning experience",
 		],
 		end: dayjs("05/21/2019", "MM/DD/YYYY"),
 		job: "Computer Science Tutor",
