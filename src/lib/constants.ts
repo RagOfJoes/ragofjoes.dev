@@ -105,7 +105,7 @@ export const WORK_EXPERIENCE = [
 			"Architected and implemented a comprehensive Docker-based development environment, standardizing the entire codebase across multiple products. This initiative eliminated 'works on my machine' issues, reduced new developer onboarding time by 50%, and ensured consistent behavior between local, staging, and production environments"
 		],
 		end: dayjs("10/16/2024", "MM/DD/YYYY"),
-		job: "Product Engineer",
+		job: "Software Engineer",
 		link: "https://www.offsetpartners.com/",
 		start: dayjs("07/07/2019", "MM/DD/YYYY"),
 	},
