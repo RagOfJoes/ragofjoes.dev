@@ -98,7 +98,7 @@ export const SOCIALS: { href: string; icon: IconTypes; title: string }[] = [
 
 export const WORK_EXPERIENCE = [
 	{
-		company: "Offset",
+		company: "Offset Partners",
 		description: [
 			"Spearheaded migration from Webpack to Vite, reducing build times by 200% and bundle sizes by 40%. Optimizations improved performance and accessibility for millions of users with slower connections or devices",
 			"Orchestrated a comprehensive refactoring of the core PHP MVC framework, reducing codebase complexity by 60%. Implemented efficient database query optimizations and caching strategies, resulting in 50% faster API response times",
