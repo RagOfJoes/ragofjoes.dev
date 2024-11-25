@@ -38,6 +38,9 @@ importers:
       '@solid-primitives/utils':
         specifier: ^6.2.3
         version: 6.2.3(solid-js@1.9.3)
+      '@vercel/analytics':
+        specifier: ^1.4.1
+        version: 1.4.1
       '@zag-js/dialog':
         specifier: ^0.32.1
         version: 0.32.1
