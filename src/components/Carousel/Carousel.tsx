@@ -2,7 +2,7 @@ import { For, Show } from "solid-js";
 
 import { Presence } from "@motionone/solid";
 
-import { Rerun } from "@/components/Rerun";
+import { Rerun } from "@/components/rerun";
 import { addEventListener } from "@/lib/add-event-listener";
 import { PROJECTS } from "@/lib/constants";
 
