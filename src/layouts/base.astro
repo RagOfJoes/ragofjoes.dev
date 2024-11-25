@@ -15,7 +15,7 @@ export type Props = {
 
 const {
 	title = "Victor Ragojos",
-	description = "Full-stack wizard that specializes in turning coffee into code and complex problems into elegant solutions. Currently seeking new adventures where I can wield my digital sorcery to build the next generation of applications.",
+	description = "Hi, I'm a software engineer focused on building efficient, user-friendly applications. I specialize in full-stack development and enjoy optimizing systems to deliver the best possible experience.",
 } = Astro.props;
 
 dayjs.extend(RelativeTime);
@@ -31,21 +31,29 @@ dayjs.extend(RelativeTime);
 		<Seo />
 
 		<title>{title}</title>
+		<meta name="description" content={description} />
 
 		<!-- Open Graph -->
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:type" content="website" />
+		<meta property="og:description" content={description} />
+		<meta
+			property="og:image"
+			content={`${Astro.url.origin}/socialImage.webp`}
+		/>
 		<meta property="og:title" content={title} />
-		<meta name="description" property="og:description" content={description} />
-		<meta property="og:image" content={`${Astro.url}socialImage.webp`} />
+		<meta property="og:site_name" content="RagOfJoes" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
 
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
-		<meta property="twitter:domain" content="ragofjoes.dev" />
-		<meta property="twitter:url" content={Astro.url} />
-		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={`${Astro.url}socialImage.webp`} />
+		<meta
+			name="twitter:image"
+			content={`${Astro.url.origin}/socialImage.webp`}
+		/>
+		<meta name="twitter:title" content={title} />
+		<meta property="twitter:domain" content="ragofjoes.dev" />
+		<meta property="twitter:url" content={Astro.url.origin} />
 	</head>
 
 	<body
