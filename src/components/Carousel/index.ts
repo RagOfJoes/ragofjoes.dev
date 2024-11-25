@@ -1,2 +1,1 @@
-export * from "./types";
-export * from "./Carousel";
+export * from "./carousel";

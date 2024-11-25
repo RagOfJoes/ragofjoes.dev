@@ -1,0 +1,55 @@
+---
+import clsx from "clsx";
+
+export type Props = {
+	slides: string[];
+};
+
+const { slides } = Astro.props;
+---
+
+<div
+	class={clsx(
+		"group flex h-48 border-y",
+
+		"hover:bg-foreground/5",
+	)}
+>
+	{
+		Array.from({ length: 2 }).map(() => (
+			<div
+				class={clsx(
+					"ring-offset-background animate-slide-left flex h-full shrink-0 items-center gap-4 will-change-transform",
+
+					"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+					"group-hover:animate-[slide-left_18s_linear_infinite_paused]",
+				)}
+			>
+				{slides.map((slide) => (
+					<div
+						class={clsx(
+							"flex h-full select-none items-center gap-6",
+
+							"first:ml-4",
+						)}
+					>
+						<div class="bg-primary h-3 w-3 rounded-full" />
+
+						<p class="text-2xl font-bold tracking-wider">{slide}</p>
+
+						<svg
+							class="fill-foreground h-10 w-10"
+							height="24"
+							viewBox="0 0 24 24"
+							width="24"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M10.296 7.71 14.621 12l-4.325 4.29 1.408 1.42L17.461 12l-5.757-5.71z" />
+							<path d="M6.704 6.29 5.296 7.71 9.621 12l-4.325 4.29 1.408 1.42L12.461 12z" />
+						</svg>
+					</div>
+				))}
+			</div>
+		))
+	}
+</div>

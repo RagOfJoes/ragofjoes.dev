@@ -1,0 +1,71 @@
+---
+import clsx from "clsx";
+import dayjs, { Dayjs } from "dayjs";
+
+export type Props = {
+	company: string;
+	description: string[];
+	end: Dayjs;
+	job: string;
+	start: Dayjs;
+};
+
+const { company, description, end, job, start } = Astro.props;
+
+const DATE_FORMAT = "MMM YYYY";
+---
+
+<div
+	class={clsx(
+		"h-full border p-4",
+
+		"group-odd:border-r-0",
+		"max-md:group-odd:border-r max-md:group-odd:border-b-0",
+	)}
+>
+	<p class="text-muted-foreground font-medium">
+		{start.format(DATE_FORMAT)} -{" "}
+		{end.isSame(dayjs(), "date") ? "Present" : end.format(DATE_FORMAT)}
+	</p>
+
+	<h1
+		class={clsx(
+			"mt-4 text-3xl font-black",
+
+			"max-md:text-2xl",
+		)}
+	>
+		{company}
+	</h1>
+
+	<div class="flex items-center">
+		<h2
+			class="text-background bg-foreground px-2 py-1 text-sm font-semibold uppercase leading-none"
+		>
+			{job}
+		</h2>
+	</div>
+
+	<ul class="mt-6 flex list-inside list-none flex-col gap-2">
+		{
+			description.map((text) => (
+				<li class="flex items-center gap-2">
+					<svg
+						class="text-foreground/80 shrink-0"
+						fill="currentColor"
+						height="1em"
+						stroke-width="0"
+						stroke="currentColor"
+						viewBox="0 0 512 512"
+						width="1em"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z" />
+					</svg>
+
+					<p class="text-sm font-medium">{text}</p>
+				</li>
+			))
+		}
+	</ul>
+</div>

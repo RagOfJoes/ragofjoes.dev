@@ -3,12 +3,16 @@ import { For, Show } from "solid-js";
 import { Presence } from "@motionone/solid";
 
 import { Rerun } from "@/components/Rerun";
-import { addEventListener } from "@/lib/addEventListener";
+import { addEventListener } from "@/lib/add-event-listener";
+import { PROJECTS } from "@/lib/constants";
 
-import { CarouselSlide } from "./CarouselSlide";
-import { CarouselProvider } from "./Context";
-import type { CarouselProps } from "./types";
-import useCarousel from "./useCarousel";
+import { CarouselSlide } from "./carousel-slide";
+import { useCarousel } from "./use-carousel";
+import { CarouselProvider } from "./use-carousel-context";
+
+export type CarouselProps = {
+	slides: typeof PROJECTS;
+};
 
 export function Carousel(props: CarouselProps) {
 	const [state, actions] = useCarousel(props);

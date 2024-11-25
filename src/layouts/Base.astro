@@ -1,9 +1,12 @@
 ---
+import "@/styles/base.css";
+import "@/styles/fonts.css";
+
 import dayjs from "dayjs";
 import RelativeTime from "dayjs/plugin/relativeTime";
 
-import { Header } from "@/components/Header";
-import Seo from "@/components/Seo.astro";
+import { Header } from "@/components/header";
+import Seo from "@/components/seo.astro";
 
 export type Props = {
 	title?: string;
@@ -22,7 +25,7 @@ dayjs.extend(RelativeTime);
 <html
 	dir="ltr"
 	lang="en"
-	class="scroll-smooth selection:bg-rsp-rose selection:text-rsp-base"
+	class="selection:bg-foreground selection:text-background scroll-smooth"
 >
 	<head>
 		<Seo />
@@ -46,7 +49,7 @@ dayjs.extend(RelativeTime);
 	</head>
 
 	<body
-		class="h-screen w-screen overflow-y-auto overflow-x-hidden bg-rsp-base text-rsp-text"
+		class="bg-background text-foreground font-body h-screen w-screen overflow-y-auto overflow-x-hidden"
 	>
 		<Header client:load url={Astro.url} />
 

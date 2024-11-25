@@ -74,8 +74,13 @@ export const PROJECTS = [
 ];
 
 export const ROUTES = [
-	{ href: "/", slug: "", title: "ABOUT" },
-	{ href: "/projects/", slug: "projects", title: "PROJECTS" },
+	{ description: "Go to home page", href: "/", slug: "", title: "ABOUT" },
+	{
+		description: "Go to projects page",
+		href: "/projects/",
+		slug: "projects",
+		title: "PROJECTS",
+	},
 ];
 
 export const SOCIALS: { href: string; icon: IconTypes; title: string }[] = [
