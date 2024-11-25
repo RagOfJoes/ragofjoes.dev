@@ -14,7 +14,6 @@
 		"@solid-primitives/rootless": "^1.4.5",
 		"@solid-primitives/static-store": "^0.0.5",
 		"@solid-primitives/utils": "^6.2.3",
-		"@vercel/analytics": "^1.4.1",
 		"@zag-js/dialog": "^0.32.1",
 		"@zag-js/solid": "^0.32.1",
 		"clsx": "^2.1.1",
