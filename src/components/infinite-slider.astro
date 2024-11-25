@@ -12,6 +12,7 @@ const { slides } = Astro.props;
 	class={clsx(
 		"group flex h-48 border-y",
 
+		"group-focus-visible:bg-foreground/5",
 		"hover:bg-foreground/5",
 	)}
 >
@@ -19,9 +20,9 @@ const { slides } = Astro.props;
 		Array.from({ length: 2 }).map(() => (
 			<div
 				class={clsx(
-					"ring-offset-background animate-slide-left flex h-full shrink-0 items-center gap-4 will-change-transform",
+					"animate-slide-left flex h-full shrink-0 items-center gap-4 will-change-transform",
 
-					"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+					"group-focus-visible:animate-[slide-left_18s_linear_infinite_paused]",
 					"group-hover:animate-[slide-left_18s_linear_infinite_paused]",
 				)}
 			>
