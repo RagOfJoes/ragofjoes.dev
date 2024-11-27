@@ -116,13 +116,18 @@ export function CarouselSlide(props: CarouselSlideProps) {
 				</Motion.p>
 			</div>
 
-			<div class="flex h-full w-full min-w-0 flex-col justify-center">
+			<div
+				class={clsx(
+					"flex h-full w-full min-w-0 flex-col justify-center",
+
+					"max-lg:order-2",
+				)}
+			>
 				<a
 					class={clsx(
 						"h-full w-full min-w-0 overflow-hidden",
 
 						"focus-visible:outline-primary",
-						"max-lg:order-2",
 					)}
 					href={url}
 				>
