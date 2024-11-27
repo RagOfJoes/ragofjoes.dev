@@ -64,8 +64,7 @@ module.exports = {
 			},
 		},
 		fontFamily: {
-			body: ['"GeneralSans-Variable"'],
-			headline: ['"GeneralSans-Semibold"'],
+			sans: ['"General Sans"', "sans-serif"],
 		},
 	},
 	plugins: [],

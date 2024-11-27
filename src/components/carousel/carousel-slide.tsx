@@ -116,55 +116,58 @@ export function CarouselSlide(props: CarouselSlideProps) {
 				</Motion.p>
 			</div>
 
-			<a
-				class={clsx(
-					"flex h-full w-full",
-
-					"max-lg:order-2",
-				)}
-				href={url}
-			>
-				<div
+			<div class="flex h-full w-full min-w-0 flex-col justify-center">
+				<a
 					class={clsx(
-						"flex h-full w-full items-center justify-between gap-4 border-t px-16 py-8",
+						"h-full w-full min-w-0 overflow-hidden",
 
-						"hover:bg-foreground/5",
-						"max-lg:px-8",
+						"focus-visible:outline-primary",
+						"max-lg:order-2",
 					)}
+					href={url}
 				>
-					<Motion.h1
-						{...horizontalVariants}
+					<div
 						class={clsx(
-							"text-5xl font-bold tracking-wide",
+							"flex h-full w-full items-center justify-between gap-4 border-t px-16 py-8",
 
-							"max-lg:text-4xl",
+							"hover:bg-foreground/5",
+							"max-lg:px-8",
 						)}
 					>
-						{title}
-					</Motion.h1>
+						<Motion.h1
+							{...horizontalVariants}
+							class={clsx(
+								"text-5xl font-bold tracking-wide",
 
-					<Motion.svg
-						{...horizontalVariants}
-						fill="currentcolor"
-						height={40}
-						stroke-width="0"
-						style="overflow: visible; color: currentcolor;"
-						transition={{ delay: 0.1 }}
-						viewBox="0 0 24 24"
-						width={40}
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path
-							d="M15.64 7.025h-3.622v-2h7v7h-2v-3.55l-4.914 4.914-1.414-1.414 4.95-4.95Z"
-							fill="currentColor"
-						/>
-						<path
-							d="M10.982 6.975h-6v12h12v-6h-2v4h-8v-8h4v-2Z"
-							fill="currentColor"
-						/>
-					</Motion.svg>
-				</div>
-			</a>
+								"max-lg:text-4xl",
+							)}
+						>
+							{title}
+						</Motion.h1>
+
+						<Motion.svg
+							{...horizontalVariants}
+							fill="currentcolor"
+							height={40}
+							stroke-width="0"
+							style="overflow: visible; color: currentcolor;"
+							transition={{ delay: 0.1 }}
+							viewBox="0 0 24 24"
+							width={40}
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M15.64 7.025h-3.622v-2h7v7h-2v-3.55l-4.914 4.914-1.414-1.414 4.95-4.95Z"
+								fill="currentColor"
+							/>
+							<path
+								d="M10.982 6.975h-6v12h12v-6h-2v4h-8v-8h4v-2Z"
+								fill="currentColor"
+							/>
+						</Motion.svg>
+					</div>
+				</a>
+			</div>
 
 			<div
 				class={clsx(
@@ -180,8 +183,9 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					animate={{ width: "50%" }}
 					onClick={previous}
 					class={clsx(
-						"flex items-center justify-center",
+						"ring-offset-background flex items-center justify-center",
 
+						"focus-visible:outline-primary",
 						"hover:bg-foreground/5",
 					)}
 				>
@@ -197,6 +201,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					class={clsx(
 						"flex items-center justify-center border-l",
 
+						"focus-visible:outline-primary",
 						"hover:bg-foreground/5",
 					)}
 				>

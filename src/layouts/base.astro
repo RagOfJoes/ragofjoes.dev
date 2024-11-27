@@ -1,6 +1,5 @@
 ---
 import "@/styles/base.css";
-import "@/styles/fonts.css";
 
 import dayjs from "dayjs";
 import RelativeTime from "dayjs/plugin/relativeTime";
@@ -54,10 +53,16 @@ dayjs.extend(RelativeTime);
 		<meta name="twitter:title" content={title} />
 		<meta property="twitter:domain" content="ragofjoes.dev" />
 		<meta property="twitter:url" content={Astro.url.origin} />
+
+		<!-- Fonts -->
+		<link
+			href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 
 	<body
-		class="bg-background text-foreground font-body h-screen w-screen overflow-y-auto overflow-x-hidden"
+		class="bg-background text-foreground h-screen w-screen overflow-y-auto overflow-x-hidden font-sans"
 	>
 		<Header client:load url={Astro.url} />
 
