@@ -40,9 +40,14 @@ const verticalVariants: Options = {
 	},
 };
 
-export function CarouselSlide(props: CarouselSlideProps) {
-	const { description, image, tags, title, url } = props;
-
+export function CarouselSlide({
+	background,
+	description,
+	image,
+	tags,
+	title,
+	url,
+}: CarouselSlideProps) {
 	const [, { next, previous }] = useCarouselContext();
 
 	return (
@@ -65,21 +70,22 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					{...horizontalVariants}
 					class="relative h-full w-full overflow-hidden border"
 				>
-					<div class="bg-background flex h-4 w-full items-center gap-1.5 px-4 py-3">
+					<div class="flex h-4 w-full items-center gap-1.5 bg-background px-4 py-3">
 						<For each={Array.from({ length: 3 })}>
 							{() => (
-								<span class="bg-muted-foreground/30 h-2.5 w-2.5 rounded-full" />
+								<span class="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
 							)}
 						</For>
 					</div>
 
 					<div
 						class={clsx(
-							"h-full w-full bg-cover bg-center object-cover opacity-40 transition-opacity duration-300",
+							"h-full w-full bg-contain bg-center bg-no-repeat object-cover opacity-40 transition-opacity duration-300",
 
 							"hover:opacity-100",
 						)}
 						style={{
+							"background-color": background,
 							"background-image": `url(${image})`,
 						}}
 					/>
@@ -95,7 +101,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 									delay: 0.05 * index(),
 								}}
 							>
-								<li class="text-foreground/80 text-xs font-medium tracking-wider">
+								<li class="text-xs font-medium tracking-wider text-foreground/80">
 									{tag}
 								</li>
 							</Motion.ul>
@@ -188,7 +194,7 @@ export function CarouselSlide(props: CarouselSlideProps) {
 					animate={{ width: "50%" }}
 					onClick={previous}
 					class={clsx(
-						"ring-offset-background flex items-center justify-center",
+						"flex items-center justify-center ring-offset-background",
 
 						"focus-visible:outline-primary",
 						"hover:bg-foreground/5",

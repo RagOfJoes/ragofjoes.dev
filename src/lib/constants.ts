@@ -4,6 +4,7 @@ import { ImGithub, ImLinkedin2, ImTwitter } from "solid-icons/im";
 
 export const PROJECTS = [
 	{
+		background: "#ffffff",
 		description:
 			"Offset Tent is an automation tool that synchronizes Basecamp cards/todos and GitHub issues/pull requests. It allows you to keep your team up to date with the latest changes made to your codebases.",
 		image: "/offsetTent-preview.webp",
@@ -19,6 +20,7 @@ export const PROJECTS = [
 		url: "https://tent.offsetdevops.com/",
 	},
 	{
+		background: "#1a1820",
 		description:
 			"A puzzle game that was inspired by the BBC’s “Only Connect” game show. Users create a puzzle with 16 words where each group of 4 words have some connection between them. Players attempt to link each group together and guess each connection.",
 		image: "/puzzlely-preview.webp",
@@ -38,6 +40,7 @@ export const PROJECTS = [
 		url: "https://www.puzzlely.io/",
 	},
 	{
+		background: "#0c1017",
 		description:
 			"An iOS library that extracts the ColorTheme from an image. It uses the Octree Color Quantization Algorithm to build the image’s distinct color palette.",
 		image: "/octreePalette-preview.webp",
@@ -46,6 +49,7 @@ export const PROJECTS = [
 		url: "https://github.com/RagOfJoes/OctreePalette",
 	},
 	{
+		background: "#f6f6f6",
 		description:
 			"A web app that allows users to create, import, and share their favorite recipes. Users can also create “Creations” that show off their attempts at following other user generated recipes.",
 		image: "/spoonfed-preview.webp",
@@ -64,6 +68,7 @@ export const PROJECTS = [
 		url: "https://spoonfed.dev/",
 	},
 	{
+		background: "#242830",
 		description:
 			"A simple identity provider that is build on top of the OIDC protocol for authentication. Users can manage their profile and active sessions.",
 		image: "/identityProvider-preview.webp",

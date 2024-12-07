@@ -44,11 +44,12 @@ export function Carousel(props: CarouselProps) {
 								{(slide, i) => (
 									<Show when={i() === state.current()}>
 										<CarouselSlide
-											url={slide.url}
-											tags={slide.tags}
-											image={slide.image}
-											title={slide.title}
+											background={slide.background}
 											description={slide.description}
+											image={slide.image}
+											tags={slide.tags}
+											title={slide.title}
+											url={slide.url}
 										/>
 									</Show>
 								)}
