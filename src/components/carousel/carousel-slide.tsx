@@ -61,14 +61,14 @@ export function CarouselSlide({
 		>
 			<div
 				class={clsx(
-					"flex h-full flex-col items-center justify-center gap-4 px-16 py-12",
+					"h-full gap-4 px-16 py-12",
 
 					"max-lg:order-1 max-lg:px-8 max-lg:py-10",
 				)}
 			>
 				<Motion.div
 					{...horizontalVariants}
-					class="relative h-full w-full overflow-hidden border"
+					class="group relative h-full w-full overflow-hidden border"
 				>
 					<div class="flex h-4 w-full items-center gap-1.5 bg-background px-4 py-3">
 						<For each={Array.from({ length: 3 })}>
@@ -82,32 +82,38 @@ export function CarouselSlide({
 						class={clsx(
 							"h-full w-full bg-contain bg-center bg-no-repeat object-cover opacity-40 transition-opacity duration-300",
 
-							"hover:opacity-100",
+							"group-hover:opacity-100",
 						)}
 						style={{
 							"background-color": background,
 							"background-image": `url(${image})`,
 						}}
 					/>
-				</Motion.div>
 
-				<div class="flex w-full flex-wrap gap-2">
-					<For each={tags}>
-						{(tag, index) => (
-							<Motion.ul
-								{...horizontalVariants}
-								class="border px-2 py-1"
-								transition={{
-									delay: 0.05 * index(),
-								}}
-							>
-								<li class="text-xs font-medium tracking-wider text-foreground/80">
-									{tag}
-								</li>
-							</Motion.ul>
-						)}
-					</For>
-				</div>
+					<div class="absolute bottom-4 left-4 right-4">
+						<ul
+							class={clsx(
+								"flex w-full flex-wrap gap-2 transition-opacity duration-300",
+
+								"group-hover:opacity-0",
+							)}
+						>
+							<For each={tags}>
+								{(tag, index) => (
+									<Motion.li
+										{...horizontalVariants}
+										class="border bg-background px-2 py-1 text-xs font-medium leading-none tracking-wider text-foreground"
+										transition={{
+											delay: 0.05 * index(),
+										}}
+									>
+										{tag}
+									</Motion.li>
+								)}
+							</For>
+						</ul>
+					</div>
+				</Motion.div>
 			</div>
 
 			<div

@@ -20,7 +20,7 @@ export const PROJECTS = [
 		url: "https://tent.offsetdevops.com/",
 	},
 	{
-		background: "#1a1820",
+		background: "#191824",
 		description:
 			"A puzzle game that was inspired by the BBC’s “Only Connect” game show. Users create a puzzle with 16 words where each group of 4 words have some connection between them. Players attempt to link each group together and guess each connection.",
 		image: "/puzzlely-preview.webp",
