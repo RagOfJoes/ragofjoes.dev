@@ -1,4 +1,4 @@
-import { Accessor, createEffect, createMemo, createUniqueId } from "solid-js";
+import { Accessor, createMemo, createUniqueId } from "solid-js";
 
 import * as dialog from "@zag-js/dialog";
 import { connect } from "@zag-js/dialog";
@@ -16,23 +16,23 @@ export function useDialog(props: DialogProps): UseDialog {
 
 	const [state, send] = useMachine(
 		dialog.machine({
-			closeOnEscapeKeyDown: true,
+			closeOnEscape: true,
 			closeOnInteractOutside: true,
 			id: createUniqueId(),
+			onOpenChange: (details) => {
+				if (!details.open) {
+					onClose();
+
+					return;
+				}
+
+				onOpen();
+			},
 			preventScroll: false,
 		}),
 	);
 
 	const api = createMemo(() => dialog.connect(state, send, normalizeProps));
-
-	createEffect(() => {
-		if (api().isOpen) {
-			onOpen();
-			return;
-		}
-
-		onClose();
-	});
 
 	return {
 		api,

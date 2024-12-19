@@ -1,7 +1,7 @@
 import { JSX, Show } from "solid-js";
 
 import { mergeProps } from "@zag-js/solid";
-import { Portal as SolidPortal } from "solid-js/web";
+import { Portal } from "solid-js/web";
 
 import { useDialog } from "./use-dialog";
 import { DialogProvider, useDialogContext } from "./use-dialog-context";
@@ -21,17 +21,17 @@ export function Dialog(props: DialogProps) {
 export function DialogTrigger(props: JSX.HTMLAttributes<HTMLButtonElement>) {
 	const { api } = useDialogContext();
 
-	const mergedProps = mergeProps(props, api().triggerProps);
+	const mergedProps = mergeProps(props, api().getTriggerProps());
 
 	return <button {...mergedProps} />;
 }
 
-export function DialogPortal(props: Parameters<typeof SolidPortal>[0]) {
+export function DialogPortal(props: Parameters<typeof Portal>[0]) {
 	const { api } = useDialogContext();
 
 	return (
-		<Show when={api().isOpen}>
-			<SolidPortal>{props.children}</SolidPortal>
+		<Show when={api().open}>
+			<Portal>{props.children}</Portal>
 		</Show>
 	);
 }
@@ -39,7 +39,7 @@ export function DialogPortal(props: Parameters<typeof SolidPortal>[0]) {
 export function DialogContent(props: JSX.HTMLAttributes<HTMLDivElement>) {
 	const { api } = useDialogContext();
 
-	const mergedProps = mergeProps(api().contentProps, props);
+	const mergedProps = mergeProps(api().getContentProps(), props);
 
 	return <div {...mergedProps} />;
 }

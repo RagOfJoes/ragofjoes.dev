@@ -52,7 +52,7 @@ export function Header(props: HeaderProps) {
 	});
 
 	return (
-		<header class="bg-background fixed inset-0 bottom-auto z-[9999] flex justify-center border-b transition-[backdrop-filter,background-color] ease-linear">
+		<header class="fixed inset-0 bottom-auto z-[9999] flex justify-center border-b bg-background transition-[backdrop-filter,background-color] ease-linear">
 			<nav
 				class={clsx(
 					"duration-120 flex w-full will-change-[width,height]",
@@ -73,9 +73,9 @@ export function Header(props: HeaderProps) {
 					<a
 						href="/"
 						class={clsx(
-							"duration-120 ring-offset-background group outline-none transition-colors ease-linear",
+							"duration-120 group outline-none ring-offset-background transition-colors ease-linear",
 
-							"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+							"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 						)}
 						aria-label="Go to home page"
 					>
@@ -113,10 +113,10 @@ export function Header(props: HeaderProps) {
 									<a
 										aria-current={isCurrentLink(url, route.slug) && "page"}
 										class={clsx(
-											"text-muted-foreground ring-offset-background font-medium transition-colors",
+											"font-medium text-muted-foreground ring-offset-background transition-colors",
 
 											"aria-[current=page]:text-foreground",
-											"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+											"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 											"hover:text-foreground",
 										)}
 										href={route.href}
@@ -142,9 +142,9 @@ export function Header(props: HeaderProps) {
 								<a
 									aria-label={`Go to my ${link.title} profile`}
 									class={clsx(
-										"text-muted-foreground ring-offset-background flex min-w-0 items-center justify-center font-medium transition-colors",
+										"flex min-w-0 items-center justify-center font-medium text-muted-foreground ring-offset-background transition-colors",
 
-										"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+										"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 										"hover:text-foreground",
 									)}
 									href={link.href}
@@ -168,9 +168,9 @@ export function Header(props: HeaderProps) {
 					>
 						<a
 							class={clsx(
-								"text-muted-foreground ring-offset-background font-medium transition-colors",
+								"font-medium text-muted-foreground ring-offset-background transition-colors",
 
-								"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 								"hover:text-foreground",
 							)}
 							href="/Resume.pdf"
@@ -202,10 +202,10 @@ export function Header(props: HeaderProps) {
 						<DialogTrigger
 							aria-label="Open navigation menu"
 							class={clsx(
-								"text-muted-foreground ring-offset-background w-full font-medium transition-colors",
+								"w-full font-medium text-muted-foreground ring-offset-background transition-colors",
 
 								"aria-[current=page]:text-foreground",
-								"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
+								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 								"hover:text-foreground",
 							)}
 						>
@@ -251,101 +251,99 @@ export function Header(props: HeaderProps) {
 							</Presence>
 						</DialogTrigger>
 
-						<DialogPortal>
-							<DialogContent
-								class={clsx(
-									"bg-background fixed inset-0 flex w-screen overflow-y-auto",
-								)}
-								style={{
-									height: `calc(100vh - ${navHeight()}rem)`,
-									transform: `translate3d(0, ${navHeight()}rem, 0)`,
-								}}
-							>
-								<Presence initial={false} exitBeforeEnter>
-									<Show when={isOpen()}>
-										<Motion.div
-											class="bg-background my-auto flex w-screen flex-col justify-center gap-24 p-8"
-											initial={{ opacity: 0, y: 20 }}
-											animate={{ opacity: 1, y: 0 }}
-											exit={{ opacity: 0, y: -20 }}
-											transition={{
-												duration: 0.12,
-											}}
-										>
-											<ul class="flex flex-col justify-center gap-8">
-												<For each={ROUTES}>
-													{(route) => (
-														<li class="flex items-center">
-															<a
-																aria-current={
-																	isCurrentLink(url, route.slug) && "page"
-																}
-																class={clsx(
-																	"text-muted-foreground ring-offset-background text-4xl font-semibold transition-colors",
+						<Presence exitBeforeEnter>
+							<DialogPortal>
+								<DialogContent
+									class={clsx(
+										"fixed inset-0 flex w-screen overflow-y-auto bg-background",
+									)}
+									style={{
+										height: `calc(100vh - ${navHeight()}rem)`,
+										transform: `translate3d(0, ${navHeight()}rem, 0)`,
+									}}
+								>
+									<Motion.div
+										class="my-auto flex w-screen flex-col justify-center gap-24 bg-background p-8"
+										initial={{ opacity: 0, y: 20 }}
+										animate={{ opacity: 1, y: 0 }}
+										exit={{ opacity: 0, y: 20 }}
+										transition={{
+											duration: 0.12,
+										}}
+									>
+										<ul class="flex flex-col justify-center gap-8">
+											<For each={ROUTES}>
+												{(route) => (
+													<li class="flex items-center">
+														<a
+															aria-current={
+																isCurrentLink(url, route.slug) && "page"
+															}
+															class={clsx(
+																"text-4xl font-semibold text-muted-foreground ring-offset-background transition-colors",
 
-																	"aria-[current=page]:text-foreground",
-																	"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-																	"hover:text-foreground",
-																)}
-																href={route.href}
-															>
-																{route.title}
-															</a>
-														</li>
+																"aria-[current=page]:text-foreground",
+																"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+																"hover:text-foreground",
+															)}
+															href={route.href}
+														>
+															{route.title}
+														</a>
+													</li>
+												)}
+											</For>
+
+											<li class="flex items-center">
+												<a
+													class={clsx(
+														"text-4xl font-semibold text-muted-foreground ring-offset-background transition-colors",
+
+														"aria-[current=page]:text-foreground",
+														"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+														"hover:text-foreground",
 													)}
-												</For>
+													href="/Resume.pdf"
+												>
+													RESUME
+												</a>
+											</li>
+										</ul>
 
-												<li class="flex items-center">
-													<a
-														class={clsx(
-															"text-muted-foreground ring-offset-background text-4xl font-semibold transition-colors",
+										<ul class="flex items-center justify-between gap-12 px-8">
+											<For each={SOCIALS}>
+												{(link) => (
+													<li class="flex items-center">
+														<a
+															aria-label={`Go to my ${link.title} profile`}
+															class={clsx(
+																"text-4xl font-medium text-muted-foreground ring-offset-background transition-colors",
 
-															"aria-[current=page]:text-foreground",
-															"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-															"hover:text-foreground",
-														)}
-														href="/Resume.pdf"
-													>
-														RESUME
-													</a>
-												</li>
-											</ul>
+																"aria-[current=page]:text-foreground",
+																"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+																"hover:text-foreground",
+															)}
+															href={link.href}
+															rel="me noopener noreferrer"
+															target="_blank"
+														>
+															{link.icon({
+																class: "fill-muted-foreground",
+																size: 24,
+															})}
 
-											<ul class="flex items-center justify-between gap-12 px-8">
-												<For each={SOCIALS}>
-													{(link) => (
-														<li class="flex items-center">
-															<a
-																aria-label={`Go to my ${link.title} profile`}
-																class={clsx(
-																	"text-muted-foreground ring-offset-background text-4xl font-medium transition-colors",
-
-																	"aria-[current=page]:text-foreground",
-																	"focus-visible:ring-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-																	"hover:text-foreground",
-																)}
-																href={link.href}
-																rel="me noopener noreferrer"
-																target="_blank"
-															>
-																{link.icon({
-																	class: "fill-muted-foreground",
-																	size: 24,
-																})}
-
-																<span class="sr-only">
-																	Go to my {link.title} profile
-																</span>
-															</a>
-														</li>
-													)}
-												</For>
-											</ul>
-										</Motion.div>
-									</Show>
-								</Presence>
-							</DialogContent>
-						</DialogPortal>
+															<span class="sr-only">
+																Go to my {link.title} profile
+															</span>
+														</a>
+													</li>
+												)}
+											</For>
+										</ul>
+									</Motion.div>
+								</DialogContent>
+							</DialogPortal>
+						</Presence>
 					</Dialog>
 				</div>
 			</nav>
