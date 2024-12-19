@@ -8,6 +8,7 @@ import { DialogProvider, useDialogContext } from "./use-dialog-context";
 
 export type DialogProps = {
 	children?: JSX.Element;
+	initialFocusEl?: () => HTMLElement | null;
 	onClose?: () => void;
 	onOpen?: () => void;
 };

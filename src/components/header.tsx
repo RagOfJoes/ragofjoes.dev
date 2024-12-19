@@ -189,6 +189,11 @@ export function Header(props: HeaderProps) {
 					)}
 				>
 					<Dialog
+						initialFocusEl={() =>
+							document.querySelector(
+								'div[data-scope="dialog"] a[aria-current="page"]',
+							)
+						}
 						onClose={() => {
 							document.body.style.cssText = "";
 

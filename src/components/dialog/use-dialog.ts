@@ -12,12 +12,13 @@ export type UseDialog = {
 };
 
 export function useDialog(props: DialogProps): UseDialog {
-	const { onClose = () => {}, onOpen = () => {} } = props;
+	const { initialFocusEl, onClose = () => {}, onOpen = () => {} } = props;
 
 	const [state, send] = useMachine(
 		dialog.machine({
 			closeOnEscape: true,
 			closeOnInteractOutside: true,
+			initialFocusEl,
 			id: createUniqueId(),
 			onOpenChange: (details) => {
 				if (!details.open) {
