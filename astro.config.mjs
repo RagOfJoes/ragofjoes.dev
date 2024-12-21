@@ -2,13 +2,13 @@
 import sitemap from "@astrojs/sitemap";
 import solid from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";
-import vercelStatic from "@astrojs/vercel/static";
+import vercel from "@astrojs/vercel";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-	adapter: vercelStatic({
+	adapter: vercel({
 		webAnalytics: {
 			enabled: true,
 		},
