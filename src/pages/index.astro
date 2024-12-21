@@ -100,12 +100,12 @@ import { WORK_EXPERIENCE } from "@/lib/constants";
 					</h2>
 				</div>
 
-				<div
+				<ul
 					class="grid grid-cols-2 border-l border-t [&>*]:border-b [&>*]:border-r"
 				>
 					{
 						WORK_EXPERIENCE.map((experience) => (
-							<div
+							<li
 								class={clsx(
 									"col-span-1 row-span-1",
 
@@ -119,10 +119,10 @@ import { WORK_EXPERIENCE } from "@/lib/constants";
 									job={experience.job}
 									start={experience.start}
 								/>
-							</div>
+							</li>
 						))
 					}
-				</div>
+				</ul>
 			</section>
 		</article>
 	</main>
