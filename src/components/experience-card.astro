@@ -15,15 +15,8 @@ const { company, description, end, job, start } = Astro.props;
 const DATE_FORMAT = "MMM YYYY";
 ---
 
-<div
-	class={clsx(
-		"h-full border p-4",
-
-		"group-odd:border-r-0",
-		"max-md:group-odd:border-r max-md:group-odd:border-b-0",
-	)}
->
-	<p class="text-muted-foreground font-medium">
+<div class="h-full p-4">
+	<p class="font-medium text-muted-foreground">
 		{start.format(DATE_FORMAT)} -{" "}
 		{end.isSame(dayjs(), "date") ? "Present" : end.format(DATE_FORMAT)}
 	</p>
@@ -40,7 +33,7 @@ const DATE_FORMAT = "MMM YYYY";
 
 	<div class="flex items-center">
 		<h2
-			class="text-background bg-foreground px-2 py-1 text-sm font-semibold uppercase leading-none"
+			class="bg-foreground px-2 py-1 text-sm font-semibold uppercase leading-none text-background"
 		>
 			{job}
 		</h2>
@@ -51,7 +44,7 @@ const DATE_FORMAT = "MMM YYYY";
 			description.map((text) => (
 				<li class="flex items-center gap-2">
 					<svg
-						class="text-foreground/80 shrink-0"
+						class="shrink-0 text-foreground/80"
 						fill="currentColor"
 						height="1em"
 						stroke-width="0"
