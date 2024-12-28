@@ -1,9 +1,8 @@
 import { For } from "solid-js";
 
-import { Motion } from "@motionone/solid";
-import type { Options } from "@motionone/solid";
 import clsx from "clsx";
 import { BiRegularChevronLeft, BiRegularChevronRight } from "solid-icons/bi";
+import { Motion } from "solid-motionone";
 
 import { CarouselProps } from "./carousel";
 import { useCarouselContext } from "./use-carousel-context";

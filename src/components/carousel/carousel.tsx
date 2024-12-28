@@ -1,6 +1,6 @@
 import { For, Show } from "solid-js";
 
-import { Presence } from "@motionone/solid";
+import { Presence } from "solid-motionone";
 
 import { Rerun } from "@/components/rerun";
 import { addEventListener } from "@/lib/add-event-listener";

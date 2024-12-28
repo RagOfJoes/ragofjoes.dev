@@ -1,10 +1,10 @@
 import { createEffect, createSignal, For, Show } from "solid-js";
 
-import type { Options } from "@motionone/solid";
-import { Motion, Presence } from "@motionone/solid";
 import { useWindowSize } from "@solid-primitives/resize-observer";
 import clsx from "clsx";
 import { HiSolidXMark } from "solid-icons/hi";
+import { Motion, Presence } from "solid-motionone";
+import type { Options } from "solid-motionone";
 
 import {
 	Dialog,
