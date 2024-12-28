@@ -6,6 +6,8 @@ import vercel from "@astrojs/vercel";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { defineConfig } from "astro/config";
 
+import { sitemapCopier } from "./sitemap-copier";
+
 // https://astro.build/config
 export default defineConfig({
 	adapter: vercel({
@@ -19,6 +21,7 @@ export default defineConfig({
 			priority: 0.7,
 			lastmod: new Date(),
 		}),
+		sitemapCopier(),
 		solid(),
 		tailwind(),
 	],
