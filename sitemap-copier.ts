@@ -13,7 +13,7 @@ export function sitemapCopier(): AstroIntegration {
 				const buildLogger = logger.fork("sitemap-copier");
 				buildLogger.info("Copying xml files from dist to vercel out");
 				try {
-					const files = await readdir("./dist/client");
+					const files = await readdir("./dist");
 					const xmlFiles = files.filter(
 						(file) =>
 							path.extname(file).toLowerCase() === ".xml" &&
@@ -22,7 +22,7 @@ export function sitemapCopier(): AstroIntegration {
 					buildLogger.info(xmlFiles.join(", "));
 					// eslint-disable-next-line no-restricted-syntax
 					for (const file of xmlFiles) {
-						const sourcePath = path.join("./dist/client", file);
+						const sourcePath = path.join("./dist", file);
 						const destPath = path.join("./.vercel/output/static", file);
 
 						// eslint-disable-next-line no-await-in-loop
