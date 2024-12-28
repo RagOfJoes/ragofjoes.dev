@@ -10,36 +10,6 @@ import { useCarouselContext } from "./use-carousel-context";
 
 export type CarouselSlideProps = FlatArray<CarouselProps["slides"], 1>;
 
-const horizontalVariants: Options = {
-	initial: {
-		opacity: 0,
-		x: 40,
-	},
-	animate: {
-		opacity: 1,
-		x: 0,
-	},
-	exit: {
-		opacity: 0,
-		x: -80,
-	},
-};
-
-const verticalVariants: Options = {
-	initial: {
-		opacity: 0,
-		y: 40,
-	},
-	animate: {
-		opacity: 1,
-		y: 0,
-	},
-	exit: {
-		opacity: 0,
-		y: -80,
-	},
-};
-
 export function CarouselSlide({
 	background,
 	description,
@@ -61,16 +31,23 @@ export function CarouselSlide({
 		>
 			<div
 				class={clsx(
-					"h-full gap-4 px-16 py-12",
+					"h-full gap-4 overflow-hidden px-16 py-12",
 
 					"max-lg:order-1 max-lg:px-8 max-lg:py-10",
 				)}
 			>
 				<Motion.div
-					{...horizontalVariants}
+					animate={{
+						opacity: 1,
+						x: 0,
+					}}
+					initial={{
+						opacity: 0,
+						x: 40,
+					}}
 					class="group relative h-full w-full overflow-hidden border"
 				>
-					<div class="flex h-4 w-full items-center gap-1.5 bg-background px-4 py-3">
+					<div class="flex h-4 w-full items-center gap-1.5 border-b bg-background px-4 py-3">
 						<For each={Array.from({ length: 3 })}>
 							{() => (
 								<span class="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
@@ -80,15 +57,22 @@ export function CarouselSlide({
 
 					<div
 						class={clsx(
-							"h-full w-full bg-contain bg-center bg-no-repeat object-cover opacity-40 transition-opacity duration-300",
+							"inline-flex h-[calc(100%-1.5rem)] w-full items-center justify-center overflow-hidden opacity-40 transition-opacity duration-300",
 
 							"group-hover:opacity-100",
 						)}
 						style={{
 							"background-color": background,
-							"background-image": `url(${image})`,
 						}}
-					/>
+					>
+						<img
+							alt={title}
+							class="h-full w-full object-contain object-center"
+							decoding="async"
+							loading="lazy"
+							src={image}
+						/>
+					</div>
 
 					<div class="absolute bottom-4 left-4 right-4">
 						<ul
@@ -101,7 +85,14 @@ export function CarouselSlide({
 							<For each={tags}>
 								{(tag, index) => (
 									<Motion.li
-										{...horizontalVariants}
+										animate={{
+											opacity: 1,
+											x: 0,
+										}}
+										initial={{
+											opacity: 0,
+											x: 40,
+										}}
 										class="border bg-background px-2 py-1 text-xs font-medium leading-none tracking-wider text-foreground"
 										transition={{
 											delay: 0.05 * index(),
@@ -123,36 +114,54 @@ export function CarouselSlide({
 					"max-lg:order-3 max-lg:border-l-0 max-lg:border-t max-lg:px-8",
 				)}
 			>
-				<Motion.p {...verticalVariants} class="text-lg">
+				<Motion.p
+					animate={{
+						opacity: 1,
+						y: 0,
+					}}
+					initial={{
+						opacity: 0,
+						y: 40,
+					}}
+					class="text-lg"
+				>
 					{description}
 				</Motion.p>
 			</div>
 
 			<div
 				class={clsx(
-					"flex h-full w-full min-w-0 flex-col justify-center",
+					"h-full w-full min-w-0 border-t",
 
 					"max-lg:order-2",
 				)}
 			>
 				<a
 					class={clsx(
-						"h-full w-full min-w-0 overflow-hidden",
+						"group h-full w-full min-w-0 overflow-hidden",
 
-						"focus-visible:outline-primary",
+						"focus-visible:outline-none",
 					)}
 					href={url}
 				>
 					<div
 						class={clsx(
-							"flex h-full w-full items-center justify-between gap-4 border-t px-16 py-8",
+							"flex h-full w-full items-center justify-between gap-4 px-16 py-8",
 
+							"group-focus-visible:bg-foreground/5",
 							"hover:bg-foreground/5",
 							"max-lg:px-8",
 						)}
 					>
 						<Motion.h1
-							{...horizontalVariants}
+							animate={{
+								opacity: 1,
+								x: 0,
+							}}
+							initial={{
+								opacity: 0,
+								x: 40,
+							}}
 							class={clsx(
 								"text-5xl font-bold tracking-wide",
 
@@ -163,7 +172,14 @@ export function CarouselSlide({
 						</Motion.h1>
 
 						<Motion.svg
-							{...horizontalVariants}
+							animate={{
+								opacity: 1,
+								x: 0,
+							}}
+							initial={{
+								opacity: 0,
+								x: 40,
+							}}
 							fill="currentcolor"
 							height={40}
 							stroke-width="0"
@@ -193,37 +209,31 @@ export function CarouselSlide({
 					"max-lg:order-4 max-lg:border-b max-lg:border-l-0",
 				)}
 			>
-				<Motion.button
+				<button
 					aria-label="Go to previous project"
-					initial={{ width: "50%" }}
-					hover={{ width: "60%" }}
-					animate={{ width: "50%" }}
 					onClick={previous}
 					class={clsx(
-						"flex items-center justify-center ring-offset-background",
+						"flex w-1/2 items-center justify-center transition-[width] duration-300 will-change-[width]",
 
-						"focus-visible:outline-primary",
-						"hover:bg-foreground/5",
+						"focus-visible:w-3/5 focus-visible:bg-foreground/5 focus-visible:outline-none",
+						"hover:w-3/5 hover:bg-foreground/5",
 					)}
 				>
 					<BiRegularChevronLeft size={44} />
-				</Motion.button>
+				</button>
 
-				<Motion.button
+				<button
 					aria-label="Go to next project"
-					initial={{ width: "50%" }}
-					hover={{ width: "60%" }}
-					animate={{ width: "50%" }}
 					onClick={next}
 					class={clsx(
-						"flex items-center justify-center border-l",
+						"flex w-1/2 items-center justify-center border-l transition-[width] duration-300 will-change-[width]",
 
-						"focus-visible:outline-primary",
-						"hover:bg-foreground/5",
+						"focus-visible:w-3/5 focus-visible:bg-foreground/5 focus-visible:outline-none",
+						"hover:w-3/5 hover:bg-foreground/5",
 					)}
 				>
 					<BiRegularChevronRight size={44} />
-				</Motion.button>
+				</button>
 			</div>
 		</article>
 	);
