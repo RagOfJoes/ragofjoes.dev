@@ -18,6 +18,7 @@ export default defineConfig({
 	integrations: [
 		sitemap({
 			changefreq: "weekly",
+			customPages: ["https://www.ragofjoes.dev/Resume.pdf"],
 			priority: 0.7,
 			lastmod: new Date(),
 		}),
