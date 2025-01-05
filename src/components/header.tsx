@@ -53,7 +53,7 @@ export function Header(props: HeaderProps) {
 
 	return (
 		<header class="fixed inset-0 bottom-auto z-[9999] flex justify-center border-b bg-background transition-[backdrop-filter,background-color] ease-linear">
-			<nav
+			<div
 				class={clsx(
 					"duration-120 flex w-full will-change-[width,height]",
 
@@ -92,7 +92,7 @@ export function Header(props: HeaderProps) {
 					</a>
 				</div>
 
-				<div
+				<nav
 					class={clsx(
 						"flex basis-2/3",
 
@@ -130,7 +130,7 @@ export function Header(props: HeaderProps) {
 						</For>
 					</ul>
 
-					<div
+					<ul
 						class={clsx(
 							"flex grow items-center justify-center gap-12 border-l px-8",
 
@@ -139,25 +139,27 @@ export function Header(props: HeaderProps) {
 					>
 						<For each={SOCIALS}>
 							{(link) => (
-								<a
-									aria-label={`Go to my ${link.title} profile`}
-									class={clsx(
-										"flex min-w-0 items-center justify-center font-medium text-muted-foreground ring-offset-background transition-colors",
+								<li class="flex items-center">
+									<a
+										aria-label={`Go to my ${link.title} profile`}
+										class={clsx(
+											"flex min-w-0 items-center justify-center font-medium text-muted-foreground ring-offset-background transition-colors",
 
-										"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-										"hover:text-foreground",
-									)}
-									href={link.href}
-									rel="me noopener noreferrer"
-									target="_blank"
-								>
-									{link.icon({ class: "fill-muted-foreground" })}
+											"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+											"hover:text-foreground",
+										)}
+										href={link.href}
+										rel="me noopener noreferrer"
+										target="_blank"
+									>
+										{link.icon({ class: "fill-muted-foreground" })}
 
-									<span class="sr-only">Go to my {link.title} profile</span>
-								</a>
+										<span class="sr-only">Go to my {link.title} profile</span>
+									</a>
+								</li>
 							)}
 						</For>
-					</div>
+					</ul>
 
 					<div
 						class={clsx(
@@ -179,7 +181,7 @@ export function Header(props: HeaderProps) {
 							<span class="sr-only">View resume</span>
 						</a>
 					</div>
-				</div>
+				</nav>
 
 				<div
 					class={clsx(
@@ -267,7 +269,7 @@ export function Header(props: HeaderProps) {
 										transform: `translate3d(0, ${navHeight()}rem, 0)`,
 									}}
 								>
-									<Motion.div
+									<Motion.nav
 										class="my-auto flex w-screen flex-col justify-center gap-24 bg-background p-8"
 										initial={{ opacity: 0, y: 20 }}
 										animate={{ opacity: 1, y: 0 }}
@@ -345,13 +347,13 @@ export function Header(props: HeaderProps) {
 												)}
 											</For>
 										</ul>
-									</Motion.div>
+									</Motion.nav>
 								</DialogContent>
 							</DialogPortal>
 						</Presence>
 					</Dialog>
 				</div>
-			</nav>
+			</div>
 		</header>
 	);
 }
