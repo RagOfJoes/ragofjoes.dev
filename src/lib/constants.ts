@@ -114,6 +114,7 @@ export const WORK_EXPERIENCE = [
 			"Orchestrated a comprehensive refactoring of the core PHP MVC framework, reducing codebase complexity by 60%. Implemented efficient database query optimizations and caching strategies, resulting in 50% faster API response times",
 			"Architected and implemented a comprehensive Docker-based development environment, standardizing codebase across products. Eliminated environment inconsistencies, cut onboarding time by 50%, and ensured parity across local, staging, and production",
 			"Introduced CI/CD pipelines using GitHub Actions, automating tests, deployment, and release processes. Reduced manual QA time by 80% and increase release frequency by 3x",
+			"Built scalable React component library and design system, streamlining UI development and reducing feature delivery time by 40%",
 		],
 		end: dayjs("10/16/2024", "MM/DD/YYYY"),
 		job: "Software Engineer",
