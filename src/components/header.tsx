@@ -81,7 +81,7 @@ export function Header(props: HeaderProps) {
 					>
 						<Logo
 							class={clsx(
-								"opacity-40 transition",
+								"opacity-65 transition",
 
 								"group-hover:opacity-100",
 							)}
@@ -113,7 +113,7 @@ export function Header(props: HeaderProps) {
 									<a
 										aria-current={isCurrentLink(url, route.slug) && "page"}
 										class={clsx(
-											"font-medium text-muted-foreground ring-offset-background transition-colors",
+											"font-medium text-foreground/45 ring-offset-background transition-colors",
 
 											"aria-[current=page]:text-foreground",
 											"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
@@ -143,7 +143,7 @@ export function Header(props: HeaderProps) {
 									<a
 										aria-label={`Go to my ${link.title} profile`}
 										class={clsx(
-											"flex min-w-0 items-center justify-center font-medium text-muted-foreground ring-offset-background transition-colors",
+											"flex min-w-0 items-center justify-center font-medium text-foreground/45 ring-offset-background transition-colors",
 
 											"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 											"hover:text-foreground",
@@ -152,7 +152,7 @@ export function Header(props: HeaderProps) {
 										rel="me noopener noreferrer"
 										target="_blank"
 									>
-										{link.icon({ class: "fill-muted-foreground" })}
+										{link.icon({ class: "fill-foreground/45" })}
 
 										<span class="sr-only">Go to my {link.title} profile</span>
 									</a>
@@ -170,7 +170,7 @@ export function Header(props: HeaderProps) {
 					>
 						<a
 							class={clsx(
-								"font-medium text-muted-foreground ring-offset-background transition-colors",
+								"font-medium text-foreground/45 ring-offset-background transition-colors",
 
 								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 								"hover:text-foreground",
@@ -209,7 +209,7 @@ export function Header(props: HeaderProps) {
 						<DialogTrigger
 							aria-label="Open navigation menu"
 							class={clsx(
-								"w-full font-medium text-muted-foreground ring-offset-background transition-colors",
+								"w-full font-medium text-foreground/45 ring-offset-background transition-colors",
 
 								"aria-[current=page]:text-foreground",
 								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
@@ -287,7 +287,7 @@ export function Header(props: HeaderProps) {
 																isCurrentLink(url, route.slug) && "page"
 															}
 															class={clsx(
-																"text-4xl font-semibold text-muted-foreground ring-offset-background transition-colors",
+																"text-4xl font-semibold text-foreground/45 ring-offset-background transition-colors",
 
 																"aria-[current=page]:text-foreground",
 																"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
@@ -304,7 +304,7 @@ export function Header(props: HeaderProps) {
 											<li class="flex items-center">
 												<a
 													class={clsx(
-														"text-4xl font-semibold text-muted-foreground ring-offset-background transition-colors",
+														"text-4xl font-semibold text-foreground/45 ring-offset-background transition-colors",
 
 														"aria-[current=page]:text-foreground",
 														"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
@@ -324,7 +324,7 @@ export function Header(props: HeaderProps) {
 														<a
 															aria-label={`Go to my ${link.title} profile`}
 															class={clsx(
-																"text-4xl font-medium text-muted-foreground ring-offset-background transition-colors",
+																"text-4xl font-medium text-foreground/45 ring-offset-background transition-colors",
 
 																"aria-[current=page]:text-foreground",
 																"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
@@ -335,7 +335,7 @@ export function Header(props: HeaderProps) {
 															target="_blank"
 														>
 															{link.icon({
-																class: "fill-muted-foreground",
+																class: "fill-foreground/45",
 																size: 24,
 															})}
 

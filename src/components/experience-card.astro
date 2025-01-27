@@ -1,5 +1,4 @@
 ---
-import clsx from "clsx";
 import dayjs, { Dayjs } from "dayjs";
 
 export type Props = {
@@ -12,53 +11,49 @@ export type Props = {
 
 const { company, description, end, job, start } = Astro.props;
 
-const DATE_FORMAT = "MMM YYYY";
+const DATE_FORMAT = "MM/YYYY";
 ---
 
-<div class="h-full p-4">
-	<p class="font-medium text-muted-foreground">
-		{start.format(DATE_FORMAT)} -{" "}
-		{end.isSame(dayjs(), "date") ? "Present" : end.format(DATE_FORMAT)}
-	</p>
-
-	<h1
-		class={clsx(
-			"mt-4 text-3xl font-black",
-
-			"max-md:text-2xl",
-		)}
-	>
-		{company}
-	</h1>
-
-	<div class="flex items-center">
-		<h2
-			class="bg-foreground px-2 py-1 text-sm font-semibold uppercase leading-none text-background"
+<div class="h-full">
+	<div class="flex items-center justify-end pt-4">
+		<p
+			class="inline-block bg-foreground px-2 py-1 text-sm font-semibold uppercase leading-none text-background"
 		>
-			{job}
-		</h2>
+			{start.format(DATE_FORMAT)} -{" "}
+			{end.isSame(dayjs(), "date") ? "Present" : end.format(DATE_FORMAT)}
+		</p>
 	</div>
 
-	<ul class="mt-6 flex list-inside list-none flex-col gap-2">
-		{
-			description.map((text) => (
-				<li class="flex items-center gap-2">
-					<svg
-						class="shrink-0 text-foreground/80"
-						fill="currentColor"
-						height="1em"
-						stroke-width="0"
-						stroke="currentColor"
-						viewBox="0 0 512 512"
-						width="1em"
-						xmlns="http://www.w3.org/2000/svg"
-					>
-						<path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z" />
-					</svg>
+	<div class="p-4">
+		<h1 class="text-xl font-bold uppercase leading-none">
+			{company}
+		</h1>
 
-					<p class="text-sm font-medium">{text}</p>
-				</li>
-			))
-		}
-	</ul>
+		<h2 class="font-medium tracking-tight text-primary">
+			{job}
+		</h2>
+
+		<ul class="mt-4 flex list-inside list-none flex-col gap-2">
+			{
+				description.map((text) => (
+					<li class="flex items-center gap-2">
+						<svg
+							class="shrink-0 text-foreground/80"
+							fill="currentColor"
+							height="1em"
+							stroke-width="0"
+							stroke="currentColor"
+							viewBox="0 0 512 512"
+							width="1em"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path d="M294.1 256L167 129c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.3 34 0L345 239c9.1 9.1 9.3 23.7.7 33.1L201.1 417c-4.7 4.7-10.9 7-17 7s-12.3-2.3-17-7c-9.4-9.4-9.4-24.6 0-33.9l127-127.1z" />
+						</svg>
+
+						<p class="text-sm font-medium">{text}</p>
+					</li>
+				))
+			}
+		</ul>
+	</div>
 </div>
