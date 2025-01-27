@@ -10,47 +10,51 @@ const { slides } = Astro.props;
 
 <div
 	class={clsx(
-		"group flex h-48 border-y",
+		"h-48 border-y",
 
 		"group-focus-visible:bg-foreground/5",
 		"hover:bg-foreground/5",
 	)}
 >
-	{
-		Array.from({ length: 2 }).map(() => (
-			<ul
-				class={clsx(
-					"flex h-full shrink-0 animate-slide-left items-center gap-4 will-change-transform",
+	<div
+		class="group flex h-full [mask-image:_linear-gradient(to_right,transparent_0,_#10100e_10%,_#10100e_calc(100%-200px),transparent_100%)]"
+	>
+		{
+			Array.from({ length: 2 }).map(() => (
+				<ul
+					class={clsx(
+						"flex h-full shrink-0 animate-slide-left items-center gap-4 will-change-transform",
 
-					"group-focus-visible:[animation-play-state:paused]",
-					"group-hover:[animation-play-state:paused]",
-				)}
-			>
-				{slides.map((slide) => (
-					<li
-						class={clsx(
-							"flex h-full select-none items-center gap-6",
+						"group-focus-visible:[animation-play-state:paused]",
+						"group-hover:[animation-play-state:paused]",
+					)}
+				>
+					{slides.map((slide) => (
+						<li
+							class={clsx(
+								"flex h-full select-none items-center gap-6",
 
-							"first:ml-4",
-						)}
-					>
-						<div class="h-3 w-3 rounded-full bg-primary" />
-
-						<p class="text-2xl font-bold tracking-wider">{slide}</p>
-
-						<svg
-							class="h-10 w-10 fill-foreground"
-							height="24"
-							viewBox="0 0 24 24"
-							width="24"
-							xmlns="http://www.w3.org/2000/svg"
+								"first:ml-4",
+							)}
 						>
-							<path d="M10.296 7.71 14.621 12l-4.325 4.29 1.408 1.42L17.461 12l-5.757-5.71z" />
-							<path d="M6.704 6.29 5.296 7.71 9.621 12l-4.325 4.29 1.408 1.42L12.461 12z" />
-						</svg>
-					</li>
-				))}
-			</ul>
-		))
-	}
+							<div class="h-3 w-3 rounded-full bg-primary" />
+
+							<p class="text-2xl font-bold tracking-wider">{slide}</p>
+
+							<svg
+								class="h-10 w-10 fill-foreground"
+								height="24"
+								viewBox="0 0 24 24"
+								width="24"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M10.296 7.71 14.621 12l-4.325 4.29 1.408 1.42L17.461 12l-5.757-5.71z" />
+								<path d="M6.704 6.29 5.296 7.71 9.621 12l-4.325 4.29 1.408 1.42L12.461 12z" />
+							</svg>
+						</li>
+					))}
+				</ul>
+			))
+		}
+	</div>
 </div>
