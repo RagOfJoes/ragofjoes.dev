@@ -10,15 +10,14 @@ import { PROJECTS } from "@/lib/constants";
 import { useCarousel } from "./use-carousel";
 import { CarouselProvider, useCarouselContext } from "./use-carousel-context";
 
-export type CarouselSlideProps = ComponentProps<"article">;
+export type CarouselSlideProps = ComponentProps<"div">;
 
-export function CarouselSlide(props: ComponentProps<"article">) {
+export function CarouselSlide(props: ComponentProps<"div">) {
 	const [split, other] = splitProps(props, ["children", "class"]);
 
 	return (
-		<article
+		<div
 			{...other}
-			lang="en"
 			class={clsx(
 				"absolute left-0 top-0 grid h-full w-full grid-cols-[2fr_1fr] grid-rows-[2fr_1fr]",
 
@@ -28,7 +27,7 @@ export function CarouselSlide(props: ComponentProps<"article">) {
 			)}
 		>
 			{split.children}
-		</article>
+		</div>
 	);
 }
 
