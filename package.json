@@ -8,13 +8,13 @@
 		"@astrojs/solid-js": "^5.0.4",
 		"@astrojs/tailwind": "^5.1.5",
 		"@astrojs/vercel": "^8.0.4",
+		"@corvu/dialog": "^0.2.3",
+		"@corvu/drawer": "^0.2.2",
 		"@solid-primitives/event-listener": "^2.3.3",
 		"@solid-primitives/resize-observer": "^2.0.26",
 		"@solid-primitives/rootless": "^1.4.5",
 		"@solid-primitives/static-store": "^0.0.8",
 		"@solid-primitives/utils": "^6.2.3",
-		"@zag-js/dialog": "^0.79.1",
-		"@zag-js/solid": "^0.79.1",
 		"clsx": "^2.1.1",
 		"dayjs": "^1.11.13",
 		"solid-icons": "^1.1.0",
@@ -41,6 +41,7 @@
 		"prettier-plugin-astro": "^0.14.1",
 		"prettier-plugin-tailwindcss": "^0.6.9",
 		"tailwindcss": "^3.4.17",
+		"tailwindcss-animate": "^1.0.7",
 		"typescript": "^5.7.2"
 	},
 	"scripts": {

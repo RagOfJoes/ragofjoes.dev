@@ -1,3 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+const animate = require("tailwindcss-animate");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -55,5 +58,5 @@ module.exports = {
 			sans: ['"General Sans"', "sans-serif"],
 		},
 	},
-	plugins: [],
+	plugins: [animate],
 };
