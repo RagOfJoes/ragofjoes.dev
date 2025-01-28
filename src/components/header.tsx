@@ -221,25 +221,36 @@ export function Header(props: HeaderProps) {
 						"max-lg:flex max-lg:basis-1/4",
 					)}
 				>
-					<Drawer breakPoints={[1]}>
-						{() => (
+					<Drawer
+						breakPoints={[1]}
+						initialFocusEl={
+							document.querySelector<HTMLElement>(
+								'div[data-role="dialog"] a[aria-current="page"]',
+							) ?? undefined
+						}
+					>
+						{(drawerProps) => (
 							<>
 								<Drawer.Trigger
-									aria-label="Open navigation menu"
+									aria-label={
+										drawerProps.open
+											? "Close navigation menu"
+											: "Open navigation menu"
+									}
 									class={clsx(
-										"w-full font-medium uppercase text-foreground/45 ring-offset-background transition-colors",
+										"w-full px-8 font-medium uppercase text-foreground/45 ring-offset-background transition-colors",
 
 										"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 										"hover:text-foreground",
 									)}
 								>
-									Menu
+									{drawerProps.open ? "Close" : "Menu"}
 								</Drawer.Trigger>
 
 								<Drawer.Portal>
 									<Drawer.Content
 										class={clsx(
-											"fixed inset-0 top-[var(--nav-height)] z-[9999] flex h-[calc(100vh_-_var(--nav-height))] flex-col justify-center border-t bg-background",
+											"fixed inset-0 top-[calc(var(--nav-height)_+_1px)] z-[9999] flex h-[calc(100vh_-_var(--nav-height))] flex-col justify-center bg-background",
 
 											"after:absolute after:inset-x-0 after:top-[calc(100%-1px)] after:h-1/2 after:bg-inherit",
 											"data-[transitioning]:transition-transform data-[transitioning]:duration-500 data-[transitioning]:ease-in-out",
