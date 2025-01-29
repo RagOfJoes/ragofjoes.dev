@@ -141,8 +141,8 @@ export function Header(props: HeaderProps) {
 									class={clsx(
 										"fixed left-1/2 top-1/2 z-[9999] min-w-[320px] -translate-x-1/2 -translate-y-1/2 border bg-background p-8 ring-offset-background",
 
-										"data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-bottom-2 data-[closed]:duration-200",
-										"data-[open]:animate-in data-[open]:fade-in-0 data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-bottom-4 data-[open]:duration-300",
+										"data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-1/2 data-[closed]:zoom-out-95 data-[closed]:duration-200",
+										"data-[open]:animate-in data-[open]:fade-in-0 data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-1/2 data-[open]:zoom-in-[85%] data-[open]:duration-300",
 										"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 									)}
 								>
@@ -233,18 +233,18 @@ export function Header(props: HeaderProps) {
 							<>
 								<Drawer.Trigger
 									aria-label={
-										drawerProps.open
+										drawerProps.openPercentage === 1
 											? "Close navigation menu"
 											: "Open navigation menu"
 									}
 									class={clsx(
-										"w-full px-8 font-medium uppercase text-foreground/45 ring-offset-background transition-colors",
+										"px-8 font-medium uppercase text-foreground/45 ring-offset-background transition-all",
 
 										"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 										"hover:text-foreground",
 									)}
 								>
-									{drawerProps.open ? "Close" : "Menu"}
+									{drawerProps.openPercentage === 1 ? "Close" : "Menu"}
 								</Drawer.Trigger>
 
 								<Drawer.Portal>
