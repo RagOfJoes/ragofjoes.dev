@@ -218,7 +218,7 @@ export function Header(props: HeaderProps) {
 					class={clsx(
 						"hidden border-l",
 
-						"max-lg:flex max-lg:basis-1/4",
+						"max-lg:flex max-lg:basis-1/4 max-lg:justify-center",
 					)}
 				>
 					<Drawer
