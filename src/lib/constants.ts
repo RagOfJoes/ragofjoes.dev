@@ -48,34 +48,6 @@ export const PROJECTS = [
 		title: "Octree Palette",
 		url: "https://github.com/RagOfJoes/OctreePalette",
 	},
-	{
-		background: "#f6f6f6",
-		description:
-			"A web app that allows users to create, import, and share their favorite recipes. Users can also create “Creations” that show off their attempts at following other user generated recipes.",
-		image: "/spoonfed-preview.webp",
-		tags: [
-			"React",
-			"Next",
-			"NodeJS",
-			"GraphQL",
-			"OAuth2",
-			"OIDC",
-			"Redis",
-			"MongoDB",
-			"Azure",
-		],
-		title: "Spoonfed",
-		url: "https://spoonfed.dev/",
-	},
-	{
-		background: "#242830",
-		description:
-			"A simple identity provider that is build on top of the OIDC protocol for authentication. Users can manage their profile and active sessions.",
-		image: "/identityProvider-preview.webp",
-		tags: ["NodeJS", "OAuth2", "OIDC", "MongoDB", "Redis"],
-		title: "Identity Provider",
-		url: "https://spoonfed.dev/api/login",
-	},
 ];
 
 export const ROUTES = [
