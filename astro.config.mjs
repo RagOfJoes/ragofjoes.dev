@@ -3,7 +3,6 @@ import sitemap from "@astrojs/sitemap";
 import solid from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { defineConfig } from "astro/config";
 
 import { sitemapCopier } from "./sitemap-copier";

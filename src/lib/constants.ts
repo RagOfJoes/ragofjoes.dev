@@ -6,7 +6,7 @@ export const PROJECTS = [
 	{
 		background: "#ffffff",
 		description:
-			"Offset Tent is an automation tool that synchronizes Basecamp cards/todos and GitHub issues/pull requests. It allows you to keep your team up to date with the latest changes made to your codebases.",
+			"A workow automation tool that seamlessly connects Basecamp with GitHub, enabling real-time task synchronization and streamlined team collaboration. Implemented monitoring and automated deployment systems for reliability.",
 		image: "/offsetTent-preview.webp",
 		tags: [
 			"Go",
@@ -22,7 +22,7 @@ export const PROJECTS = [
 	{
 		background: "#191824",
 		description:
-			"A puzzle game that was inspired by the BBC’s “Only Connect” game show. Users create a puzzle with 16 words where each group of 4 words have some connection between them. Players attempt to link each group together and guess each connection.",
+			"A multiplayer word puzzle game inspired by NYT's Connections, featuring unlimited plays, custom puzzles, and daily challenges.",
 		image: "/puzzlely-preview.webp",
 		tags: [
 			"Typescript",
@@ -51,12 +51,12 @@ export const PROJECTS = [
 ];
 
 export const ROUTES = [
-	{ description: "Go to home page", href: "/", slug: "", title: "ABOUT" },
+	{ description: "Go to home page", href: "/", slug: "", title: "About" },
 	{
 		description: "Go to projects page",
 		href: "/projects/",
 		slug: "projects",
-		title: "PROJECTS",
+		title: "Projects",
 	},
 ];
 
@@ -87,11 +87,10 @@ export const WORK_EXPERIENCE = [
 	{
 		company: "Offset Partners",
 		description: [
-			"Spearheaded migration from Webpack to Vite, reducing build times by 200% and bundle sizes by 40%. Optimizations improved performance and accessibility for millions of users with slower connections or devices",
-			"Orchestrated a comprehensive refactoring of the core PHP MVC framework, reducing codebase complexity by 60%. Implemented efficient database query optimizations and caching strategies, resulting in 50% faster API response times",
-			"Architected and implemented a comprehensive Docker-based development environment, standardizing codebase across products. Eliminated environment inconsistencies, cut onboarding time by 50%, and ensured parity across local, staging, and production",
-			"Introduced CI/CD pipelines using GitHub Actions, automating tests, deployment, and release processes. Reduced manual QA time by 80% and increase release frequency by 3x",
-			"Built scalable React component library and design system, streamlining UI development and reducing feature delivery time by 40%",
+			"Led frontend modernization initiatives including component libraries and build tooling improvements, reducing build times by 200% and development time by 40%. Enhanced performance and accessibility for millions of users.",
+			"Refactored core PHP framework and implemented database optimizations, reducing codebase complexity by 60% and improving API response times by 50%.",
+			"Implemented Docker-based development environment, standardizing codebase and reducing onboarding time by 50%. Ensured consistency across local, staging, and production environments.",
+			"Implemented CI/CD pipelines with GitHub Actions, reducing QA time by 80% and tripling release frequency.",
 		],
 		end: dayjs("10/16/2024", "MM/DD/YYYY"),
 		job: "Software Engineer",
@@ -101,9 +100,9 @@ export const WORK_EXPERIENCE = [
 	{
 		company: "Napa Valley College",
 		description: [
-			"Developed innovate methods to explain complex programming concepts, enhancing student comprehension and engagement",
-			"Guided peers on effective study strategies for exams and projects, improving overall academic performance",
-			"Partnered with professors to refine teaching approaches and assignments, optimizing the learning experience",
+			"Developed innovative methods to explain complex programming concepts, enhancing student comprehension and engagement.",
+			"Guided peers on effective study strategies for exams and projects, improving overall academic performance.",
+			"Partnered with professors to refine teaching approaches and assignments, optimizing the learning experience.",
 		],
 		end: dayjs("05/21/2019", "MM/DD/YYYY"),
 		job: "Computer Science Tutor",

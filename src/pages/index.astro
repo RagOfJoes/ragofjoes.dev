@@ -28,26 +28,60 @@ import { WORK_EXPERIENCE } from "@/lib/constants";
 
 					<p
 						class={clsx(
-							"text-4xl font-medium",
+							"text-3xl font-medium",
 
 							"max-md:text-2xl",
 						)}
 					>
-						Hi, I'm a software engineer focused on building efficient,
-						user-friendly applications. I specialize in full-stack development
-						and enjoy optimizing systems to deliver the best possible
-						experience.
+						Hello, I'm a polyglot software engineer with over 5 years of
+						professional programming experience. My current interests are in
+						learning all about Go, staying up-to-date with the web world, and
+						spoiling Jiji.
 					</p>
+
+					<div class="mt-4">
+						<a
+							class={clsx(
+								"inline-flex h-11 items-center justify-center gap-2 border px-8 text-sm font-medium uppercase ring-offset-background",
+
+								"focus-visible:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+								"hover:bg-foreground/5 hover:text-foreground",
+							)}
+							href="/Resume.pdf"
+							rel="me noopener noreferrer"
+							target="_blank"
+						>
+							Resume
+
+							<svg
+								class="h-4 w-4"
+								fill="none"
+								height="1em"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								stroke="currentColor"
+								style="overflow: visible; color: currentColor;"
+								viewBox="0 0 24 24"
+								width="1em"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+								<path d="M7 10 12 15 17 10"></path>
+								<path d="M12 15 12 3"></path>
+							</svg>
+						</a>
+					</div>
 				</div>
 			</div>
 
 			<a
 				aria-label="Scroll down"
 				class={clsx(
-					"relative mx-auto mb-8 mt-auto ring-offset-background border-foreground/20",
+					"relative mx-auto mb-8 mt-auto border-foreground/20 ring-offset-background",
 
+					"focus-visible:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 					"hover:border-foreground",
-					"focus-visible:ring-primary focus-visible:outline-none focus-visible:border-foreground focus-visible:ring-2 focus-visible:ring-offset-2",
 				)}
 				href="#projects"
 			>
@@ -55,8 +89,8 @@ import { WORK_EXPERIENCE } from "@/lib/constants";
 					class={clsx(
 						"h-12 w-6 border-inherit transition-colors",
 
-						"after:absolute after:top-[20%] after:left-1/2 after:h-2 after:w-2 after:-translate-x-1/2 after:-translate-y-full after:rotate-45 after:transform after:animate-scroll-down after:border-2 after after:border-inherit after:border-t-transparent after:border-l-transparent after:content-['']",
-						"before:absolute before:top-1/3 before:left-1/2 before:h-2 before:w-2 before:-translate-x-1/2 before:-translate-y-full before:rotate-45 before:transform before:animate-[scroll-down_1s_ease-in-out_infinite_300ms] before:border-2 before:border-inherit before:border-t-transparent before:border-l-transparent before:content-['']",
+						"after after:absolute after:left-1/2 after:top-[20%] after:h-2 after:w-2 after:-translate-x-1/2 after:-translate-y-full after:rotate-45 after:transform after:animate-scroll-down after:border-2 after:border-inherit after:border-l-transparent after:border-t-transparent after:content-['']",
+						"before:absolute before:left-1/2 before:top-1/3 before:h-2 before:w-2 before:-translate-x-1/2 before:-translate-y-full before:rotate-45 before:transform before:animate-[scroll-down_1s_ease-in-out_infinite_300ms] before:border-2 before:border-inherit before:border-l-transparent before:border-t-transparent before:content-['']",
 					)}
 				>
 					<span class="sr-only">Scroll down</span>
@@ -68,7 +102,7 @@ import { WORK_EXPERIENCE } from "@/lib/constants";
 			<a
 				aria-label="Go to projects page"
 				class={clsx(
-					"block ring-offset-background group",
+					"group block ring-offset-background",
 
 					"focus-visible:outline-none",
 				)}
@@ -87,7 +121,7 @@ import { WORK_EXPERIENCE } from "@/lib/constants";
 
 		<section
 			class={clsx(
-				"mx-auto flex min-h-screen flex-col gap-12 px-8 pt-32 pb-8",
+				"mx-auto flex min-h-screen flex-col gap-12 px-8 pb-8 pt-32",
 
 				"max-lg:mx-0 lg:max-w-5xl",
 			)}

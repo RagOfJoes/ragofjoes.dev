@@ -97,7 +97,7 @@ export function Header(props: HeaderProps) {
 									<a
 										aria-current={isCurrentLink(url, route.slug) && "page"}
 										class={clsx(
-											"font-medium text-foreground/45 ring-offset-background transition-colors",
+											"font-medium uppercase text-foreground/45 ring-offset-background transition-colors",
 
 											"aria-[current=page]:text-foreground",
 											"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
@@ -141,8 +141,8 @@ export function Header(props: HeaderProps) {
 									class={clsx(
 										"fixed left-1/2 top-1/2 z-[9999] min-w-[320px] -translate-x-1/2 -translate-y-1/2 border bg-background p-8 ring-offset-background",
 
-										"data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-1/2 data-[closed]:zoom-out-95 data-[closed]:duration-200",
-										"data-[open]:animate-in data-[open]:fade-in-0 data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-1/2 data-[open]:zoom-in-[85%] data-[open]:duration-300",
+										"data-[closed]:duration-200 data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95 data-[closed]:slide-out-to-left-1/2 data-[closed]:slide-out-to-top-1/2",
+										"data-[open]:duration-300 data-[open]:animate-in data-[open]:fade-in-0 data-[open]:zoom-in-[85%] data-[open]:slide-in-from-left-1/2 data-[open]:slide-in-from-top-1/2",
 										"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 									)}
 								>
@@ -198,9 +198,11 @@ export function Header(props: HeaderProps) {
 						)}
 					>
 						<a
+							aria-current={isCurrentLink(url, "jiji") && "page"}
 							class={clsx(
-								"font-medium text-foreground/45 ring-offset-background transition-colors",
+								"font-medium uppercase text-foreground/45 ring-offset-background transition-colors",
 
+								"aria-[current=page]:text-foreground",
 								"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 								"hover:text-foreground",
 							)}
@@ -208,17 +210,17 @@ export function Header(props: HeaderProps) {
 							rel="me noopener noreferrer"
 							target="_blank"
 						>
-							RESUME
-							<span class="sr-only">View resume</span>
+							Resume
+							<span class="sr-only">Download my resume</span>
 						</a>
 					</div>
 				</nav>
 
 				<div
 					class={clsx(
-						"hidden border-l",
+						"hidden border-l px-8",
 
-						"max-lg:flex max-lg:basis-1/4 max-lg:justify-center",
+						"max-lg:flex max-lg:basis-1/4 max-lg:items-center max-lg:justify-center",
 					)}
 				>
 					<Drawer
@@ -238,7 +240,7 @@ export function Header(props: HeaderProps) {
 											: "Open navigation menu"
 									}
 									class={clsx(
-										"px-8 font-medium uppercase text-foreground/45 ring-offset-background transition-all",
+										"font-medium uppercase text-foreground/45 ring-offset-background transition-colors",
 
 										"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 										"hover:text-foreground",
@@ -272,7 +274,7 @@ export function Header(props: HeaderProps) {
 																		isCurrentLink(url, route.slug) && "page"
 																	}
 																	class={clsx(
-																		"text-4xl font-semibold text-foreground/45 ring-offset-background transition-colors",
+																		"text-4xl font-semibold uppercase text-foreground/45 ring-offset-background transition-colors",
 
 																		"aria-[current=page]:text-foreground",
 																		"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
@@ -281,6 +283,9 @@ export function Header(props: HeaderProps) {
 																	href={route.href}
 																>
 																	{route.title}
+																	<span class="sr-only">
+																		{route.description}
+																	</span>
 																</a>
 															</li>
 														)}
@@ -288,16 +293,22 @@ export function Header(props: HeaderProps) {
 
 													<li class="flex items-center">
 														<a
+															aria-current={
+																isCurrentLink(url, "jiji") && "page"
+															}
 															class={clsx(
-																"text-4xl font-semibold text-foreground/45 ring-offset-background transition-colors",
+																"text-4xl font-semibold uppercase text-foreground/45 ring-offset-background transition-colors",
 
 																"aria-[current=page]:text-foreground",
 																"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 																"hover:text-foreground",
 															)}
 															href="/Resume.pdf"
+															rel="me noopener noreferrer"
+															target="_blank"
 														>
-															RESUME
+															Resume
+															<span class="sr-only">Download my resume</span>
 														</a>
 													</li>
 												</ul>
