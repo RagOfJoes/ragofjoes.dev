@@ -1,6 +1,7 @@
-import { createSignal, Accessor } from "solid-js";
+import type { Accessor } from "solid-js";
+import { createSignal } from "solid-js";
 
-import { CarouselProps } from "./carousel";
+import type { CarouselProps } from "./carousel";
 
 export type UseCarousel = [
 	state: {

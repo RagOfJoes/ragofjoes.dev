@@ -61,6 +61,17 @@ export default tseslint.config(
 	},
 
 	{
+		files: ["**/*.astro"],
+		plugins: {
+			import: importPlugin,
+			"unused-imports": unused,
+		},
+		rules: {
+			...prettier.rules,
+		},
+	},
+
+	{
 		files: ["**/*.ts", "**/*.tsx"],
 		...solid,
 		languageOptions: {

@@ -1,6 +1,6 @@
 import { splitProps } from "solid-js";
 
-import { IconProps } from "solid-icons";
+import type { IconProps } from "solid-icons";
 
 export function Logo(props: IconProps) {
 	const [{ size }, other] = splitProps(props, ["color", "size"]);

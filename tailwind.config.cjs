@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 const animate = require("tailwindcss-animate");
 
 /** @type {import('tailwindcss').Config} */

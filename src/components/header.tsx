@@ -1,4 +1,4 @@
-import { createEffect, createSignal, For } from "solid-js";
+import { For, createEffect, createSignal } from "solid-js";
 
 import Dialog from "@corvu/dialog";
 import Drawer from "@corvu/drawer";
@@ -17,8 +17,6 @@ export type HeaderProps = {
 };
 
 export function Header(props: HeaderProps) {
-	const { url } = props;
-
 	const [navHeight, setNavHeight] = createSignal(8);
 
 	const size = useWindowSize();
@@ -95,7 +93,7 @@ export function Header(props: HeaderProps) {
 							{(route) => (
 								<li class="flex items-center">
 									<a
-										aria-current={isCurrentLink(url, route.slug) && "page"}
+										aria-current={isCurrentLink(props.url, route.slug) && "page"}
 										class={clsx(
 											"font-medium uppercase text-foreground/45 ring-offset-background transition-colors",
 
@@ -146,34 +144,32 @@ export function Header(props: HeaderProps) {
 										"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
 									)}
 								>
-									<h1 class="mt-4 text-xl font-bold uppercase leading-none">
-										Socials
-									</h1>
-									<h2 class="font-medium tracking-tight text-primary">
-										Stalk me
-									</h2>
+									<h1 class="mt-4 text-xl font-bold uppercase leading-none">Socials</h1>
+									<h2 class="font-medium tracking-tight text-primary">Stalk me</h2>
 
 									<ul class="mt-8 flex list-inside list-none justify-between gap-12">
-										{SOCIALS.map((social) => (
-											<li class="flex items-center">
-												<a
-													class={clsx(
-														"text-2xl font-semibold text-foreground/45 ring-offset-background transition-colors",
+										<For each={SOCIALS}>
+											{(social) => (
+												<li class="flex items-center">
+													<a
+														class={clsx(
+															"text-2xl font-semibold text-foreground/45 ring-offset-background transition-colors",
 
-														"aria-[current=page]:text-foreground",
-														"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
-														"hover:text-foreground",
-													)}
-													href={social.href}
-													rel="me noopener noreferrer"
-													target="_blank"
-												>
-													{social.icon({
-														size: 24,
-													})}
-												</a>
-											</li>
-										))}
+															"aria-[current=page]:text-foreground",
+															"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",
+															"hover:text-foreground",
+														)}
+														href={social.href}
+														rel="me noopener noreferrer"
+														target="_blank"
+													>
+														{social.icon({
+															size: 24,
+														})}
+													</a>
+												</li>
+											)}
+										</For>
 									</ul>
 
 									<Dialog.Close
@@ -198,7 +194,7 @@ export function Header(props: HeaderProps) {
 						)}
 					>
 						<a
-							aria-current={isCurrentLink(url, "jiji") && "page"}
+							aria-current={isCurrentLink(props.url, "jiji") && "page"}
 							class={clsx(
 								"font-medium uppercase text-foreground/45 ring-offset-background transition-colors",
 
@@ -270,9 +266,7 @@ export function Header(props: HeaderProps) {
 														{(route) => (
 															<li class="flex items-center">
 																<a
-																	aria-current={
-																		isCurrentLink(url, route.slug) && "page"
-																	}
+																	aria-current={isCurrentLink(props.url, route.slug) && "page"}
 																	class={clsx(
 																		"text-4xl font-semibold uppercase text-foreground/45 ring-offset-background transition-colors",
 
@@ -283,9 +277,7 @@ export function Header(props: HeaderProps) {
 																	href={route.href}
 																>
 																	{route.title}
-																	<span class="sr-only">
-																		{route.description}
-																	</span>
+																	<span class="sr-only">{route.description}</span>
 																</a>
 															</li>
 														)}
@@ -293,9 +285,7 @@ export function Header(props: HeaderProps) {
 
 													<li class="flex items-center">
 														<a
-															aria-current={
-																isCurrentLink(url, "jiji") && "page"
-															}
+															aria-current={isCurrentLink(props.url, "jiji") && "page"}
 															class={clsx(
 																"text-4xl font-semibold uppercase text-foreground/45 ring-offset-background transition-colors",
 
@@ -335,9 +325,7 @@ export function Header(props: HeaderProps) {
 																		size: 24,
 																	})}
 
-																	<span class="sr-only">
-																		Go to my {link.title} profile
-																	</span>
+																	<span class="sr-only">Go to my {link.title} profile</span>
 																</a>
 															</li>
 														)}

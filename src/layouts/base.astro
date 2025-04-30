@@ -12,20 +12,14 @@ export type Props = {
 	description?: string;
 };
 
-const {
-	description = "Welcome to my corner of the internet.",
-	title = "Victor Ragojos",
-} = Astro.props;
+const { description = "Welcome to my corner of the internet.", title = "Victor Ragojos" } =
+	Astro.props;
 
 dayjs.extend(RelativeTime);
 ---
 
 <!doctype html>
-<html
-	dir="ltr"
-	lang="en"
-	class="scroll-smooth selection:bg-foreground selection:text-background"
->
+<html dir="ltr" lang="en" class="scroll-smooth selection:bg-foreground selection:text-background">
 	<head>
 		<Seo />
 

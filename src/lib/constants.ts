@@ -8,14 +8,7 @@ export const PROJECTS = [
 		description:
 			"A workow automation tool that seamlessly connects Basecamp with GitHub, enabling real-time task synchronization and streamlined team collaboration. Implemented monitoring and automated deployment systems for reliability.",
 		image: "/offsetTent-preview.webp",
-		tags: [
-			"Go",
-			"OAuth2",
-			"MySQL",
-			"OpenTelemetry",
-			"Docker",
-			"GitHub Actions",
-		],
+		tags: ["Go", "OAuth2", "MySQL", "OpenTelemetry", "Docker", "GitHub Actions"],
 		title: "Offset Tent",
 		url: "https://tent.offsetdevops.com/",
 	},

@@ -2,13 +2,12 @@
  * Clone of https://github.com/solidjs-community/solid-primitives/blob/main/packages/scroll/src/index.ts
  * Fixed to use vite's `import.meta` instead of `process.env`
  */
-
 import { createComputed, on, onMount } from "solid-js";
 
 import { createEventListener } from "@solid-primitives/event-listener";
 import { createSingletonRoot } from "@solid-primitives/rootless";
 import { createStaticStore } from "@solid-primitives/static-store";
-import { access, MaybeAccessor } from "@solid-primitives/utils";
+import { MaybeAccessor, access } from "@solid-primitives/utils";
 
 export function isScrollable(node: Element): boolean {
 	if (import.meta.env.SSR) {
@@ -16,9 +15,7 @@ export function isScrollable(node: Element): boolean {
 	}
 
 	const style = window.getComputedStyle(node);
-	return /(auto|scroll)/.test(
-		style.overflow + style.overflowX + style.overflowY,
-	);
+	return /(auto|scroll)/.test(style.overflow + style.overflowX + style.overflowY);
 }
 
 export function getScrollParent(node: Element | null): Element {
@@ -91,9 +88,7 @@ export function createScrollPosition(target: MaybeAccessor<Element | Window>): {
 	readonly x: number;
 	readonly y: number;
 };
-export function createScrollPosition(
-	target: MaybeAccessor<Element | Window | undefined>,
-): {
+export function createScrollPosition(target: MaybeAccessor<Element | Window | undefined>): {
 	readonly x: number | null;
 	readonly y: number | null;
 };
@@ -111,9 +106,7 @@ export function createScrollPosition(
 	const updatePos = () => setPos(getScrollPosition(access(target)));
 
 	if (typeof target === "function") {
-		createComputed(
-			on(target, (ref) => setPos(getScrollPosition(ref)), { defer: true }),
-		);
+		createComputed(on(target, (ref) => setPos(getScrollPosition(ref)), { defer: true }));
 		onMount(updatePos);
 	}
 

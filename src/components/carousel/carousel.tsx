@@ -1,11 +1,12 @@
-import { ComponentProps, For, Show, splitProps } from "solid-js";
+import type { ComponentProps } from "solid-js";
+import { For, Show, splitProps } from "solid-js";
 
 import clsx from "clsx";
 import { BiRegularChevronLeft, BiRegularChevronRight } from "solid-icons/bi";
 import { Motion, Presence } from "solid-motionone";
 
 import { addEventListener } from "@/lib/add-event-listener";
-import { PROJECTS } from "@/lib/constants";
+import type { PROJECTS } from "@/lib/constants";
 
 import { useCarousel } from "./use-carousel";
 import { CarouselProvider, useCarouselContext } from "./use-carousel-context";
@@ -42,13 +43,7 @@ export type CarouselSlideImageProps = Omit<
 >;
 
 export function CarouselSlideImage(props: CarouselSlideImageProps) {
-	const [split, other] = splitProps(props, [
-		"background",
-		"class",
-		"image",
-		"tags",
-		"title",
-	]);
+	const [split, other] = splitProps(props, ["background", "class", "image", "tags", "title"]);
 
 	return (
 		<div
@@ -74,9 +69,7 @@ export function CarouselSlideImage(props: CarouselSlideImageProps) {
 			>
 				<div class="flex h-4 w-full items-center gap-1.5 border-b bg-background px-4 py-3">
 					<For each={Array.from({ length: 3 })}>
-						{() => (
-							<span class="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />
-						)}
+						{() => <span class="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />}
 					</For>
 				</div>
 
@@ -236,7 +229,7 @@ export function CarouselSlideTitle(props: CarouselSlideTitleProps) {
 							y: 20,
 						}}
 						stroke-width="0"
-						style="overflow: visible; color: currentcolor;"
+						style={{ overflow: "visible", color: "currentcolor" }}
 						transition={{ delay: 0.08 }}
 						viewBox="0 0 24 24"
 						width={40}
@@ -246,10 +239,7 @@ export function CarouselSlideTitle(props: CarouselSlideTitleProps) {
 							d="M15.64 7.025h-3.622v-2h7v7h-2v-3.55l-4.914 4.914-1.414-1.414 4.95-4.95Z"
 							fill="currentColor"
 						/>
-						<path
-							d="M10.982 6.975h-6v12h12v-6h-2v4h-8v-8h4v-2Z"
-							fill="currentColor"
-						/>
+						<path d="M10.982 6.975h-6v12h12v-6h-2v4h-8v-8h4v-2Z" fill="currentColor" />
 					</Motion.svg>
 				</div>
 			</a>
@@ -356,13 +346,9 @@ export function Carousel(props: CarouselProps) {
 											title={slide.title}
 										/>
 
-										<CarouselSlideDescription>
-											{slide.description}
-										</CarouselSlideDescription>
+										<CarouselSlideDescription>{slide.description}</CarouselSlideDescription>
 
-										<CarouselSlideTitle url={slide.url}>
-											{slide.title}
-										</CarouselSlideTitle>
+										<CarouselSlideTitle url={slide.url}>{slide.title}</CarouselSlideTitle>
 									</Show>
 								)}
 							</For>

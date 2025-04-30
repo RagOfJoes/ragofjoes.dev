@@ -1,9 +1,8 @@
 import {
+	Context as SolidContext,
 	createContext as createSolidContext,
 	useContext as useSolidContext,
-	Context as SolidContext,
 } from "solid-js";
-
 import { ContextProviderComponent } from "solid-js/types/reactive/signal";
 
 export type CreateContextArgs<T> = {
@@ -15,15 +14,9 @@ export type CreateContextArgs<T> = {
 	strict?: boolean | undefined;
 };
 
-export type CreateContextReturn<T> = [
-	ContextProviderComponent<T>,
-	() => T,
-	SolidContext<T>,
-];
+export type CreateContextReturn<T> = [ContextProviderComponent<T>, () => T, SolidContext<T>];
 
-export function createContext<T>(
-	args: CreateContextArgs<T>,
-): CreateContextReturn<T> {
+export function createContext<T>(args: CreateContextArgs<T>): CreateContextReturn<T> {
 	const {
 		defaultValue,
 		strict = true,
