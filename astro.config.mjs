@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import sitemap from "@astrojs/sitemap";
 import solid from "@astrojs/solid-js";
 import tailwind from "@astrojs/tailwind";

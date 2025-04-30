@@ -1,11 +1,23 @@
 {
-	"plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss"],
-	"pluginSearchDirs": false,
+	"plugins": [
+		"@trivago/prettier-plugin-sort-imports",
+		"prettier-plugin-astro",
+		"prettier-plugin-tailwindcss"
+	],
+
 	"endOfLine": "auto",
+	"importOrder": ["^solid-js$", "<THIRD_PARTY_MODULES>", "^@/(.*)/(.*)", "^[./]"],
+	"importOrderBuiltinModulesToTop": true,
+	"importOrderCombineTypeAndValueImports": true,
+	"importOrderMergeDuplicateImports": true,
+	"importOrderSeparation": true,
+	"importOrderSortSpecifiers": true,
+	"printWidth": 100,
 	"singleQuote": false,
 	"tabWidth": 2,
 	"tailwindFunctions": ["clsx"],
 	"useTabs": true,
+
 	"overrides": [
 		{
 			"files": "**/*.astro",

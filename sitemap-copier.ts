@@ -1,9 +1,7 @@
 /** BUG: https://github.com/withastro/adapters/issues/445 */
-
-import { readdir, cp } from "node:fs/promises";
-import * as path from "node:path";
-
 import type { AstroIntegration } from "astro";
+import { cp, readdir } from "node:fs/promises";
+import * as path from "node:path";
 
 export function sitemapCopier(): AstroIntegration {
 	return {
