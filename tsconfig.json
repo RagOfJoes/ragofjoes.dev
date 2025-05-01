@@ -1,4 +1,6 @@
 {
+	"extends": "astro/tsconfigs/base",
+
 	"compilerOptions": {
 		"allowJs": false,
 		"allowSyntheticDefaultImports": true,
@@ -35,5 +37,6 @@
 			"@/*": ["src/*"]
 		}
 	},
-	"exclude": ["node_modules/**/*"]
+	"exclude": ["dist", "node_modules/**/*"],
+	"include": [".astro/types.d.ts", "**/*"]
 }

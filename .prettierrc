@@ -6,7 +6,7 @@
 	],
 
 	"endOfLine": "auto",
-	"importOrder": ["^solid-js$", "<THIRD_PARTY_MODULES>", "^@/(.*)/(.*)", "^[./]"],
+	"importOrder": ["(^solid-js$|^solid-js/(.*))", "<THIRD_PARTY_MODULES>", "^@/(.*)/(.*)", "^[./]"],
 	"importOrderBuiltinModulesToTop": true,
 	"importOrderCombineTypeAndValueImports": true,
 	"importOrderMergeDuplicateImports": true,

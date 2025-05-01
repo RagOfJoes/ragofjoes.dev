@@ -7,7 +7,8 @@ import { createComputed, on, onMount } from "solid-js";
 import { createEventListener } from "@solid-primitives/event-listener";
 import { createSingletonRoot } from "@solid-primitives/rootless";
 import { createStaticStore } from "@solid-primitives/static-store";
-import { MaybeAccessor, access } from "@solid-primitives/utils";
+import type { MaybeAccessor } from "@solid-primitives/utils";
+import { access } from "@solid-primitives/utils";
 
 export function isScrollable(node: Element): boolean {
 	if (import.meta.env.SSR) {
@@ -24,11 +25,10 @@ export function getScrollParent(node: Element | null): Element {
 	}
 
 	while (node && !isScrollable(node)) {
-		// eslint-disable-next-line no-param-reassign
 		node = node.parentElement;
 	}
 
-	return node || document.scrollingElement || document.documentElement;
+	return node ?? document.scrollingElement ?? document.documentElement;
 }
 
 /**

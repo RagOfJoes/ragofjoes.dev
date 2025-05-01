@@ -1,7 +1,68 @@
 /* The integration's default injected base.css file */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@plugin 'tailwindcss-animate';
+
+@theme {
+	--font-*: initial;
+	--font-sans: "General Sans", sans-serif;
+
+	--animate-scroll-down: scroll-down 1s ease-in-out infinite;
+	--animate-slide-left: slide-left 18s linear infinite;
+
+	--color-background: hsl(60deg 6.67% 5.88%);
+	--color-border: hsl(60deg 5.49% 17.84%);
+	--color-foreground: hsl(60deg 100% 94.51%);
+	--color-input: hsl(var(--input));
+	--color-ring: hsl(var(--ring));
+
+	--color-muted-foreground: hsl(60deg 6.08% 35.49%);
+
+	--color-primary: hsl(48.65deg 100% 85.49%);
+	--color-primary-foreground: hsl(60deg 6.67% 5.88%);
+
+	@keyframes scroll-down {
+		0% {
+			opacity: 0;
+		}
+		30% {
+			opacity: 1;
+		}
+		60% {
+			opacity: 1;
+		}
+		100% {
+			top: 90%;
+			opacity: 0;
+		}
+	}
+	@keyframes slide-left {
+		0% {
+			transform: translateX(0%);
+		}
+		100% {
+			transform: translateX(-100%);
+		}
+	}
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: hsl(60deg 5.49% 17.84%);
+	}
+}
 
 @layer base {
 	@font-face {

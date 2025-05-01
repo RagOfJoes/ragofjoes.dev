@@ -17,7 +17,7 @@ const DATE_FORMAT = "MM/YYYY";
 <div class="h-full">
 	<div class="flex items-center justify-end pt-4">
 		<p
-			class="inline-block bg-foreground px-2 py-1 text-sm font-semibold uppercase leading-none text-background"
+			class="bg-foreground text-background inline-block px-2 py-1 text-sm leading-none font-semibold uppercase"
 		>
 			{start.format(DATE_FORMAT)} -{" "}
 			{end.isSame(dayjs(), "date") ? "Present" : end.format(DATE_FORMAT)}
@@ -25,11 +25,11 @@ const DATE_FORMAT = "MM/YYYY";
 	</div>
 
 	<div class="p-4">
-		<h1 class="text-xl font-bold uppercase leading-none">
+		<h1 class="text-xl leading-none font-bold uppercase">
 			{company}
 		</h1>
 
-		<h2 class="font-medium tracking-tight text-primary">
+		<h2 class="text-primary font-medium tracking-tight">
 			{job}
 		</h2>
 
@@ -38,7 +38,7 @@ const DATE_FORMAT = "MM/YYYY";
 				description.map((text) => (
 					<li class="flex items-center gap-2">
 						<svg
-							class="shrink-0 text-foreground/80"
+							class="text-foreground/80 shrink-0"
 							fill="currentColor"
 							height="1em"
 							stroke-width="0"

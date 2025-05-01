@@ -18,16 +18,16 @@ export function sitemapCopier(): AstroIntegration {
 							path.basename(file).toLowerCase().startsWith("sitemap"),
 					);
 					buildLogger.info(xmlFiles.join(", "));
-					// eslint-disable-next-line no-restricted-syntax
+
 					for (const file of xmlFiles) {
 						const sourcePath = path.join("./dist", file);
 						const destPath = path.join("./.vercel/output/static", file);
 
-						// eslint-disable-next-line no-await-in-loop
 						await cp(sourcePath, destPath);
 					}
 					buildLogger.info("All XML files copied successfully");
 				} catch (error) {
+					// eslint-disable-next-line @typescript-eslint/restrict-template-expressions
 					buildLogger.error(`Error copying files: ${error}`);
 				}
 			},

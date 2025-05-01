@@ -20,7 +20,7 @@ export function CarouselSlide(props: ComponentProps<"div">) {
 		<div
 			{...other}
 			class={clsx(
-				"absolute left-0 top-0 grid h-full w-full grid-cols-[2fr_1fr] grid-rows-[2fr_1fr]",
+				"absolute top-0 left-0 grid h-full w-full grid-cols-[2fr_1fr] grid-rows-[2fr_1fr]",
 
 				"max-lg:min-h-[calc(900px+8rem)] max-lg:grid-cols-none max-lg:grid-rows-[1.5fr_repeat(3,0.75fr)_0.25fr]",
 
@@ -67,9 +67,9 @@ export function CarouselSlideImage(props: CarouselSlideImageProps) {
 				}}
 				class="group relative h-full w-full overflow-hidden border"
 			>
-				<div class="flex h-4 w-full items-center gap-1.5 border-b bg-background px-4 py-3">
+				<div class="bg-background flex h-4 w-full items-center gap-1.5 border-b px-4 py-3">
 					<For each={Array.from({ length: 3 })}>
-						{() => <span class="h-2.5 w-2.5 rounded-full bg-muted-foreground/30" />}
+						{() => <span class="bg-muted-foreground/30 h-2.5 w-2.5 rounded-full" />}
 					</For>
 				</div>
 
@@ -94,7 +94,7 @@ export function CarouselSlideImage(props: CarouselSlideImageProps) {
 					/>
 				</div>
 
-				<div class="absolute bottom-4 left-4 right-4">
+				<div class="absolute right-4 bottom-4 left-4">
 					<ul
 						class={clsx(
 							"flex w-full flex-wrap gap-2 transition-opacity duration-300",
@@ -113,7 +113,7 @@ export function CarouselSlideImage(props: CarouselSlideImageProps) {
 										opacity: 0,
 										y: 10,
 									}}
-									class="border bg-background px-2 py-1 text-xs font-medium leading-none tracking-wider text-foreground"
+									class="bg-background text-foreground border px-2 py-1 text-xs leading-none font-medium tracking-wider"
 									transition={{
 										delay: 0.05 * index(),
 									}}
@@ -140,7 +140,7 @@ export function CarouselSlideDescription(props: CarouselSlideDescriptionProps) {
 			class={clsx(
 				"flex h-full flex-col justify-end border-l px-16 py-12",
 
-				"max-lg:order-3 max-lg:border-l-0 max-lg:border-t max-lg:px-8",
+				"max-lg:order-3 max-lg:border-t max-lg:border-l-0 max-lg:px-8",
 
 				split.class,
 			)}
@@ -184,7 +184,7 @@ export function CarouselSlideTitle(props: CarouselSlideTitleProps) {
 				class={clsx(
 					"group h-full w-full min-w-0 overflow-hidden",
 
-					"focus-visible:outline-none",
+					"focus-visible:outline-hidden",
 				)}
 				href={split.url}
 				rel="me noopener noreferrer"
@@ -258,7 +258,7 @@ export function CarouselControl(props: CarouselControlProps) {
 		<div
 			{...other}
 			class={clsx(
-				"flex h-full border-l border-t",
+				"flex h-full border-t border-l",
 
 				"max-lg:order-4 max-lg:border-b max-lg:border-l-0",
 
@@ -271,8 +271,8 @@ export function CarouselControl(props: CarouselControlProps) {
 				class={clsx(
 					"flex w-1/2 items-center justify-center transition-[width] duration-300 will-change-[width]",
 
-					"focus-visible:w-3/5 focus-visible:bg-foreground/5 focus-visible:outline-none",
-					"hover:w-3/5 hover:bg-foreground/5",
+					"focus-visible:bg-foreground/5 focus-visible:w-3/5 focus-visible:outline-hidden",
+					"hover:bg-foreground/5 hover:w-3/5",
 				)}
 			>
 				<BiRegularChevronLeft size={44} />
@@ -284,8 +284,8 @@ export function CarouselControl(props: CarouselControlProps) {
 				class={clsx(
 					"flex w-1/2 items-center justify-center border-l transition-[width] duration-300 will-change-[width]",
 
-					"focus-visible:w-3/5 focus-visible:bg-foreground/5 focus-visible:outline-none",
-					"hover:w-3/5 hover:bg-foreground/5",
+					"focus-visible:bg-foreground/5 focus-visible:w-3/5 focus-visible:outline-hidden",
+					"hover:bg-foreground/5 hover:w-3/5",
 				)}
 			>
 				<BiRegularChevronRight size={44} />

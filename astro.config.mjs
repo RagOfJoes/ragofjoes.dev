@@ -1,7 +1,7 @@
 import sitemap from "@astrojs/sitemap";
 import solid from "@astrojs/solid-js";
-import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel";
+import tailwind from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
 import { sitemapCopier } from "./sitemap-copier";
@@ -22,7 +22,9 @@ export default defineConfig({
 		}),
 		sitemapCopier(),
 		solid(),
-		tailwind(),
 	],
 	site: "https://www.ragofjoes.dev/",
+	vite: {
+		plugins: [tailwind()],
+	},
 });
