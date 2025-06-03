@@ -78,6 +78,14 @@ export const SOCIALS: { href: string; icon: IconTypes; title: string }[] = [
 
 export const WORK_EXPERIENCE = [
 	{
+		company: "Skydaddy",
+		description: ["In progress..."],
+		end: dayjs(),
+		job: "Lead Frontend Engineer",
+		link: "https://www.skydaddy.ai/",
+		start: dayjs("02/18/2025", "MM/DD/YYYY"),
+	},
+	{
 		company: "Offset Partners",
 		description: [
 			"Led frontend modernization initiatives including component libraries and build tooling improvements, reducing build times by 200% and development time by 40%. Enhanced performance and accessibility for millions of users.",
