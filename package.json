@@ -14,7 +14,7 @@
 		"@solid-primitives/rootless": "^1.4.5",
 		"@solid-primitives/static-store": "^0.1.1",
 		"@solid-primitives/utils": "^6.2.3",
-		"astro": "^5.1.10",
+		"astro": "^5.12.8",
 		"clsx": "^2.1.1",
 		"dayjs": "^1.11.13",
 		"solid-icons": "^1.1.0",
