@@ -1,12 +1,12 @@
 import dayjs from "dayjs";
 import type { IconTypes } from "solid-icons";
-import { ImGithub, ImLinkedin2, ImSpotify, ImTwitter } from "solid-icons/im";
+import { ImGithub, ImLinkedin2, ImTwitter } from "solid-icons/im";
 
 export const PROJECTS = [
 	{
 		background: "#ffffff",
 		description:
-			"A workow automation tool that seamlessly connects Basecamp with GitHub, enabling real-time task synchronization and streamlined team collaboration. Implemented monitoring and automated deployment systems for reliability.",
+			"A workflow automation tool that seamlessly connects Basecamp with GitHub, enabling real-time task synchronization and streamlined team collaboration. Implemented monitoring and automated deployment systems for reliability.",
 		image: "/offsetTent-preview.webp",
 		tags: ["Go", "OAuth2", "MySQL", "OpenTelemetry", "Docker", "GitHub Actions"],
 		title: "Offset Tent",
@@ -68,11 +68,6 @@ export const SOCIALS: { href: string; icon: IconTypes; title: string }[] = [
 		href: "https://twitter.com/RagOfJoes",
 		icon: ImTwitter,
 		title: "Twitter",
-	},
-	{
-		href: "https://open.spotify.com/user/sky16g4pamoem36i352u14ued",
-		icon: ImSpotify,
-		title: "Spotify",
 	},
 ];
 
