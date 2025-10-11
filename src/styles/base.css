@@ -5,37 +5,20 @@
 
 @theme {
 	--font-*: initial;
-	--font-sans: "General Sans", sans-serif;
+	--font-mono: "JetBrainsMono-Variable", sans-serif;
+	--font-sans: "GeneralSans-Variable", sans-serif, system-ui;
 
-	--animate-scroll-down: scroll-down 1s ease-in-out infinite;
-	--animate-slide-left: slide-left 18s linear infinite;
+	--color-background: oklch(0.1797 0.0043 308.19);
+	--color-border: oklch(0.6268 0 0);
+	--color-foreground: oklch(0.8109 0 0);
 
-	--color-background: hsl(60deg 6.67% 5.88%);
-	--color-border: hsl(60deg 5.49% 17.84%);
-	--color-foreground: hsl(60deg 100% 94.51%);
-	--color-input: hsl(var(--input));
-	--color-ring: hsl(var(--ring));
+	--color-muted-foreground: oklch(0.6268 0 0);
 
-	--color-muted-foreground: hsl(60deg 6.08% 35.49%);
+	--color-primary: oklch(0.7214 0.1337 49.98);
+	--color-primary-foreground: oklch(0.1797 0.0043 308.19);
 
-	--color-primary: hsl(48.65deg 100% 85.49%);
-	--color-primary-foreground: hsl(60deg 6.67% 5.88%);
+	--animate-slide-left: slide-left 8s linear infinite;
 
-	@keyframes scroll-down {
-		0% {
-			opacity: 0;
-		}
-		30% {
-			opacity: 1;
-		}
-		60% {
-			opacity: 1;
-		}
-		100% {
-			top: 90%;
-			opacity: 0;
-		}
-	}
 	@keyframes slide-left {
 		0% {
 			transform: translateX(0%);
@@ -60,69 +43,43 @@
 	::before,
 	::backdrop,
 	::file-selector-button {
-		border-color: hsl(60deg 5.49% 17.84%);
+		border-color: oklch(0.6268 0 0);
 	}
 }
 
 @layer base {
 	@font-face {
-		font-family: "General Sans";
+		font-family: "GeneralSans-Variable";
 		src:
-			url("/fonts/GeneralSans-Extralight.woff2") format("woff2"),
-			url("/fonts/GeneralSans-Extralight.woff") format("woff"),
-			url("/fonts/GeneralSans-Extralight.ttf") format("truetype");
-		font-weight: 200;
+			url("/fonts/GeneralSans/GeneralSans-Variable.woff2") format("woff2"),
+			url("/fonts/GeneralSans/GeneralSans-Variable.woff") format("woff"),
+			url("/fonts/GeneralSans/GeneralSans-Variable.ttf") format("truetype");
+		font-weight: 200 700;
 		font-display: swap;
 		font-style: normal;
 	}
+
 	@font-face {
-		font-family: "General Sans";
+		font-family: "JetBrainsMono-Variable";
 		src:
-			url("/fonts/GeneralSans-Light.woff2") format("woff2"),
-			url("/fonts/GeneralSans-Light.woff") format("woff"),
-			url("/fonts/GeneralSans-Light.ttf") format("truetype");
-		font-weight: 300;
+			url("/fonts/JetBrainsMono/JetBrainsMono-Variable.woff2") format("woff2"),
+			url("/fonts/JetBrainsMono/JetBrainsMono-Variable.woff") format("woff"),
+			url("/fonts/JetBrainsMono/JetBrainsMono-Variable.ttf") format("truetype");
+		font-weight: 200 700;
 		font-display: swap;
 		font-style: normal;
 	}
-	@font-face {
-		font-family: "General Sans";
-		src:
-			url("/fonts/GeneralSans-Regular.woff2") format("woff2"),
-			url("/fonts/GeneralSans-Regular.woff") format("woff"),
-			url("/fonts/GeneralSans-Regular.ttf") format("truetype");
-		font-weight: 400;
-		font-display: swap;
-		font-style: normal;
+}
+
+@layer utilities {
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
 	}
-	@font-face {
-		font-family: "General Sans";
-		src:
-			url("/fonts/GeneralSans-Medium.woff2") format("woff2"),
-			url("/fonts/GeneralSans-Medium.woff") format("woff"),
-			url("/fonts/GeneralSans-Medium.ttf") format("truetype");
-		font-weight: 500;
-		font-display: swap;
-		font-style: normal;
-	}
-	@font-face {
-		font-family: "General Sans";
-		src:
-			url("/fonts/GeneralSans-Semibold.woff2") format("woff2"),
-			url("/fonts/GeneralSans-Semibold.woff") format("woff"),
-			url("/fonts/GeneralSans-Semibold.ttf") format("truetype");
-		font-weight: 600;
-		font-display: swap;
-		font-style: normal;
-	}
-	@font-face {
-		font-family: "General Sans";
-		src:
-			url("/fonts/GeneralSans-Bold.woff2") format("woff2"),
-			url("/fonts/GeneralSans-Bold.woff") format("woff"),
-			url("/fonts/GeneralSans-Bold.ttf") format("truetype");
-		font-weight: 700;
-		font-display: swap;
-		font-style: normal;
+
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
 	}
 }

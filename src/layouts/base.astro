@@ -1,11 +1,9 @@
 ---
 import "@/styles/base.css";
 
-import dayjs from "dayjs";
-import RelativeTime from "dayjs/plugin/relativeTime";
-
-import { Header } from "@/components/header";
+import Header from "@/components/header.astro";
 import Seo from "@/components/seo.astro";
+import { cn } from "@/lib/cn";
 
 export type Props = {
 	title?: string;
@@ -14,12 +12,18 @@ export type Props = {
 
 const { description = "Welcome to my corner of the internet.", title = "Victor Ragojos" } =
 	Astro.props;
-
-dayjs.extend(RelativeTime);
 ---
 
 <!doctype html>
-<html dir="ltr" lang="en" class="selection:bg-foreground selection:text-background scroll-smooth">
+<html
+	dir="ltr"
+	lang="en"
+	class={cn(
+		"antialiased scroll-smooth",
+
+		"selection:bg-primary selection:text-primary-foreground",
+	)}
+>
 	<head>
 		<Seo />
 
@@ -44,9 +48,9 @@ dayjs.extend(RelativeTime);
 	</head>
 
 	<body
-		class="bg-background text-foreground h-screen w-screen overflow-x-hidden overflow-y-auto font-sans"
+		class="bg-background text-foreground flex h-screen w-screen flex-col overflow-hidden overscroll-none px-2 pb-2 font-sans font-normal"
 	>
-		<Header client:load url={Astro.url} />
+		<Header />
 
 		<slot />
 	</body>

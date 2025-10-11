@@ -13,7 +13,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 	content="ragofjoes,victor,ragojos,victor ragojos,portfolio,software engineer,developer"
 />
 <meta name="robots" content="index,follow" />
-<meta name="theme-color" content="#10100e" />
+<meta name="theme-color" content="#121113" />
 <meta name="application-name" content="RagOfJoes" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
 
@@ -34,13 +34,52 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 	type="application/ld+json"
 	set:html={JSON.stringify({
 		"@context": "https://schema.org",
-		"@type": "WebSite",
-		name: "Victor Ragojos' Portfolio",
+		"@type": "Person",
+		"@id": `${Astro.site}#person`,
+		name: "Victor Ragojos",
 		url: Astro.site,
-		author: {
-			"@type": "Person",
-			name: "Victor Ragojos",
-			url: Astro.site,
+		jobTitle: "Lead Frontend Engineer",
+		sameAs: [
+			"https://github.com/ragofjoes",
+			"https://linkedin.com/in/ragofjoes",
+			"https://letterboxd.com/ragofjoes",
+		],
+	})}
+/>
+<script
+	is:inline
+	type="application/ld+json"
+	set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"@id": `${Astro.site}#website`,
+		url: Astro.site,
+		name: "Victor Ragojos' Portfolio",
+		description:
+			"Portfolio of Victor Ragojos, detail oriented, web enthusiast, Lead Frontend Engineer. Based in the Bay Area.",
+		publisher: {
+			"@id": `${Astro.site}#person`,
 		},
+		inLanguage: "en",
+	})}
+/>
+<script
+	is:inline
+	type="application/ld+json"
+	set:html={JSON.stringify({
+		"@context": "https://schema.org",
+		"@type": "WebPage",
+		"@id": `${Astro.site}#webpage`,
+		url: Astro.site,
+		name: "Victor Ragojos' Portfolio",
+		description:
+			"Portfolio of Victor Ragojos, detail oriented, web enthusiast, Lead Frontend Engineer. Based in the Bay Area.",
+		isPartOf: {
+			"@id": `${Astro.site}#website`,
+		},
+		about: {
+			"@id": `${Astro.site}#person`,
+		},
+		inLanguage: "en",
 	})}
 />

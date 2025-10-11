@@ -1,5 +1,10 @@
 export function isCurrentLink(url: URL, slug: string): boolean {
-	const urlStripped = url.pathname.replaceAll("/", "");
+	const pathname = url.pathname;
+	const segments = pathname.split("/").filter(Boolean);
 
-	return urlStripped === slug;
+	if (slug === "/" || slug === "") {
+		return segments.length === 0;
+	}
+
+	return segments.includes(slug);
 }
