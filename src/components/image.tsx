@@ -1,4 +1,4 @@
-import { Show, createSignal, onMount, splitProps } from "solid-js";
+import { Show, createEffect, createSignal, onCleanup, onMount, splitProps } from "solid-js";
 import type { JSX } from "solid-js";
 
 import { Motion, Presence } from "solid-motionone";
@@ -30,6 +30,26 @@ export function Image(props: ImageProps) {
 	const onImageClick = () => {
 		toggleIsOpen(true);
 	};
+
+	createEffect(() => {
+		if (!isOpen()) {
+			return;
+		}
+
+		const onEscapeKey = (e: KeyboardEvent) => {
+			if (e.key !== "Escape") {
+				return;
+			}
+
+			onClose();
+		};
+
+		document.addEventListener("keydown", onEscapeKey);
+
+		onCleanup(() => {
+			document.removeEventListener("keydown", onEscapeKey);
+		});
+	});
 
 	onMount(() => {
 		if (!ref.complete || ref.naturalWidth <= 0) {
