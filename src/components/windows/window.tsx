@@ -112,7 +112,7 @@ export function WindowCarousel(props: { content: WindowCarouselContent }): JSX.E
 
 	return (
 		<div
-			class="no-scrollbar group/carousel inline-grid h-full w-full flex-1 overflow-x-scroll [mask-image:linear-gradient(to_right,transparent_0,#121113_10%,#121113_calc(100%-200px),transparent_100%)]"
+			class="no-scrollbar group/carousel inline-grid h-full w-full flex-1 overflow-x-scroll mask-[linear-gradient(to_right,transparent_0,#121113_10%,#121113_calc(100%-200px),transparent_100%)]"
 			onFocusIn={onFocusIn}
 			ref={ref}
 		>
@@ -124,9 +124,9 @@ export function WindowCarousel(props: { content: WindowCarouselContent }): JSX.E
 								class={cn(
 									"animate-slide-left flex h-full shrink-0 items-center gap-1 will-change-transform",
 
-									"group-focus-visible/carousel:[animation-play-state:paused]",
-									"group-focus-within/carousel:[animation-play-state:paused]",
-									"group-hover/carousel:[animation-play-state:paused]",
+									"group-focus-visible/carousel:paused",
+									"group-focus-within/carousel:paused",
+									"group-hover/carousel:paused",
 								)}
 							>
 								<For each={props.content.data}>

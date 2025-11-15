@@ -1,7 +1,7 @@
 /* The integration's default injected base.css file */
 @import "tailwindcss";
 
-@plugin 'tailwindcss-animate';
+@plugin "tailwindcss-animate";
 
 @theme {
 	--font-*: initial;

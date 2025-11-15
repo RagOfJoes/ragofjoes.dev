@@ -9,8 +9,7 @@ import {
 } from "solid-js";
 import type { JSX } from "solid-js";
 
-import { Color, Mesh, Renderer, Triangle } from "ogl";
-import { Program } from "ogl";
+import { Color, Mesh, Program, Renderer, Triangle } from "ogl";
 
 import { cn } from "@/lib/cn";
 import { hexToRgb } from "@/lib/hex-to-rgb";
@@ -171,7 +170,7 @@ export function Background(props: BackgroundProps): JSX.Element {
 				<div class="absolute top-0 left-0 inline-flex h-full min-h-0 w-full items-center justify-center">
 					<div class="bg-foreground/40 h-1 w-48 overflow-hidden">
 						<div
-							class="bg-foreground h-full w-[var(--progress)] transition-all duration-100 ease-linear"
+							class="bg-foreground h-full w-(--progress) transition-all duration-100 ease-linear"
 							style={{ "--progress": `${progress()}%` }}
 						/>
 					</div>
