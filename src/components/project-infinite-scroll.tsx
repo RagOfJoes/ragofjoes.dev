@@ -5,6 +5,7 @@ import { Image } from "@/components/image";
 import { cn } from "@/lib/cn";
 
 const NUM_OF_COPIES = 4;
+const THRESHOLD = 10;
 
 export type ProjectInfiniteScrollProps = JSX.HTMLAttributes<HTMLDivElement> & {
 	project: {
@@ -33,10 +34,10 @@ export type ProjectInfiniteScrollProps = JSX.HTMLAttributes<HTMLDivElement> & {
 export function ProjectInfiniteScroll(props: ProjectInfiniteScrollProps) {
 	const [local, split] = splitProps(props, ["class", "project"]);
 
-	let raf: number | undefined;
 	let ref: HTMLDivElement | undefined;
+	let lastScrollTop = 0;
 
-	const [isAdjusting, toggleIsAdjusting] = createSignal(false);
+	const [isAdjusting, setIsAdjusting] = createSignal(false);
 
 	onMount(() => {
 		if (!ref) {
@@ -51,39 +52,43 @@ export function ProjectInfiniteScroll(props: ProjectInfiniteScrollProps) {
 			const { scrollTop, scrollHeight } = ref;
 			const contentHeight = scrollHeight / NUM_OF_COPIES;
 
-			if (scrollTop >= contentHeight) {
-				toggleIsAdjusting(true);
+			// Determine scroll direction
+			const isScrollingDown = scrollTop >= lastScrollTop;
+			lastScrollTop = scrollTop;
 
+			// Scrolling down - past the end of the middle section
+			if (isScrollingDown && scrollTop >= contentHeight * 2 - THRESHOLD) {
+				setIsAdjusting(true);
 				ref.scrollTop = scrollTop - contentHeight;
 
-				raf = requestAnimationFrame(() => {
-					toggleIsAdjusting(false);
+				requestAnimationFrame(() => {
+					setIsAdjusting(false);
 				});
-			} else if (scrollTop < contentHeight) {
-				toggleIsAdjusting(true);
+			}
+			// Scrolling up - before the start of the middle section
+			else if (!isScrollingDown && scrollTop <= contentHeight + THRESHOLD) {
+				setIsAdjusting(true);
 				ref.scrollTop = scrollTop + contentHeight;
 
-				raf = requestAnimationFrame(() => {
-					toggleIsAdjusting(false);
+				requestAnimationFrame(() => {
+					setIsAdjusting(false);
 				});
 			}
 		};
 
 		ref.addEventListener("scroll", onScroll, { passive: true });
 
-		toggleIsAdjusting(true);
-		ref.scrollTop = ref.scrollHeight / NUM_OF_COPIES;
-
-		raf = requestAnimationFrame(() => {
-			toggleIsAdjusting(false);
+		// Initialize scroll position to middle section
+		setIsAdjusting(true);
+		const contentHeight = ref.scrollHeight / NUM_OF_COPIES;
+		ref.scrollTop = contentHeight;
+		lastScrollTop = contentHeight;
+		requestAnimationFrame(() => {
+			setIsAdjusting(false);
 		});
 
 		onCleanup(() => {
 			ref.removeEventListener("scroll", onScroll);
-
-			if (raf) {
-				cancelAnimationFrame(raf);
-			}
 		});
 	});
 
@@ -91,7 +96,9 @@ export function ProjectInfiniteScroll(props: ProjectInfiniteScrollProps) {
 		<div
 			{...split}
 			class={cn(
-				"no-scrollbar overflow-y-auto overscroll-none [overflow-anchor:none]",
+				"no-scrollbar ring-offset-background overflow-y-auto overscroll-none [overflow-anchor:none]",
+
+				"focus-visible:ring-foreground focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden",
 
 				local.class,
 			)}
@@ -102,9 +109,10 @@ export function ProjectInfiniteScroll(props: ProjectInfiniteScrollProps) {
 					const isVisible = () => {
 						return i() === 1;
 					};
+
 					return (
 						<div
-							aria-hidden={isVisible()}
+							aria-hidden={!isVisible()}
 							class={cn(
 								"grid grid-cols-2 gap-1",
 
