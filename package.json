@@ -12,7 +12,8 @@
 		"dayjs": "^1.11.19",
 		"ogl": "^1.0.11",
 		"solid-icons": "^1.1.0",
-		"solid-js": "^1.9.10"
+		"solid-js": "^1.9.10",
+		"solid-motionone": "^1.0.4"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.39.1",
