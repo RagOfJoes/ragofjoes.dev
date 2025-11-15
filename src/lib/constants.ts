@@ -99,7 +99,7 @@ export const WINDOWS: (WindowProps & {
 			},
 			{
 				type: "text",
-				data: "Originally from the Philippines and based in the Bay Area, his love for design drives every code he writes.",
+				data: "Originally from the Philippines and based in the Bay Area, his love for design drives every line of code he writes.",
 			},
 			{
 				type: "text",
@@ -159,7 +159,8 @@ export const WINDOWS: (WindowProps & {
 
 		style: {
 			left: "8px",
-			top: "234.5px",
+			// Window Trigger + About Window + Spacing between those two (8px each)
+			top: "248.75px",
 
 			"max-width": "320px",
 			width: "100%",
@@ -205,17 +206,6 @@ export const WINDOWS: (WindowProps & {
 							width: 3840,
 
 							palette: ["#1A1825", "#15141F", "#333039", "#948888", "#1B1A27"],
-						},
-					},
-					{
-						href: "/projects/testing-3/",
-						title: "Testing 3",
-						image: {
-							src: "/puzzlely-home-page.png",
-							height: 2160,
-							width: 3840,
-
-							palette: ["#EBBDBD", "#2D2936", "#1E1B28", "#E8BBBA", "#EBBDBC"],
 						},
 					},
 				],
