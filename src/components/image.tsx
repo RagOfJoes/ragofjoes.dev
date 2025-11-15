@@ -62,6 +62,7 @@ export function Image(props: ImageProps) {
 	return (
 		<>
 			<div
+				aria-label="Zoom in image"
 				class={cn(
 					"group/image relative cursor-pointer",
 
@@ -107,7 +108,7 @@ export function Image(props: ImageProps) {
 				<Show when={isOpen()}>
 					<Motion.div
 						animate={{ opacity: 1 }}
-						class="fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center bg-black/90 p-4"
+						class="bg-background/70 fixed inset-0 z-50 flex cursor-zoom-out items-center justify-center p-4"
 						exit={{ opacity: 0 }}
 						initial={{ opacity: 0 }}
 						onClick={onBackdropClick}
