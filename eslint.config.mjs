@@ -1,4 +1,3 @@
-// @ts-nocheck
 import eslint from "@eslint/js";
 import * as parser from "@typescript-eslint/parser";
 import prettier from "eslint-config-prettier";
@@ -76,14 +75,11 @@ export default tseslint.config(
 		...solid,
 		languageOptions: {
 			parser,
-			parserOptions: {
-				project: "tsconfig.json",
-			},
 		},
 	},
 
 	{
-		languageOptions: { parserOptions: { projectService: true } },
+		languageOptions: { parserOptions: { project: true } },
 		linterOptions: { reportUnusedDisableDirectives: true },
 	},
 );

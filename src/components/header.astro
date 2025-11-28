@@ -1,0 +1,95 @@
+---
+import { Image } from "astro:assets";
+
+import dayjs from "dayjs";
+
+import { cn } from "@/lib/cn";
+import { ROUTES } from "@/lib/constants";
+import { isCurrentLink } from "@/lib/is-current-link";
+
+const today = dayjs();
+---
+
+<header class="grid w-full grid-cols-12 gap-2 py-2">
+	<div
+		class={cn(
+			"col-span-4",
+
+			"max-md:col-span-6",
+		)}
+	>
+		<a
+			class={cn(
+				"inline-flex h-full items-center gap-2",
+
+				"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden",
+			)}
+			href="/"
+		>
+			<Image
+				alt="Victor"
+				class="rounded-full"
+				height={24}
+				src="/android-chrome-192x192.png"
+				width={24}
+			/>
+
+			<h1 class="font-sans text-sm leading-none font-medium select-none">Victor Ragojos</h1>
+		</a>
+	</div>
+
+	<nav
+		class={cn(
+			"col-span-4 h-full",
+
+			"max-md:col-span-6",
+		)}
+	>
+		<ul
+			class={cn(
+				"inline-flex h-full w-full items-center gap-2",
+
+				"max-md:justify-end",
+			)}
+		>
+			{
+				ROUTES.map((route) => {
+					return (
+						<li class="inline-flex h-full items-center">
+							<a
+								aria-current={isCurrentLink(Astro.url, route.slug) && "page"}
+								class={cn(
+									"text-muted-foreground font-sans text-sm font-medium transition-colors select-none",
+
+									"aria-[current=page]:text-foreground aria-[current=page]:focus-visible:text-background",
+									"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden",
+									"hover:text-foreground",
+								)}
+								href={route.href}
+							>
+								<span>{route.title}</span>
+
+								<span class="sr-only">{route.description}</span>
+							</a>
+						</li>
+					);
+				})
+			}
+		</ul>
+	</nav>
+
+	<div
+		class={cn(
+			"col-span-4 inline-flex h-full w-full items-center justify-end",
+
+			"max-md:hidden",
+		)}
+	>
+		<time
+			class="font-mono text-[11px] leading-none font-medium select-none"
+			datetime={today.format("YYYY-MM-DD")}
+		>
+			[{dayjs().format("MMM. D, YYYY")}]
+		</time>
+	</div>
+</header>

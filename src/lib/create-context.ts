@@ -1,6 +1,5 @@
-import type { Context as SolidContext } from "solid-js";
+import type { ContextProviderComponent, Context as SolidContext } from "solid-js";
 import { createContext as createSolidContext, useContext as useSolidContext } from "solid-js";
-import type { ContextProviderComponent } from "solid-js/types/reactive/signal";
 
 export type CreateContextArgs<T> = {
 	defaultValue?: T | undefined;
