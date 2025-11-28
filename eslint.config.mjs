@@ -79,7 +79,7 @@ export default tseslint.config(
 	},
 
 	{
-		languageOptions: { parserOptions: { projectService: true } },
+		languageOptions: { parserOptions: { project: true } },
 		linterOptions: { reportUnusedDisableDirectives: true },
 	},
 );
