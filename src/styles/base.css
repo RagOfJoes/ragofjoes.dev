@@ -8,11 +8,11 @@
 	--font-mono: "JetBrainsMono-Variable", sans-serif;
 	--font-sans: "GeneralSans-Variable", sans-serif, system-ui;
 
-	--color-background: oklch(0.1797 0.0043 308.19);
-	--color-border: oklch(0.6268 0 0);
-	--color-foreground: oklch(0.8109 0 0);
+	--color-background: oklch(0.5372 0.2564 267.12);
+	--color-border: oklch(0.6563 0.1821 265.62);
+	--color-foreground: oklch(1 0 0);
 
-	--color-muted-foreground: oklch(0.6268 0 0);
+	--color-muted-foreground: oklch(0.8126 0.0933 268.18);
 
 	--color-primary: oklch(0.7214 0.1337 49.98);
 	--color-primary-foreground: oklch(0.1797 0.0043 308.19);
@@ -43,7 +43,7 @@
 	::before,
 	::backdrop,
 	::file-selector-button {
-		border-color: oklch(0.6268 0 0);
+		border-color: oklch(0.6563 0.1821 265.62);
 	}
 }
 
@@ -81,5 +81,17 @@
 	.no-scrollbar {
 		-ms-overflow-style: none; /* IE and Edge */
 		scrollbar-width: none; /* Firefox */
+	}
+
+	.bg-striped {
+		background-attachment: fixed;
+		background-image: repeating-linear-gradient(
+			315deg,
+			var(--color-border) 0,
+			var(--color-border) 1px,
+			transparent 0,
+			transparent 50%
+		);
+		background-size: 10px 10px;
 	}
 }

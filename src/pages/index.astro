@@ -1,15 +1,16 @@
 ---
-import { Background } from "@/components/background";
 import { Windows } from "@/components/windows";
 import BaseLayout from "@/layouts/base.astro";
+import { cn } from "@/lib/cn";
 ---
 
 <BaseLayout>
-	<main class="relative isolate h-full min-h-0 w-full overflow-hidden border">
+	<main
+		class={cn(
+			"relative isolate h-full min-h-0 w-full overflow-hidden border",
+			"bg-[url('/background.svg')] bg-size-[90px] bg-center bg-repeat",
+		)}
+	>
 		<Windows client:load />
-
-		<div class="absolute inset-0 -z-1">
-			<Background client:load />
-		</div>
 	</main>
 </BaseLayout>

@@ -17,7 +17,7 @@ export function Windows(props: WindowsProps) {
 	return (
 		<WindowsProvider value={value}>
 			<div class="h-full w-full" ref={value[1].setContainer}>
-				<ul class="grid w-fit grid-cols-2 gap-2 px-2 pt-4 pb-0">
+				<ul class="grid w-fit grid-cols-2 gap-2 px-2 pt-2 pb-0">
 					<For each={value[0].windows()}>
 						{(w) => {
 							return (
@@ -38,7 +38,7 @@ export function Windows(props: WindowsProps) {
 										<span class="sr-only">
 											{w.isOpen ? "Close" : "Open"} {w.name} Window
 										</span>
-										<span class="font-sans text-sm select-none">{w.name}</span>
+										<span class="font-sans text-sm font-medium select-none">{w.name}</span>
 									</button>
 								</li>
 							);

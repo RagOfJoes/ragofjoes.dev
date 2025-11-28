@@ -1,5 +1,4 @@
 ---
-import { Background } from "@/components/background";
 import { ProjectInfiniteScroll } from "@/components/project-infinite-scroll";
 import BaseLayout from "@/layouts/base.astro";
 import { cn } from "@/lib/cn";
@@ -37,11 +36,16 @@ const { project } = Astro.props;
 		? `Project • ${project.name} • Victor Ragojos`
 		: "Projects • Victor Ragojos"}
 >
-	<main class="flex min-h-0 flex-1 flex-col">
+	<main
+		class={cn(
+			"flex min-h-0 flex-1 flex-col border p-2",
+			"bg-[url('/background.svg')] bg-size-[90px] bg-center bg-repeat",
+		)}
+	>
 		<div class="relative isolate grid min-h-0 w-full flex-1 grid-cols-12 gap-2">
 			<div
 				class={cn(
-					"col-span-4 flex min-h-0 w-full flex-col overflow-hidden border pb-1",
+					"border-foreground/70 bg-striped col-span-4 flex min-h-0 w-full flex-col overflow-hidden border px-2 pb-2",
 
 					"max-md:data-[is-project-selected=false]:col-span-full",
 					"max-md:data-[is-project-selected=true]:hidden",
@@ -50,16 +54,16 @@ const { project } = Astro.props;
 			>
 				<span class="sr-only">Window</span>
 
-				<div class="inline-flex h-6 w-full items-center justify-between px-1">
-					<h2 class="font-mono text-xs leading-none">[{PROJECTS.length}]</h2>
+				<div class="inline-flex h-6 w-full items-center justify-between">
+					<h2 class="font-mono text-xs leading-none font-medium">[{PROJECTS.length}]</h2>
 				</div>
 
-				<div class="h-full w-full px-1">
-					<ul class="inline-flex h-full w-full flex-col overflow-y-auto rounded-sm border p-1">
+				<div class="bg-background h-full w-full">
+					<ul class="inline-flex h-full w-full flex-col overflow-y-auto rounded-sm border p-1 pb-2">
 						{
 							PROJECTS.map((p) => {
 								return (
-									<li class="inline-flex h-auto w-full">
+									<li class="group inline-flex h-auto w-full">
 										<a
 											aria-current={p.slug === title && "page"}
 											class={cn(
@@ -104,7 +108,8 @@ const { project } = Astro.props;
 											<span class="sr-only">
 												{p.slug === title ? "Close" : "Open"} {p.name} Window
 											</span>
-											<span class="font-sans text-sm select-none">{p.name}</span>
+
+											<span class="font-sans text-sm font-medium select-none">{p.name}</span>
 										</a>
 									</li>
 								);
@@ -116,28 +121,44 @@ const { project } = Astro.props;
 
 			<div
 				class={cn(
-					"relative isolate col-span-8 flex min-h-0 w-full flex-col border pb-1",
+					"border-foreground/70 bg-striped relative isolate col-span-8 flex min-h-0 w-full flex-col border px-2 pb-2",
 
 					"max-md:data-[is-project-selected=false]:hidden",
 					"max-md:data-[is-project-selected=true]:col-span-full",
 				)}
-				data-is-project-selected={!!project}
+				data-is-project-selected={!!project && !!title}
 			>
-				{(!project || !title) && <Background client:load />}
+				{
+					(!project || !title) && (
+						<>
+							<span class="sr-only">Window</span>
 
+							<div class="inline-flex h-6 w-full items-center justify-between">
+								<h2 class="font-mono text-xs leading-none font-medium">EMPTY</h2>
+							</div>
+
+							<div class="relative isolate flex h-full min-h-0 w-full flex-col">
+								<div class="bg-background inline-flex h-full w-full items-center justify-center rounded-sm border p-1">
+									<h2 class="font-mono text-xl">[SELECT A PROJECT]</h2>
+								</div>
+							</div>
+						</>
+					)
+				}
 				{
 					project && title && (
 						<>
 							<span class="sr-only">Window</span>
 
-							<div class="inline-flex h-6 w-full items-center justify-between px-1">
-								<h2 class="font-mono text-xs leading-none">{project.name}</h2>
+							<div class="inline-flex h-6 w-full items-center justify-between">
+								<h2 class="font-mono text-xs leading-none font-medium">{project.name}</h2>
 
 								<a
 									class={cn(
-										"inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full border",
+										"bg-background text-foreground/70 inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors",
 
 										"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden",
+										"hover:bg-foreground hover:text-background hover:outline-hidden",
 									)}
 									href="/projects/"
 								>
@@ -163,8 +184,8 @@ const { project } = Astro.props;
 								</a>
 							</div>
 
-							<div class="relative isolate flex h-full min-h-0 w-full flex-col px-1">
-								<div class="grid h-full w-full grid-cols-12 gap-2 rounded-sm border p-1">
+							<div class="relative isolate flex h-full min-h-0 w-full flex-col">
+								<div class="bg-background grid h-full w-full grid-cols-12 gap-2 rounded-sm border p-1">
 									<div
 										class={cn(
 											"col-span-4",

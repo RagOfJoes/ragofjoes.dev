@@ -7,6 +7,19 @@ import type { WindowProps } from "@/components/windows";
 
 export const PROJECTS: ProjectInfiniteScrollProps["project"][] = [
 	{
+		slug: "set",
+		name: "SET",
+		description: "A discord activity for the classic card game SET. ",
+
+		type: "Discord Activity",
+		url: "https://github.com/RagOfJoes/set",
+		source: "https://github.com/RagOfJoes/set",
+		developer: "Victor Ragojos",
+		stack: ["Typescript", "React", "Hono.js", "Node", "SQLite"],
+
+		images: [],
+	},
+	{
 		slug: "puzzlely",
 		name: "Puzzlely",
 		description:
@@ -160,7 +173,7 @@ export const WINDOWS: (WindowProps & {
 		style: {
 			left: "8px",
 			// Window Trigger + About Window + Spacing between those two (8px each)
-			top: "248.75px",
+			top: "256.75px",
 
 			"max-width": "320px",
 			width: "100%",
@@ -218,7 +231,7 @@ export const WINDOWS: (WindowProps & {
 			bottom: "8px",
 			left: "8px",
 
-			height: "120px",
+			// height: "120px",
 			width: "calc(100% - 16px)",
 			"z-index": 3,
 		},

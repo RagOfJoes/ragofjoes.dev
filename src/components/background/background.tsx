@@ -27,11 +27,11 @@ export type BackgroundProps = JSX.HTMLAttributes<HTMLDivElement> & {
 export function Background(props: BackgroundProps): JSX.Element {
 	const merged = mergeProps(
 		{
-			background: "#121113",
+			background: "#2f52ff",
 			dpr: typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 2) : 2,
 			size: 64,
 			speed: 0.1,
-			tint: "#888888",
+			tint: "#ffffff",
 		},
 		props,
 	);

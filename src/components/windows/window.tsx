@@ -112,7 +112,7 @@ export function WindowCarousel(props: { content: WindowCarouselContent }): JSX.E
 
 	return (
 		<div
-			class="no-scrollbar group/carousel inline-grid h-full w-full flex-1 overflow-x-scroll mask-[linear-gradient(to_right,transparent_0,#121113_10%,#121113_calc(100%-200px),transparent_100%)]"
+			class="no-scrollbar group/carousel inline-grid h-full w-full flex-1 overflow-x-scroll mask-[linear-gradient(to_right,transparent_0,#5b89ff_10%,#5b89ff_calc(100%-200px),transparent_100%)]"
 			onFocusIn={onFocusIn}
 			ref={ref}
 		>
@@ -187,16 +187,16 @@ export function WindowLinks(props: { content: WindowLinksContent }): JSX.Element
 					return (
 						<li class="inline-flex flex-col">
 							<div class="inline-flex h-full w-full items-center justify-between">
-								<h3 class="font-mono text-[11px]">[{content.title}]</h3>
+								<h3 class="font-mono text-[11px] font-semibold">[{content.title}]</h3>
 
 								{content.icon({
-									class: cn("text-foreground w-6 h-6 stroke-[1.25px]"),
+									class: cn("text-foreground h-6 w-6 stroke-[1.25px]"),
 								})}
 							</div>
 
 							<a
 								class={cn(
-									"w-fit font-mono text-[11px] underline",
+									"w-fit font-mono text-[11px] font-medium underline",
 
 									"focus-visible:bg-foreground focus-visible:text-background focus-visible:no-underline focus-visible:outline-hidden",
 									"hover:bg-foreground hover:text-background hover:no-underline hover:outline-hidden",
@@ -237,7 +237,9 @@ export function WindowList(props: { content: WindowListContent }): JSX.Element {
 							<h3 class="font-sans leading-none font-semibold">{content.title}</h3>
 
 							{content.subtitle && (
-								<h4 class="font-sans text-xs leading-none">{content.subtitle}</h4>
+								<h4 class="text-muted-foreground font-sans text-xs leading-none font-medium">
+									{content.subtitle}
+								</h4>
 							)}
 							{content.heading && (
 								<div class="bg-foreground text-background mt-1 inline-flex h-full w-fit items-center p-0.5">
@@ -252,7 +254,7 @@ export function WindowList(props: { content: WindowListContent }): JSX.Element {
 									{(body) => {
 										return (
 											<li>
-												<p class="font-sans text-xs">{body}</p>
+												<p class="font-sans text-xs font-medium">{body}</p>
 											</li>
 										);
 									}}
@@ -305,7 +307,7 @@ export function WindowText(props: { content: WindowTextContent }): JSX.Element {
 		return <>{parts}</>;
 	};
 
-	return <span class="font-sans text-xs">{parse(props.content.data)}</span>;
+	return <span class="font-sans text-xs font-medium">{parse(props.content.data)}</span>;
 }
 
 export function Window(props: WindowProps): JSX.Element {
@@ -426,7 +428,7 @@ export function Window(props: WindowProps): JSX.Element {
 	return (
 		<Show when={windowState().isOpen}>
 			<div
-				class="bg-background text-foreground absolute border px-1 pb-1 will-change-transform"
+				class="bg-background text-foreground border-foreground/70 bg-striped absolute border px-2 pb-2 will-change-transform"
 				onClick={onClick}
 				style={{
 					"--container-height": `${containerSize().height}px`,
@@ -455,41 +457,48 @@ export function Window(props: WindowProps): JSX.Element {
 					<div class="inline-flex h-full items-center gap-1">
 						<IoMoveSharp class="text-foreground h-3 w-3" />
 
-						<h2 class="font-mono text-xs leading-none">{props.name}</h2>
+						<h2 class="font-mono text-xs leading-none font-semibold">{props.name}</h2>
 					</div>
 
 					<div class="inline-flex h-full items-center gap-1">
-						<button
-							class={cn(
-								"inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full border",
-
-								"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden",
-							)}
-							onClick={onReset}
+						<For
+							each={[
+								{
+									icon: VsRefresh,
+									label: "Reset position",
+									onClick: onReset,
+								},
+								{
+									icon: VsClose,
+									label: "Close",
+									onClick: () => {
+										actions.toggleIsWindowOpen(props.name);
+									},
+								},
+							]}
 						>
-							<span class="sr-only">Reset position</span>
+							{(item) => {
+								return (
+									<button
+										class={cn(
+											"bg-background text-foreground/70 inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors",
 
-							<VsRefresh class="h-3 w-3" />
-						</button>
+											"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden",
+											"hover:bg-foreground hover:text-background hover:outline-hidden",
+										)}
+										onClick={item.onClick}
+									>
+										<span class="sr-only">{item.label}</span>
 
-						<button
-							class={cn(
-								"inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full border",
-
-								"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden",
-							)}
-							onClick={() => {
-								actions.toggleIsWindowOpen(props.name);
+										{item.icon({ class: cn("h-3 w-3") })}
+									</button>
+								);
 							}}
-						>
-							<span class="sr-only">Close</span>
-
-							<VsClose class="h-3 w-3" />
-						</button>
+						</For>
 					</div>
 				</div>
 
-				<div class="inline-flex min-h-0 w-full flex-1 flex-col gap-2 rounded-sm border p-1">
+				<div class="bg-background inline-flex min-h-0 w-full flex-1 flex-col gap-2 rounded-sm border p-1">
 					<For each={props.content}>
 						{(content) => {
 							return (

@@ -19,9 +19,9 @@ const { description = "Welcome to my corner of the internet.", title = "Victor R
 	dir="ltr"
 	lang="en"
 	class={cn(
-		"antialiased scroll-smooth",
+		"scroll-smooth antialiased",
 
-		"selection:bg-primary selection:text-primary-foreground",
+		"selection:bg-foreground selection:text-background",
 	)}
 >
 	<head>
@@ -48,7 +48,9 @@ const { description = "Welcome to my corner of the internet.", title = "Victor R
 	</head>
 
 	<body
-		class="bg-background text-foreground flex h-screen w-screen flex-col overflow-hidden overscroll-none px-2 pb-2 font-sans font-normal"
+		class={cn(
+			"bg-background text-foreground flex h-screen w-screen flex-col overflow-hidden overscroll-none px-2 pb-2 font-sans font-normal",
+		)}
 	>
 		<Header />
 
