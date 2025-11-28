@@ -3,8 +3,8 @@
 	"short_name": "Victor Ragojos",
 	"start_url": "https://www.ragofjoes.dev/",
 	"display": "standalone",
-	"background_color": "#121113",
-	"theme_color": "#121113",
+	"background_color": "#2f52ff",
+	"theme_color": "#2f52ff",
 	"icons": [
 		{
 			"src": "/favicon-16x16.png",

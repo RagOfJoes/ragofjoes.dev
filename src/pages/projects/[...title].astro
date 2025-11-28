@@ -32,9 +32,7 @@ const { project } = Astro.props;
 ---
 
 <BaseLayout
-	title={project && title
-		? `Project • ${project.name} • Victor Ragojos`
-		: "Projects • Victor Ragojos"}
+	title={project && title ? `${project.name} • Victor Ragojos` : "Projects • Victor Ragojos"}
 >
 	<main
 		class={cn(
@@ -249,7 +247,7 @@ const { project } = Astro.props;
 											</li>
 										</ul>
 
-										<p class="mt-2 font-sans text-sm">{project.description}</p>
+										<p class="mt-2 font-sans text-xs font-medium">{project.description}</p>
 									</div>
 
 									<ProjectInfiniteScroll

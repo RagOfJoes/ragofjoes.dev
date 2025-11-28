@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 import dayjs from "dayjs";
 
 import { cn } from "@/lib/cn";
@@ -24,7 +26,13 @@ const today = dayjs();
 			)}
 			href="/"
 		>
-			<div class="bg-foreground h-4 w-4 rounded-full"></div>
+			<Image
+				alt="Victor"
+				class="rounded-full"
+				height={24}
+				src="/android-chrome-192x192.png"
+				width={24}
+			/>
 
 			<h1 class="font-sans text-sm leading-none font-medium select-none">Victor Ragojos</h1>
 		</a>

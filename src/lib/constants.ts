@@ -7,19 +7,6 @@ import type { WindowProps } from "@/components/windows";
 
 export const PROJECTS: ProjectInfiniteScrollProps["project"][] = [
 	{
-		slug: "set",
-		name: "SET",
-		description: "A discord activity for the classic card game SET. ",
-
-		type: "Discord Activity",
-		url: "https://github.com/RagOfJoes/set",
-		source: "https://github.com/RagOfJoes/set",
-		developer: "Victor Ragojos",
-		stack: ["Typescript", "React", "Hono.js", "Node", "SQLite"],
-
-		images: [],
-	},
-	{
 		slug: "puzzlely",
 		name: "Puzzlely",
 		description:
@@ -108,7 +95,7 @@ export const WINDOWS: (WindowProps & {
 		content: [
 			{
 				type: "text",
-				data: "Victor is a polyglot software engineer with over 5 years of professional programming experience.",
+				data: "Victor is a polyglot software engineer with over 6 years of professional programming experience.",
 			},
 			{
 				type: "text",
@@ -116,7 +103,7 @@ export const WINDOWS: (WindowProps & {
 			},
 			{
 				type: "text",
-				data: "Currently building the future with the folks at [SenseMesh](https://sensemesh.ai) and spoiling my cat, Jiji.",
+				data: "Currently building the future with the folks at [SenseMesh](https://sensemesh.ai) and spoiling his cat, Jiji.",
 			},
 		],
 
@@ -124,7 +111,7 @@ export const WINDOWS: (WindowProps & {
 
 		style: {
 			left: "8px",
-			top: "72px",
+			top: "64px",
 
 			"max-width": "320px",
 			width: "100%",
@@ -173,7 +160,7 @@ export const WINDOWS: (WindowProps & {
 		style: {
 			left: "8px",
 			// Window Trigger + About Window + Spacing between those two (8px each)
-			top: "256.75px",
+			top: "248.75px",
 
 			"max-width": "320px",
 			width: "100%",
