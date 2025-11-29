@@ -1,6 +1,8 @@
 ---
 import "@/styles/base.css";
 
+import { ClientRouter } from "astro:transitions";
+
 import Header from "@/components/header.astro";
 import Seo from "@/components/seo.astro";
 import { cn } from "@/lib/cn";
@@ -45,6 +47,8 @@ const { description = "Welcome to my corner of the internet.", title = "Victor R
 		<meta name="twitter:title" content={title} />
 		<meta property="twitter:domain" content="ragofjoes.dev" />
 		<meta property="twitter:url" content={Astro.url.origin} />
+
+		<ClientRouter />
 	</head>
 
 	<body
@@ -52,7 +56,7 @@ const { description = "Welcome to my corner of the internet.", title = "Victor R
 			"bg-background text-foreground flex h-screen w-screen flex-col overflow-hidden overscroll-none font-sans font-normal",
 		)}
 	>
-		<Header />
+		<Header transition:persist />
 
 		<slot />
 	</body>
