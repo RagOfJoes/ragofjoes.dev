@@ -109,10 +109,12 @@ export function useWindows(_: WindowsProps): UseWindows {
 					return {
 						...w,
 						isOpen: !w.isOpen,
-						position: {
-							x: 0,
-							y: 0,
-						},
+						position: w.isOpen
+							? w.position
+							: {
+									x: 0,
+									y: 0,
+								},
 					};
 				}),
 			);

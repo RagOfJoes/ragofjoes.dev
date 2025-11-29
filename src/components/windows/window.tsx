@@ -1,13 +1,13 @@
-import { For, Match, Show, Switch, createSignal, onCleanup, onMount } from "solid-js";
+import { For, Match, Show, Switch, createEffect, createSignal, onCleanup, onMount } from "solid-js";
 import type { JSX } from "solid-js";
 
 import type { IconTypes } from "solid-icons";
 import { IoMoveSharp } from "solid-icons/io";
 import { VsClose, VsRefresh } from "solid-icons/vs";
 
+import { Image } from "@/components/image";
 import { cn } from "@/lib/cn";
 
-import { Image } from "../image";
 import { useWindowsContext } from "./windows-context";
 
 type WindowCarouselContent = {
@@ -313,8 +313,9 @@ export function WindowText(props: { content: WindowTextContent }): JSX.Element {
 export function Window(props: WindowProps): JSX.Element {
 	const [state, actions] = useWindowsContext();
 
-	const [containerSize, setContainerSize] = createSignal({ height: 0, width: 0 });
 	const [isDragging, toggleIsDragging] = createSignal(false);
+	const [isResetting, toggleIsResetting] = createSignal(false);
+	const [isVisible, toggleIsVisible] = createSignal(false);
 	const [offset, setOffset] = createSignal({ x: 0, y: 0 });
 
 	const windowState = () => {
@@ -338,6 +339,13 @@ export function Window(props: WindowProps): JSX.Element {
 		return { x: e.clientX, y: e.clientY };
 	};
 
+	const onAnimationEnd = () => {
+		if (windowState().isOpen) {
+			return;
+		}
+
+		toggleIsVisible(false);
+	};
 	const onClick = () => {
 		actions.bringToFront(props.name);
 	};
@@ -361,22 +369,12 @@ export function Window(props: WindowProps): JSX.Element {
 			return;
 		}
 
-		actions.bringToFront(props.name);
+		toggleIsResetting(true);
 
+		actions.bringToFront(props.name);
 		actions.updateWindowPosition(props.name, {
 			x: 0,
 			y: 0,
-		});
-	};
-	const onResize = () => {
-		const container = state.container();
-		if (!container) {
-			return;
-		}
-
-		setContainerSize({
-			height: container.getBoundingClientRect().height,
-			width: container.getBoundingClientRect().width,
 		});
 	};
 	const onStart = (e: MouseEvent | TouchEvent) => {
@@ -390,13 +388,26 @@ export function Window(props: WindowProps): JSX.Element {
 			y: coordinate.y - windowState().position.y,
 		});
 	};
+	const onTransitionEnd = (e: TransitionEvent) => {
+		if (e.propertyName !== "translate" && e.propertyName !== "transform") {
+			return;
+		}
+
+		toggleIsResetting(false);
+	};
+
+	createEffect(() => {
+		if (!windowState().isOpen) {
+			return;
+		}
+
+		toggleIsVisible(true);
+	});
 
 	onMount(() => {
 		if (typeof window === "undefined") {
 			return;
 		}
-
-		window.addEventListener("resize", onResize);
 
 		window.addEventListener("mousemove", onMove);
 		window.addEventListener("mouseup", onEnd);
@@ -407,14 +418,10 @@ export function Window(props: WindowProps): JSX.Element {
 			passive: false,
 		});
 
-		onResize();
-
 		onCleanup(() => {
 			if (typeof window === "undefined") {
 				return;
 			}
-
-			window.removeEventListener("resize", onResize);
 
 			window.removeEventListener("mousemove", onMove);
 			window.removeEventListener("mouseup", onEnd);
@@ -426,17 +433,25 @@ export function Window(props: WindowProps): JSX.Element {
 	});
 
 	return (
-		<Show when={windowState().isOpen}>
-			<div
-				class="bg-background text-foreground border-foreground/70 bg-striped absolute border px-2 pb-2 will-change-transform"
-				onClick={onClick}
-				style={{
-					"--container-height": `${containerSize().height}px`,
-					"--container-width": `${containerSize().width}px`,
+		<Show when={isVisible()}>
+			<figure
+				class={cn(
+					"bg-background text-foreground border-foreground/70 bg-striped absolute isolate translate-x-(--position-x) translate-y-(--position-y) border px-2 pb-2 will-change-transform",
 
+					"data-[is-open=true]:animate-in data-[is-open=true]:fade-in data-[is-open=true]:zoom-in-90 data-[is-open=false]:transition-[opacity,scale] data-[is-open=true]:transition-[opacity,scale] data-[is-open=true]:ease-in-out",
+					"data-[is-open=false]:animate-out data-[is-open=false]:fade-out data-[is-open=false]:zoom-out-90 data-[is-open=false]:ease-in-out",
+					"data-[is-resetting=true]:transition-transform data-[is-resetting=true]:duration-300 data-[is-resetting=true]:ease-in-out",
+				)}
+				data-is-open={windowState().isOpen}
+				data-is-resetting={isResetting()}
+				onAnimationEnd={onAnimationEnd}
+				onClick={onClick}
+				onTransitionEnd={onTransitionEnd}
+				style={{
+					"--position-x": `${windowState().position.x}px`,
+					"--position-y": `${windowState().position.y}px`,
 					...(props.style ?? {}),
 
-					transform: `translate(${windowState().position.x}px, ${windowState().position.y}px)`,
 					"z-index": windowState().zIndex,
 				}}
 			>
@@ -520,7 +535,7 @@ export function Window(props: WindowProps): JSX.Element {
 						}}
 					</For>
 				</div>
-			</div>
+			</figure>
 		</Show>
 	);
 }
