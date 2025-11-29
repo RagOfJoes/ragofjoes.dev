@@ -34,13 +34,13 @@ const { project } = Astro.props;
 <BaseLayout
 	title={project && title ? `${project.name} • Victor Ragojos` : "Projects • Victor Ragojos"}
 >
-	<main
-		class={cn(
-			"flex min-h-0 flex-1 flex-col border p-2",
-			"bg-[url('/background.svg')] bg-size-[90px] bg-center bg-repeat",
-		)}
-	>
-		<div class="relative isolate grid min-h-0 w-full flex-1 grid-cols-12 gap-2">
+	<main class="flex min-h-0 flex-1 flex-col px-2">
+		<div
+			class={cn(
+				"relative isolate grid min-h-0 w-full flex-1 grid-cols-12 gap-2 border p-2",
+				"bg-[url('/background.svg')] bg-size-[90px] bg-center bg-repeat",
+			)}
+		>
 			<div
 				class={cn(
 					"border-foreground/70 bg-striped col-span-4 flex min-h-0 w-full flex-col overflow-hidden border px-2 pb-2",

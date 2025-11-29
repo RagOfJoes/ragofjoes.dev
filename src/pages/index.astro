@@ -5,12 +5,13 @@ import { cn } from "@/lib/cn";
 ---
 
 <BaseLayout>
-	<main
-		class={cn(
-			"relative isolate h-full min-h-0 w-full overflow-hidden border",
-			"bg-[url('/background.svg')] bg-size-[90px] bg-center bg-repeat",
-		)}
-	>
-		<Windows client:load />
+	<main class="relative isolate h-full min-h-0 w-full px-2 pb-2">
+		<div
+			class={cn(
+				"relative h-full w-full overflow-hidden border bg-[url('/background.svg')] bg-size-[90px] bg-center bg-repeat",
+			)}
+		>
+			<Windows client:load />
+		</div>
 	</main>
 </BaseLayout>
