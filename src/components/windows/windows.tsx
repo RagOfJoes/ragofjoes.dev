@@ -16,7 +16,7 @@ export function Windows(props: WindowsProps) {
 
 	return (
 		<WindowsProvider value={value}>
-			<div class="h-full w-full" ref={value[1].setContainer}>
+			<div class="relative h-full w-full overflow-hidden border" ref={value[1].setContainer}>
 				<ul class="grid w-fit grid-cols-2 gap-2 px-2 pt-2 pb-0">
 					<For each={value[0].windows()}>
 						{(w) => {

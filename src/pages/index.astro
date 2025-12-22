@@ -1,16 +1,16 @@
 ---
 import { Windows } from "@/components/windows";
 import BaseLayout from "@/layouts/base.astro";
-import { cn } from "@/lib/cn";
 ---
 
 <BaseLayout>
-	<main class="relative isolate h-full min-h-0 w-full px-2 pb-2">
-		<div
-			class={cn(
-				"relative h-full w-full overflow-hidden border bg-[url('/background.svg')] bg-size-[90px] bg-center bg-repeat",
-			)}
-		>
+	<main class="h-full min-h-0 w-full px-2 pb-2">
+		<div class="relative isolate h-full min-h-0 w-full">
+			<div
+				class="absolute top-0 left-0 isolate z-0 h-full w-full bg-[url('/background.svg')] bg-size-[90px] bg-center bg-repeat"
+			>
+			</div>
+
 			<Windows client:load />
 		</div>
 	</main>
