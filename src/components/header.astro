@@ -1,7 +1,5 @@
 ---
-import { Image } from "astro:assets";
-
-import dayjs from "dayjs";
+import { Image } from "@/components/image";
 
 import { cn } from "@/lib/cn";
 import { ROUTES } from "@/lib/constants";
@@ -25,13 +23,16 @@ import { isCurrentLink } from "@/lib/is-current-link";
 			href="/"
 		>
 			<Image
-				alt="Icon"
-				class="rounded-full"
-				fetchpriority="high"
-				height={20}
-				loading="eager"
+				alt="Avatar"
+				client:visible
+				class={cn(
+					"h-5 w-5 rounded-full",
+
+					"[&>div]:rounded-full",
+					"[&>img]:rounded-full",
+				)}
+				palette={["#2e4862", "#1f1e1d", "#3f616f", "#5f6f7c", "#aca6a1"]}
 				src="/android-chrome-192x192.png"
-				width={20}
 			/>
 
 			<h1 class="font-sans text-sm leading-none font-medium select-none">Victor Ragojos</h1>
@@ -86,10 +87,28 @@ import { isCurrentLink } from "@/lib/is-current-link";
 		)}
 	>
 		<time
-			class="font-mono text-[11px] leading-none font-medium select-none"
-			datetime={dayjs().format("YYYY-MM-DD")}
+			class={cn(
+				"font-mono text-[11px] leading-none font-medium transition-colors select-none",
+
+				"data-[is-loading=true]:bg-foreground",
+			)}
+			data-is-loading={true}
+			id="current-date"
 		>
-			[{dayjs().format("MMM. D, YYYY")}]
+			Feb. 13, 2000
 		</time>
 	</div>
 </header>
+
+<script>
+	import dayjs from "dayjs";
+
+	const el = document.getElementById("current-date");
+	if (el) {
+		const now = dayjs();
+		el.setAttribute("data-is-loading", "false");
+		el.setAttribute("datetime", now.format("YYYY-MM-DD"));
+
+		el.textContent = `[${now.format("MMM. D, YYYY")}]`;
+	}
+</script>
