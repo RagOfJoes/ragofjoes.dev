@@ -1,6 +1,4 @@
 import dayjs from "dayjs";
-import { TbBrandLetterboxd } from "solid-icons/tb";
-import { TiSocialGithub, TiSocialLinkedin } from "solid-icons/ti";
 
 import type { ProjectInfiniteScrollProps } from "@/components/project-infinite-scroll";
 import type { WindowProps } from "@/components/windows";
@@ -232,17 +230,14 @@ export const WINDOWS: (WindowProps & {
 					{
 						href: "https://github.com/ragofjoes",
 						title: "GitHub",
-						icon: TiSocialGithub,
 					},
 					{
 						href: "https://linkedin.com/in/ragofjoes",
 						title: "LinkedIn",
-						icon: TiSocialLinkedin,
 					},
 					{
 						href: "https://letterboxd.com/ragofjoes",
 						title: "Letterboxd",
-						icon: TbBrandLetterboxd,
 					},
 				],
 			},

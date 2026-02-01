@@ -1,7 +1,6 @@
 import { For, Match, Show, Switch, createEffect, createSignal, onCleanup, onMount } from "solid-js";
 import type { JSX } from "solid-js";
 
-import type { IconTypes } from "solid-icons";
 import { IoMoveSharp } from "solid-icons/io";
 import { VsClose, VsRefresh } from "solid-icons/vs";
 
@@ -30,7 +29,6 @@ type WindowLinksContent = {
 	data: {
 		href: string;
 		title: string;
-		icon: IconTypes;
 		description?: string;
 	}[];
 };
@@ -185,14 +183,14 @@ export function WindowLinks(props: { content: WindowLinksContent }): JSX.Element
 			<For each={props.content.data}>
 				{(content) => {
 					return (
-						<li class="inline-flex flex-col">
-							<div class="inline-flex h-full w-full items-center justify-between">
-								<h3 class="font-mono text-[11px] font-semibold">[{content.title}]</h3>
+						<li
+							class={cn(
+								"inline-flex flex-col gap-1 pb-2",
 
-								{content.icon({
-									class: cn("text-foreground h-6 w-6 stroke-[1.25px]"),
-								})}
-							</div>
+								"not-last:border-b",
+							)}
+						>
+							<h3 class="font-mono text-[11px] font-semibold">[{content.title}]</h3>
 
 							<a
 								class={cn(
