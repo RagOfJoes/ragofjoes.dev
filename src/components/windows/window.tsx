@@ -65,60 +65,11 @@ export type WindowProps = JSX.HTMLAttributes<HTMLDivElement> & {
 };
 
 export function WindowCarousel(props: { content: WindowCarouselContent }): JSX.Element {
-	let ref: HTMLDivElement | undefined;
-
-	// Prevent users from focusing on items that are not in viewport to prevent weird overflow
-	const onFocusIn = (e: FocusEvent) => {
-		const target = e.target as HTMLElement;
-		const container = ref;
-
-		if (!container) {
-			return;
-		}
-
-		// Find which copy of the list this element is in
-		const ul = target.closest("ul");
-		// Find the item index within the list
-		const li = target.closest("li");
-		if (!ul || !li) {
-			return;
-		}
-
-		const list = Array.from(container.querySelectorAll("ul"));
-		const listIndex = list.indexOf(ul);
-
-		const listItem = Array.from(ul.querySelectorAll("li"));
-		const listItemIndex = listItem.indexOf(li);
-
-		if (list.length < 2 || listIndex === -1) {
-			return;
-		}
-
-		// Always focus the middle copy (index 1) to avoid edge issues
-		const centerList = list[1];
-		if (!centerList) {
-			return;
-		}
-
-		const centerListItem = centerList.querySelectorAll("li");
-
-		const centerListItemLink = centerListItem[listItemIndex]?.querySelector("a");
-		if (centerListItemLink) {
-			e.preventDefault();
-
-			centerListItemLink.focus();
-		}
-	};
-
 	return (
-		<div
-			class="no-scrollbar group/carousel inline-grid h-full w-full flex-1 overflow-x-scroll mask-[linear-gradient(to_right,transparent_0,#5b89ff_10%,#5b89ff_calc(100%-200px),transparent_100%)]"
-			onFocusIn={onFocusIn}
-			ref={ref}
-		>
+		<div class="no-scrollbar group/carousel inline-grid h-full w-full flex-1 overflow-x-visible mask-[linear-gradient(to_right,transparent_0,#5b89ff_10%,#5b89ff_calc(100%-200px),transparent_100%)]">
 			<div class="inline-flex h-full w-full">
 				<For each={Array.from({ length: 8 })}>
-					{() => {
+					{(_, i) => {
 						return (
 							<ul
 								class={cn(
@@ -147,6 +98,7 @@ export function WindowCarousel(props: { content: WindowCarouselContent }): JSX.E
 														"hover:opacity-100",
 													)}
 													href={slide.href}
+													tabIndex={i() !== 2 ? "-1" : 0}
 												>
 													<Image
 														alt={slide.title}
