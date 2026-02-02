@@ -6,7 +6,9 @@ import { VsClose, VsRefresh } from "solid-icons/vs";
 
 import { Image } from "@/components/image";
 import { cn } from "@/lib/cn";
+import { Parser } from "@/lib/parser";
 
+import { TokenRenderer } from "../token-renderer";
 import { useWindowsContext } from "./windows-context";
 
 type WindowCarouselContent = {
@@ -267,45 +269,19 @@ export function WindowList(props: { content: WindowListContent }): JSX.Element {
 }
 
 export function WindowText(props: { content: WindowTextContent }): JSX.Element {
-	const parse = (text: string): JSX.Element => {
-		const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-		const parts: (string | JSX.Element)[] = [];
-		let lastIndex = 0;
-		let match;
-
-		while ((match = linkRegex.exec(text)) !== null) {
-			// Add text before the link
-			if (match.index > lastIndex) {
-				parts.push(text.slice(lastIndex, match.index));
-			}
-			// Add the link
-			parts.push(
-				<a
-					class={cn(
-						"underline",
-
-						"focus-visible:bg-foreground focus-visible:text-background focus-visible:no-underline focus-visible:outline-hidden",
-						"hover:bg-foreground hover:text-background hover:no-underline hover:outline-hidden",
-					)}
-					href={match[2]}
-					rel="noopener noreferrer"
-					target="_blank"
-				>
-					{match[1]}
-				</a>,
-			);
-			lastIndex = match.index + match[0].length;
-		}
-
-		// Add remaining text
-		if (lastIndex < text.length) {
-			parts.push(text.slice(lastIndex));
-		}
-
-		return <>{parts}</>;
+	const tokens = () => {
+		return new Parser(props.content.data).parse();
 	};
 
-	return <span class="font-sans text-xs font-medium">{parse(props.content.data)}</span>;
+	return (
+		<span class="font-sans text-xs font-medium">
+			<For each={tokens()}>
+				{(token) => {
+					return <TokenRenderer token={token} />;
+				}}
+			</For>
+		</span>
+	);
 }
 
 export function Window(props: WindowProps): JSX.Element {

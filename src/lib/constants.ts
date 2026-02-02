@@ -93,15 +93,15 @@ export const WINDOWS: (WindowProps & {
 		content: [
 			{
 				type: "text",
-				data: "Victor is a polyglot software engineer with over 6 years of professional programming experience.",
+				data: "Victor is a senior software engineer with over 6 years of experience building and owning complex systems, from secure distributed backends to modern AI assisted user interfaces. He cares deeply about clarity, scalability, and design, not just how software works, but how it feels to use.",
 			},
 			{
 				type: "text",
-				data: "Originally from the Philippines and based in the Bay Area, his love for design drives every line of code he writes.",
+				data: "Originally from the Philippines and now based in the Bay Area, he approaches engineering with a strong product mindset, blending technical rigor with thoughtful UX.",
 			},
 			{
 				type: "text",
-				data: "Currently building the future with the folks at [SenseMesh](https://sensemesh.ai) and spoiling his cat, Jiji.",
+				data: "Currently building the future with the folks at [**SenseMesh**](https://sensemesh.ai) and spoiling his cat, Jiji.",
 			},
 		],
 
@@ -126,7 +126,14 @@ export const WINDOWS: (WindowProps & {
 						title: "SenseMesh",
 						subtitle: "Lead Frontend Engineer",
 						heading: `${dayjs("02/18/2025", "MM/DD/YYYY").format("MM/DD/YYYY")} - Present`,
-						body: ["In Progress..."],
+						body: [
+							"Architected a secure multi-tenant distributed system, enforcing strict data isolation, authentication boundaries, and horizontal scalability across customers.",
+							"Built a full identity and access management layer, including RBAC, permission modeling, and service-to-service authentication across internal services.",
+							"Replaced REST APIs with high-performance gRPC services, using Envoy to expose services to the web and enforcing end-to-end type safety across frontend and backend systems.",
+							"Created an LLM-driven chat interface as the primary user experience, enabling secure querying and consumption of security data, feeds, and alerts in place of traditional dashboards.",
+							"Partnered with design and product leadership to define the future of the platform, reshaping core UI/UX to support AI-assisted security workflows.",
+							"Developed a real-time AI video processing and HLS playback pipeline supporting multiple device types (cameras and drones), demonstrating live monitoring and analysis capabilities for security use cases.",
+						],
 					},
 					{
 						title: "Offset Partners",
@@ -157,8 +164,8 @@ export const WINDOWS: (WindowProps & {
 
 		style: {
 			left: "8px",
-			// Window Trigger + About Window + Spacing between those two (8px each)
-			top: "248.75px",
+			// Window Trigger (56px) + About Window (252.75px) + Spacing between those two (8px each x 2 = 16px)
+			top: "324.75px",
 
 			"max-width": "320px",
 			width: "100%",
