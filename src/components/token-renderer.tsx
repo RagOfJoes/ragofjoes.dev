@@ -69,7 +69,13 @@ export function TokenRenderer(props: TokenRendererProps) {
 																"focus-within:ring-foreground focus-within:ring-1",
 															)}
 														>
-															<Image alt={image.alt} palette={image.palette} src={image.src} />
+															<Image
+																alt={image.alt}
+																decoding="async"
+																loading="lazy"
+																palette={image.palette}
+																src={image.src}
+															/>
 
 															<p class="px-1 py-2 font-mono text-xs leading-none font-medium">
 																{image.alt}
