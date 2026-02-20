@@ -1,4 +1,11 @@
-export type Token = TokenLink | TokenStrong | TokenText;
+export type Token = TokenGallery | TokenLink | TokenStrong | TokenText;
+
+export type TokenGallery = {
+	type: "gallery";
+
+	key: string;
+	children: Token[];
+};
 
 export type TokenLink = {
 	type: "link";
@@ -98,7 +105,7 @@ export class Parser {
 	// Individual token parsers
 	//
 
-	#parseLink(): TokenLink | null {
+	#parseLink(): TokenGallery | TokenLink | null {
 		const start = this.#position;
 		// Skip starting `[`
 		this.#position += 1;
@@ -140,6 +147,16 @@ export class Parser {
 
 		// Skip text inside parenthesis and closing `)`
 		this.#position = closingParenthesis + 1;
+
+		if (href.startsWith("gallery:")) {
+			return {
+				type: "gallery",
+
+				// Strip gallery:
+				key: href.slice(8),
+				children,
+			};
+		}
 
 		return {
 			type: "link",
