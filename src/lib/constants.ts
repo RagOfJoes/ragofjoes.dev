@@ -164,8 +164,8 @@ export const WINDOWS: (WindowProps & {
 
 		style: {
 			left: "8px",
-			// Window Trigger (56px) + About Window (252.75px) + Spacing between those two (8px each x 2 = 16px)
-			top: "324.75px",
+			// Window Trigger (56px) + About Window (253.25px) + Spacing between those two (8px each x 2 = 16px)
+			top: "325.25px",
 
 			"max-width": "320px",
 			width: "100%",
