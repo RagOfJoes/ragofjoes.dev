@@ -53,10 +53,10 @@ export function TokenRenderer(props: TokenRendererProps) {
 									>
 										<ul
 											class={cn(
-												"w-full gap-x-1 [column-count:4]",
+												"w-full columns-4 gap-x-1",
 
-												"max-sm:[column-count:2]",
-												"max-md:[column-count:3]",
+												"max-sm:columns-2",
+												"max-md:columns-3",
 											)}
 										>
 											<For each={gallery().images}>
@@ -64,7 +64,7 @@ export function TokenRenderer(props: TokenRendererProps) {
 													return (
 														<li
 															class={cn(
-																"bg-striped group/gallery-image mb-1 inline-flex break-inside-avoid flex-col overflow-hidden rounded-sm border outline-none",
+																"bg-striped group/gallery-image mb-1 inline-flex w-full break-inside-avoid flex-col overflow-hidden rounded-sm border outline-none",
 
 																"focus-within:ring-foreground focus-within:ring-1",
 															)}

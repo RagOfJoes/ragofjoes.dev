@@ -31,7 +31,7 @@ export function Image(props: ImageProps) {
 			<DialogTrigger
 				aria-label="Zoom in image"
 				class={cn(
-					"group/image relative cursor-zoom-in outline-none",
+					"group/image relative block w-full cursor-zoom-in outline-none",
 
 					split.class,
 				)}
@@ -47,7 +47,7 @@ export function Image(props: ImageProps) {
 				<img
 					{...local}
 					class={cn(
-						"h-full w-auto object-cover opacity-0 transition-opacity duration-500 outline-none",
+						"block h-full w-auto opacity-0 transition-opacity duration-500 outline-none",
 
 						"group-data-[is-loading=false]/image:opacity-100",
 					)}
