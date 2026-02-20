@@ -266,7 +266,13 @@ export const GALLERIES: Record<
 	string,
 	{
 		title: string;
-		images: { src: string; alt: string; palette: [string, string, string, string, string] }[];
+		images: {
+			src: string;
+			alt: string;
+			height: number;
+			palette: [string, string, string, string, string];
+			width: number;
+		}[];
 	}
 > = {
 	jiji: {
@@ -277,11 +283,17 @@ export const GALLERIES: Record<
 				src: "/jiji/jiji-1.jpg",
 				alt: "Baby Jiji",
 
+				height: 1008,
+				width: 1344,
+
 				palette: ["#B9B09F", "#050503", "#2A2828", "#79502C", "#CBDADC"],
 			},
 			{
 				src: "/jiji/jiji-2.jpg",
 				alt: "Sitting Jiji",
+
+				height: 1344,
+				width: 1008,
 
 				palette: ["#AEABA4", "#7F725F", "#534D41", "#2F2C25", "#221F17"],
 			},
@@ -289,11 +301,17 @@ export const GALLERIES: Record<
 				src: "/jiji/jiji-3.jpg",
 				alt: "Side eye Jiji",
 
+				height: 2016,
+				width: 1512,
+
 				palette: ["#C0B0A7", "#6A392B", "#040402", "#2D2A25", "#C3BAB1"],
 			},
 			{
 				src: "/jiji/jiji-4.jpg",
 				alt: "Queen Jiji",
+
+				height: 1344,
+				width: 1008,
 
 				palette: ["#969286", "#42423D", "#181A1A", "#1B1D1D", "#0E1111"],
 			},
@@ -301,11 +319,17 @@ export const GALLERIES: Record<
 				src: "/jiji/jiji-5.jpg",
 				alt: "Unaware Jiji",
 
+				height: 1344,
+				width: 1008,
+
 				palette: ["#6E5C49", "#423828", "#8F7A64", "#5E4F3F", "#4C3B26"],
 			},
 			{
 				src: "/jiji/jiji-6.jpg",
 				alt: "Why she look like that?",
+
+				height: 1344,
+				width: 1008,
 
 				palette: ["#E0C1A7", "#140D09", "#5F4533", "#443225", "#493A30"],
 			},
@@ -313,11 +337,17 @@ export const GALLERIES: Record<
 				src: "/jiji/jiji-7.jpg",
 				alt: "Window Jiji",
 
+				height: 2016,
+				width: 1512,
+
 				palette: ["#425753", "#54655B", "#667366", "#25302B", "#3F4F48"],
 			},
 			{
 				src: "/jiji/jiji-8.jpg",
 				alt: "Bookworm Jiji",
+
+				height: 1344,
+				width: 1008,
 
 				palette: ["#6F6356", "#2D221A", "#AFA899", "#2E2C25", "#311A0C"],
 			},
@@ -325,11 +355,17 @@ export const GALLERIES: Record<
 				src: "/jiji/jiji-9.jpg",
 				alt: "Hunter Jiji",
 
+				height: 1344,
+				width: 756,
+
 				palette: ["#3C4138", "#4D544B", "#414726", "#CFDDCB", "#79806A"],
 			},
 			{
 				src: "/jiji/jiji-10.jpg",
 				alt: "Hotdog Jiji",
+
+				height: 1344,
+				width: 756,
 
 				palette: ["#241824", "#A48AA1", "#E7CEEB", "#846E87", "#856A73"],
 			},
@@ -337,11 +373,17 @@ export const GALLERIES: Record<
 				src: "/jiji/jiji-12.jpg",
 				alt: "Bed Monster Jiji",
 
+				height: 1512,
+				width: 1512,
+
 				palette: ["#453E33", "#321E08", "#503310", "#0B0502", "#282721"],
 			},
 			{
 				src: "/jiji/jiji-13.jpg",
 				alt: "Puppy Eyes Jiji",
+
+				height: 1344,
+				width: 756,
 
 				palette: ["#9B8F7E", "#B09C85", "#4C3D2D", "#372C1E", "#383129"],
 			},
@@ -349,17 +391,26 @@ export const GALLERIES: Record<
 				src: "/jiji/jiji-14.jpg",
 				alt: "Eepy Jiji",
 
+				height: 1512,
+				width: 1512,
+
 				palette: ["#222217", "#545F37", "#100C07", "#070805", "#1A1B13"],
 			},
 			{
 				src: "/jiji/jiji-15.jpg",
 				alt: "Suitcase Jiji",
 
+				height: 1008,
+				width: 1008,
+
 				palette: ["#605649", "#806E5D", "#0C0D09", "#6C6258", "#010302"],
 			},
 			{
 				src: "/jiji/jiji-16.jpg",
 				alt: "Angry Jiji",
+
+				height: 1512,
+				width: 1512,
 
 				palette: ["#9A745E", "#BF8D70", "#140F09", "#AC6B42", "#261F16"],
 			},

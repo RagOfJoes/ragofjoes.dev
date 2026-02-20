@@ -1,11 +1,7 @@
 import { createSignal, onMount, splitProps } from "solid-js";
 import type { JSX } from "solid-js";
 
-import { DialogCloseTrigger } from "@ark-ui/solid";
-
 import { cn } from "@/lib/cn";
-
-import { DialogContent, DialogHeader, DialogRoot, DialogTrigger } from "./dialog";
 
 export type ImageProps = JSX.ImgHTMLAttributes<HTMLImageElement> & {
 	palette: [one: string, two: string, three: string, four: string, five: string];
@@ -27,67 +23,54 @@ export function Image(props: ImageProps) {
 	});
 
 	return (
-		<DialogRoot>
-			<DialogTrigger
-				aria-label="Zoom in image"
+		<div
+			class={cn(
+				"group/image relative block w-full outline-none",
+
+				split.class,
+			)}
+			data-is-loading={!isReady()}
+			style={{
+				"--palette-one": split.palette[0],
+				"--palette-two": split.palette[1],
+				"--palette-three": split.palette[2],
+				"--palette-four": split.palette[3],
+				"--palette-five": split.palette[4],
+			}}
+		>
+			<img
+				{...local}
 				class={cn(
-					"group/image relative block w-full cursor-zoom-in outline-none",
+					"block h-full w-auto opacity-0 transition-opacity duration-500 outline-none",
 
-					split.class,
+					"group-data-[is-loading=false]/image:opacity-100",
 				)}
-				data-is-loading={!isReady()}
-				style={{
-					"--palette-one": split.palette[0],
-					"--palette-two": split.palette[1],
-					"--palette-three": split.palette[2],
-					"--palette-four": split.palette[3],
-					"--palette-five": split.palette[4],
+				onLoad={() => {
+					if (isReady()) {
+						return;
+					}
+
+					toggleIsReady(true);
 				}}
-			>
-				<img
-					{...local}
-					class={cn(
-						"block h-full w-auto opacity-0 transition-opacity duration-500 outline-none",
+				ref={ref}
+			/>
 
-						"group-data-[is-loading=false]/image:opacity-100",
-					)}
-					onLoad={() => {
-						if (isReady()) {
-							return;
-						}
+			<div
+				class={cn(
+					"pointer-events-none absolute inset-0 backdrop-blur-lg transition-opacity duration-500",
 
-						toggleIsReady(true);
-					}}
-					ref={ref}
-				/>
-
-				<div
-					class={cn(
-						"pointer-events-none absolute inset-0 backdrop-blur-lg transition-opacity duration-500",
-
-						"group-data-[is-loading=false]/image:opacity-0",
-					)}
-					style={{
-						"background-color": "var(--palette-five)",
-						"background-image": [
-							"radial-gradient(ellipse at 20% 20%, var(--palette-one) 0%, transparent 60%)",
-							"radial-gradient(ellipse at 80% 15%, var(--palette-two) 0%, transparent 55%)",
-							"radial-gradient(ellipse at 75% 80%, var(--palette-three) 0%, transparent 60%)",
-							"radial-gradient(ellipse at 15% 85%, var(--palette-four) 0%, transparent 55%)",
-						].join(", "),
-					}}
-				/>
-			</DialogTrigger>
-
-			<DialogContent class="group/dialog-image max-h-[90dvh] overflow-hidden pb-2">
-				<DialogHeader>{local.alt}</DialogHeader>
-
-				<div class="bg-background h-full w-full overflow-hidden rounded-lg border">
-					<DialogCloseTrigger class="block h-full min-h-0 cursor-zoom-out">
-						<img alt={local.alt} class="max-h-[80dvh] max-w-full" src={local.src} />
-					</DialogCloseTrigger>
-				</div>
-			</DialogContent>
-		</DialogRoot>
+					"group-data-[is-loading=false]/image:opacity-0",
+				)}
+				style={{
+					"background-color": "var(--palette-five)",
+					"background-image": [
+						"radial-gradient(ellipse at 20% 20%, var(--palette-one) 0%, transparent 60%)",
+						"radial-gradient(ellipse at 80% 15%, var(--palette-two) 0%, transparent 55%)",
+						"radial-gradient(ellipse at 75% 80%, var(--palette-three) 0%, transparent 60%)",
+						"radial-gradient(ellipse at 15% 85%, var(--palette-four) 0%, transparent 55%)",
+					].join(", "),
+				}}
+			/>
+		</div>
 	);
 }

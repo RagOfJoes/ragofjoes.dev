@@ -1,7 +1,7 @@
 import type { JSX } from "solid-js";
 import { For, createSignal, onCleanup, onMount, splitProps } from "solid-js";
 
-import { Image } from "@/components/image";
+import { ImageDialog } from "@/components/image-dialog";
 import { cn } from "@/lib/cn";
 
 const NUM_OF_COPIES = 4;
@@ -127,7 +127,7 @@ export function ProjectInfiniteScroll(props: ProjectInfiniteScrollProps) {
 
 									return (
 										<div class="bg-foreground/10 col-span-1 flex aspect-square items-center justify-center p-4">
-											<Image
+											<ImageDialog
 												alt={image.alt}
 												class="select-none"
 												decoding="async"

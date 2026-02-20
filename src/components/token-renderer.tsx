@@ -1,11 +1,10 @@
 import { For, Match, Switch } from "solid-js";
 
+import { DialogContent, DialogHeader, DialogRoot, DialogTrigger } from "@/components/dialog";
+import { ImageDialog } from "@/components/image-dialog";
 import { cn } from "@/lib/cn";
 import { GALLERIES } from "@/lib/constants";
 import type { Token } from "@/lib/parser";
-
-import { DialogContent, DialogHeader, DialogRoot, DialogTrigger } from "./dialog";
-import { Image } from "./image";
 
 export type TokenRendererProps = {
 	token: Token;
@@ -69,12 +68,15 @@ export function TokenRenderer(props: TokenRendererProps) {
 																"focus-within:ring-foreground focus-within:ring-1",
 															)}
 														>
-															<Image
+															<ImageDialog
 																alt={image.alt}
 																decoding="async"
+																fetchpriority="low"
+																height={image.height}
 																loading="lazy"
 																palette={image.palette}
 																src={image.src}
+																width={image.width}
 															/>
 
 															<p class="px-1 py-2 font-mono text-xs leading-none font-medium">
