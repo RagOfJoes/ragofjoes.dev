@@ -396,7 +396,7 @@ export function Window(props: WindowProps): JSX.Element {
 					<span class="sr-only">Drag to move</span>
 
 					<div class="inline-flex h-full items-center gap-1">
-						<IoMoveSharp class="text-foreground h-3 w-3" />
+						<IoMoveSharp class="text-foreground size-3.5" />
 
 						<h2 class="font-mono text-xs leading-none font-semibold">{props.name}</h2>
 					</div>
@@ -422,7 +422,7 @@ export function Window(props: WindowProps): JSX.Element {
 								return (
 									<button
 										class={cn(
-											"bg-background text-foreground/70 inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors",
+											"bg-background text-foreground border-foreground/50 inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors",
 
 											"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden",
 											"hover:bg-foreground hover:text-background hover:outline-hidden",

@@ -83,6 +83,44 @@
 		scrollbar-width: none; /* Firefox */
 	}
 
+	.bg-grid {
+		background-color: var(--color-background);
+		background-image:
+			repeating-linear-gradient(
+				to bottom,
+				transparent,
+				transparent calc(90px - 1px),
+				var(--color-border) calc(90px - 1px),
+				var(--color-border) 90px
+			),
+			repeating-linear-gradient(
+				to right,
+				transparent,
+				transparent calc(90px - 1px),
+				var(--color-border) calc(90px - 1px),
+				var(--color-border) 90px
+			),
+			repeating-linear-gradient(
+				to bottom,
+				transparent,
+				transparent calc(18px - 1px),
+				color-mix(in oklch, var(--color-border) 40%, transparent) calc(18px - 1px),
+				color-mix(in oklch, var(--color-border) 40%, transparent) 18px
+			),
+			repeating-linear-gradient(
+				to right,
+				transparent,
+				transparent calc(18px - 1px),
+				color-mix(in oklch, var(--color-border) 40%, transparent) calc(18px - 1px),
+				color-mix(in oklch, var(--color-border) 40%, transparent) 18px
+			);
+		background-size:
+			90px 90px,
+			90px 90px,
+			18px 18px,
+			18px 18px;
+	}
+
 	.bg-striped {
 		background-attachment: fixed;
 		background-color: var(--color-background);
