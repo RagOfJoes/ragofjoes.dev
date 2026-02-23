@@ -2,13 +2,13 @@ import { For, Match, Show, Switch, createEffect, createSignal, onCleanup, onMoun
 import type { JSX } from "solid-js";
 
 import { IoMoveSharp } from "solid-icons/io";
-import { VsClose, VsRefresh } from "solid-icons/vs";
+import { VsClose, VsRefresh, VsScreenFull, VsScreenNormal } from "solid-icons/vs";
 
 import { Image } from "@/components/image";
+import { TokenRenderer } from "@/components/token-renderer";
 import { cn } from "@/lib/cn";
 import { Parser } from "@/lib/parser";
 
-import { TokenRenderer } from "../token-renderer";
 import { useWindowsContext } from "./windows-context";
 
 type WindowCarouselContent = {
@@ -132,6 +132,7 @@ export function WindowLinks(props: { content: WindowLinksContent }): JSX.Element
 				"ring-offset-background no-scrollbar inline-flex h-full max-h-66 flex-col gap-1 overflow-y-auto",
 
 				"focus-visible:ring-foreground focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden",
+				"group-data-[is-fullscreen=true]/window:max-h-full",
 			)}
 		>
 			<For each={props.content.data}>
@@ -174,6 +175,7 @@ export function WindowList(props: { content: WindowListContent }): JSX.Element {
 				"ring-offset-background no-scrollbar inline-flex h-full max-h-66 flex-col gap-2 overflow-y-auto",
 
 				"focus-visible:ring-foreground focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden",
+				"group-data-[is-fullscreen=true]/window:max-h-full",
 			)}
 		>
 			<For each={props.content.data}>
@@ -240,9 +242,11 @@ export function Window(props: WindowProps): JSX.Element {
 	const [state, actions] = useWindowsContext();
 
 	const [isDragging, toggleIsDragging] = createSignal(false);
+	const [isFullscreen, toggleIsFullscreen] = createSignal(false);
 	const [isResetting, toggleIsResetting] = createSignal(false);
 	const [isVisible, toggleIsVisible] = createSignal(false);
 	const [offset, setOffset] = createSignal({ x: 0, y: 0 });
+	const [previousPosition, setPreviousPosition] = createSignal({ x: 0, y: 0 });
 
 	const windowState = () => {
 		return state.windows().find((w) => {
@@ -275,8 +279,34 @@ export function Window(props: WindowProps): JSX.Element {
 	const onClick = () => {
 		actions.bringToFront(props.name);
 	};
+	const onClose = () => {
+		actions.toggleIsWindowOpen(props.name);
+
+		toggleIsFullscreen(false);
+		actions.updateWindowPosition(props.name, previousPosition());
+	};
 	const onEnd = () => {
 		toggleIsDragging(false);
+	};
+	const onFullscreen = () => {
+		actions.bringToFront(props.name);
+
+		if (isFullscreen()) {
+			toggleIsFullscreen(false);
+
+			actions.updateWindowPosition(props.name, previousPosition());
+			return;
+		}
+
+		setPreviousPosition(windowState().position);
+		toggleIsFullscreen(true);
+
+		const initialLeft = parseFloat(props.style?.left?.toString() ?? "0");
+		const initialTop = parseFloat(props.style?.top?.toString() ?? "0");
+		actions.updateWindowPosition(props.name, {
+			x: -initialLeft,
+			y: -initialTop,
+		});
 	};
 	const onMove = (e: MouseEvent | TouchEvent) => {
 		if (!isDragging()) {
@@ -291,7 +321,7 @@ export function Window(props: WindowProps): JSX.Element {
 		});
 	};
 	const onReset = () => {
-		if (isDragging()) {
+		if (isDragging() || isFullscreen()) {
 			return;
 		}
 
@@ -362,13 +392,15 @@ export function Window(props: WindowProps): JSX.Element {
 		<Show when={isVisible()}>
 			<figure
 				class={cn(
-					"bg-background text-foreground border-foreground/70 bg-striped absolute isolate translate-x-(--position-x) translate-y-(--position-y) border px-2 pb-2 will-change-transform",
+					"bg-background group/window text-foreground border-foreground/70 bg-striped absolute isolate inline-flex flex-col border px-2 pb-2 transition-[height,width,max-height,max-width] will-change-transform",
 
-					"data-[is-open=true]:animate-in data-[is-open=true]:fade-in data-[is-open=true]:zoom-in-90 data-[is-open=false]:transition-[opacity,scale] data-[is-open=true]:transition-[opacity,scale] data-[is-open=true]:ease-in-out",
-					"data-[is-open=false]:animate-out data-[is-open=false]:fade-out data-[is-open=false]:zoom-out-90 data-[is-open=false]:ease-in-out",
+					"data-[is-fullscreen=false]:translate-x-(--position-x) data-[is-fullscreen=false]:translate-y-(--position-y)",
+					"data-[is-open=false]:animate-out data-[is-open=false]:fade-out data-[is-open=false]:zoom-out-90 data-[is-open=false]:transition-[opacity,scale] data-[is-open=false]:ease-in-out",
+					"data-[is-open=true]:animate-in data-[is-open=true]:fade-in data-[is-open=true]:zoom-in-90 data-[is-open=true]:transition-[opacity,scale] data-[is-open=true]:ease-in-out",
 					"data-[is-resetting=true]:transition-transform data-[is-resetting=true]:duration-300 data-[is-resetting=true]:ease-in-out",
 				)}
 				data-is-open={windowState().isOpen}
+				data-is-fullscreen={isFullscreen()}
 				data-is-resetting={isResetting()}
 				onAnimationEnd={onAnimationEnd}
 				onClick={onClick}
@@ -377,6 +409,17 @@ export function Window(props: WindowProps): JSX.Element {
 					"--position-x": `${windowState().position.x}px`,
 					"--position-y": `${windowState().position.y}px`,
 					...(props.style ?? {}),
+					...(isFullscreen()
+						? {
+								left: "0px",
+								top: "0px",
+
+								"max-height": "100%",
+								"max-width": "100%",
+								height: "100%",
+								width: "100%",
+							}
+						: {}),
 
 					"z-index": windowState().zIndex,
 				}}
@@ -410,23 +453,29 @@ export function Window(props: WindowProps): JSX.Element {
 									onClick: onReset,
 								},
 								{
+									icon: isFullscreen() ? VsScreenNormal : VsScreenFull,
+									label: isFullscreen() ? "Minimize window" : "Maximize window",
+									onClick: onFullscreen,
+								},
+								{
 									icon: VsClose,
 									label: "Close",
-									onClick: () => {
-										actions.toggleIsWindowOpen(props.name);
-									},
+									onClick: onClose,
 								},
 							]}
 						>
 							{(item) => {
 								return (
 									<button
+										aria-label={item.label}
 										class={cn(
 											"bg-background text-foreground border-foreground/50 inline-flex h-4 w-4 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors",
 
+											"disabled:bg-muted-foreground/40 disabled:border-muted-foreground disabled:text-muted-foreground disabled:cursor-not-allowed",
 											"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden",
 											"hover:bg-foreground hover:text-background hover:outline-hidden",
 										)}
+										disabled={isFullscreen() && item.label === "Reset position"}
 										onClick={item.onClick}
 									>
 										<span class="sr-only">{item.label}</span>
