@@ -282,8 +282,10 @@ export function Window(props: WindowProps): JSX.Element {
 	const onClose = () => {
 		actions.toggleIsWindowOpen(props.name);
 
-		toggleIsFullscreen(false);
-		actions.updateWindowPosition(props.name, previousPosition());
+		if (isFullscreen()) {
+			toggleIsFullscreen(false);
+			actions.updateWindowPosition(props.name, previousPosition());
+		}
 	};
 	const onEnd = () => {
 		toggleIsDragging(false);
