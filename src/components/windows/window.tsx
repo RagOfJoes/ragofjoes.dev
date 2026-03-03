@@ -66,14 +66,14 @@ export type WindowProps = JSX.HTMLAttributes<HTMLDivElement> & {
 
 export function WindowCarousel(props: { content: WindowCarouselContent }): JSX.Element {
 	return (
-		<div class="no-scrollbar group/carousel inline-grid h-full w-full flex-1 overflow-x-visible mask-[linear-gradient(to_right,transparent_0,#5b89ff_10%,#5b89ff_calc(100%-200px),transparent_100%)]">
-			<div class="inline-flex h-full w-full">
+		<div class="no-scrollbar inline-grid h-full w-full flex-1 overflow-x-visible mask-[linear-gradient(to_right,transparent_0,#5b89ff_10%,#5b89ff_calc(100%-200px),transparent_100%)]">
+			<div class="group/carousel inline-flex h-full w-full items-center">
 				<For each={Array.from({ length: 8 })}>
 					{(_, i) => {
 						return (
 							<ul
 								class={cn(
-									"animate-slide-left flex h-full shrink-0 items-center gap-1 will-change-transform",
+									"animate-slide-left flex shrink-0 items-center gap-1 will-change-transform",
 
 									"group-focus-visible/carousel:paused",
 									"group-focus-within/carousel:paused",
