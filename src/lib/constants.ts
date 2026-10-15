@@ -93,15 +93,15 @@ export const WINDOWS: (WindowProps & {
 		content: [
 			{
 				type: "text",
-				data: "Victor is a senior software engineer with over 6 years of experience building and owning complex systems, from secure distributed backends to modern AI assisted user interfaces. He cares deeply about clarity, scalability, and design, not just how software works, but how it feels to use.",
+				data: "Victor is a software engineer with 7 years of experience building thoughtful digital products, from intuitive user interfaces to the systems that power them. He enjoys working across the stack, but has a particular appreciation for frontend engineering, design, and the small details that make software feel good to use.",
 			},
 			{
 				type: "text",
-				data: "Originally from the Philippines and now based in the Bay Area, he approaches engineering with a strong product mindset, blending technical rigor with thoughtful UX.",
+				data: "Originally from the Philippines and now based in the Bay Area, he approaches engineering with a product-minded perspective, valuing simplicity, craftsmanship, and close collaboration with designers and other engineers.",
 			},
 			{
 				type: "text",
-				data: "Currently building the future with the folks at [**SenseMesh**](https://sensemesh.ai) and spoiling his cat, [**Jiji**](gallery:jiji).",
+				data: "Outside of engineering, he enjoys film, music, rock climbing, and finding new creative outlets. He also spends an unreasonable amount of time spoiling his cat, [**Jiji**](gallery:jiji).",
 			},
 		],
 
@@ -126,35 +126,43 @@ export const WINDOWS: (WindowProps & {
 					{
 						title: "SenseMesh",
 						subtitle: "Lead Frontend Engineer",
-						heading: `${dayjs("02/18/2025", "MM/DD/YYYY").format("MM/DD/YYYY")} - Present`,
+						heading: `${dayjs("02/01/2025", "MM/DD/YYYY").format("MMM YYYY")} - ${dayjs("08/01/2026", "MM/DD/YYYY").format("MMM YYYY")}`,
 						body: [
-							"Architected a secure multi-tenant distributed system, enforcing strict data isolation, authentication boundaries, and horizontal scalability across customers.",
-							"Built a full identity and access management layer, including RBAC, permission modeling, and service-to-service authentication across internal services.",
-							"Replaced REST APIs with high-performance gRPC services, using Envoy to expose services to the web and enforcing end-to-end type safety across frontend and backend systems.",
-							"Created an LLM-driven chat interface as the primary user experience, enabling secure querying and consumption of security data, feeds, and alerts in place of traditional dashboards.",
-							"Partnered with design and product leadership to define the future of the platform, reshaping core UI/UX to support AI-assisted security workflows.",
-							"Developed a real-time AI video processing and HLS playback pipeline supporting multiple device types (cameras and drones), demonstrating live monitoring and analysis capabilities for security use cases.",
+							"Architected a React SPA, establishing reusable data-fetching patterns and type-safe API integrations adopted by other engineers.",
+							"Introduced Storybook across the application, enabling designers to independently explore components, refine interactions, and collaborate on UI development.",
+							"Built the primary chat-first interface using LLM tool calling, enabling natural-language detection searches and security workflows with seamless transitions to traditional forms for refinement.",
+							"Developed a video pipeline using NATS, FFmpeg, and LL-HLS, enabling low-latency browser playback and on-demand viewing through Google Cloud Storage.",
+							"Established the initial gRPC architecture using Protocol Buffers and Envoy, providing strongly typed APIs across frontend and backend services.",
+							"Integrated Ory for identity management and implemented RBAC with tenant-scoped data access across public and internal services.",
 						],
 					},
 					{
 						title: "Offset Partners",
-						subtitle: "Software Engineer",
-						heading: `${dayjs("07/07/2019", "MM/DD/YYYY").format("MM/DD/YYYY")} - ${dayjs("10/16/2024", "MM/DD/YYYY").format("MM/DD/YYYY")}`,
+						subtitle: "Senior Software Engineer",
+						heading: `${dayjs("05/01/2021", "MM/DD/YYYY").format("MMM YYYY")} - ${dayjs("10/01/2024", "MM/DD/YYYY").format("MMM YYYY")}`,
 						body: [
-							"Led frontend modernization initiatives including component libraries and build tooling improvements, reducing build times by 200% and development time by 40%. Enhanced performance and accessibility for millions of users.",
-							"Refactored core PHP framework and implemented database optimizations, reducing codebase complexity by 60% and improving API response times by 50%.",
-							"Implemented Docker-based development environment, standardizing codebase and reducing onboarding time by 50%. Ensured consistency across local, staging, and production environments.",
-							"Implemented CI/CD pipelines with GitHub Actions, reducing QA time by 80% and tripling release frequency.",
+							"Rebuilt and redesigned the product dashboard in React, launching a block-based CMS adopted by new and existing winery clients.",
+							"Modernized a legacy PHP/jQuery frontend with Webpack and route-aware asset loading, reducing build times by ~80% and eliminating unnecessary JavaScript delivery.",
+							"Refactored an in-house PHP MVC framework, restructuring application routing and shared utilities while consolidating duplicated code.",
+							"Optimized MySQL queries within a legacy data architecture, improving API response times by ~50%.",
+						],
+					},
+					{
+						title: "Offset Partners",
+						subtitle: "Junior Software Engineer",
+						heading: `${dayjs("07/01/2019", "MM/DD/YYYY").format("MMM YYYY")} - ${dayjs("05/01/2021", "MM/DD/YYYY").format("MMM YYYY")}`,
+						body: [
+							"Replaced FTP-based development workflows with Dockerized local environments and GitHub Actions CI, enabling independent development and automated code-quality checks.",
+							"Collaborated with winery stakeholders and designers to translate business requirements into customer-facing interfaces.",
 						],
 					},
 					{
 						title: "Napa Valley College",
 						subtitle: "Computer Science Tutor",
-						heading: `${dayjs("08/01/2018", "MM/DD/YYYY").format("MM/DD/YYYY")} - ${dayjs("05/21/2019", "MM/DD/YYYY").format("MM/DD/YYYY")}`,
+						heading: `${dayjs("08/01/2018", "MM/DD/YYYY").format("MMM YYYY")} - ${dayjs("05/01/2019", "MM/DD/YYYY").format("MMM YYYY")}`,
 						body: [
-							"Developed innovative methods to explain complex programming concepts, enhancing student comprehension and engagement.",
-							"Guided peers on effective study strategies for exams and projects, improving overall academic performance.",
-							"Partnered with professors to refine teaching approaches and assignments, optimizing the learning experience.",
+							"Tutored students in programming fundamentals, algorithms, and computer science coursework.",
+							"Collaborated with faculty to support students with assignments, projects, and exam preparation.",
 						],
 					},
 				],
@@ -165,8 +173,8 @@ export const WINDOWS: (WindowProps & {
 
 		style: {
 			left: "8px",
-			// Window Trigger (56px) + About Window (253.25px) + Spacing between those two (8px each x 2 = 16px)
-			top: "325.25px",
+			// Window Trigger (56px) + About Window (316px) + Spacing between those two (8px each x 2 = 16px)
+			top: "388px",
 
 			"max-width": "320px",
 			width: "100%",
@@ -281,6 +289,24 @@ export const GALLERIES: Record<
 
 		images: [
 			{
+				src: "/jiji/jiji-17.jpg",
+				alt: "Film critic Jiji",
+
+				height: 3840,
+				width: 2160,
+
+				palette: ["#2A1C1D", "#AB888F", "#2C2032", "#7A6589", "#834D42"],
+			},
+			{
+				src: "/jiji/jiji-18.jpg",
+				alt: "Flatbread Jiji",
+
+				height: 2160,
+				width: 2160,
+
+				palette: ["#4A545A", "#20120C", "#3D3A31", "#5B472F", "#2D2E2E"],
+			},
+			{
 				src: "/jiji/jiji-1.jpg",
 				alt: "Baby Jiji",
 
@@ -299,26 +325,8 @@ export const GALLERIES: Record<
 				palette: ["#AEABA4", "#7F725F", "#534D41", "#2F2C25", "#221F17"],
 			},
 			{
-				src: "/jiji/jiji-3.jpg",
-				alt: "Side eye Jiji",
-
-				height: 2016,
-				width: 1512,
-
-				palette: ["#C0B0A7", "#6A392B", "#040402", "#2D2A25", "#C3BAB1"],
-			},
-			{
-				src: "/jiji/jiji-4.jpg",
-				alt: "Queen Jiji",
-
-				height: 1344,
-				width: 1008,
-
-				palette: ["#969286", "#42423D", "#181A1A", "#1B1D1D", "#0E1111"],
-			},
-			{
 				src: "/jiji/jiji-5.jpg",
-				alt: "Unaware Jiji",
+				alt: "Oblivious Jiji",
 
 				height: 1344,
 				width: 1008,
@@ -396,15 +404,6 @@ export const GALLERIES: Record<
 				width: 1512,
 
 				palette: ["#222217", "#545F37", "#100C07", "#070805", "#1A1B13"],
-			},
-			{
-				src: "/jiji/jiji-15.jpg",
-				alt: "Suitcase Jiji",
-
-				height: 1008,
-				width: 1008,
-
-				palette: ["#605649", "#806E5D", "#0C0D09", "#6C6258", "#010302"],
 			},
 			{
 				src: "/jiji/jiji-16.jpg",
