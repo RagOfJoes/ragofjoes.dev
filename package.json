@@ -3,6 +3,7 @@
 	"private": true,
 	"type": "module",
 	"version": "0.0.1",
+	"packageManager": "pnpm@11.0.8",
 	"dependencies": {
 		"@ark-ui/solid": "^5.32.0",
 		"@astrojs/sitemap": "^3.7.0",
