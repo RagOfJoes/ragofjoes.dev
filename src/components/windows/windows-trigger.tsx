@@ -1,4 +1,4 @@
-import { type ComponentProps, useState } from "react";
+import type { ComponentProps } from "react";
 
 import { motion } from "motion/react";
 
@@ -13,17 +13,9 @@ export type WindowsTriggerProps = Omit<ComponentProps<"button">, "value"> & {
 	value: string;
 };
 
-export function WindowsTrigger({
-	children,
-	className,
-	onPointerEnter,
-	onPointerLeave,
-	value,
-	...props
-}: WindowsTriggerProps) {
+export function WindowsTrigger({ children, className, value, ...props }: WindowsTriggerProps) {
 	const [{ getRevealDelay, getWindow }, { getTriggerProps }] = useWindowsContext();
 	const [{ isPlaying }] = useIntroContext();
-	const [isHovered, setIsHovered] = useState(false);
 
 	const { isOpen } = getWindow(value);
 	// Hidden while the intro plays, then appears at the same time as its window
@@ -48,16 +40,8 @@ export function WindowsTrigger({
 
 					className,
 				)}
-				onPointerEnter={(e) => {
-					setIsHovered(true);
-					onPointerEnter?.(e);
-				}}
-				onPointerLeave={(e) => {
-					setIsHovered(false);
-					onPointerLeave?.(e);
-				}}
 			>
-				<FolderIcon state={isOpen ? "open" : isHovered ? "peek" : "closed"} />
+				<FolderIcon isOpen={isOpen} />
 
 				<span className="font-sans text-sm font-medium select-none">{children ?? value}</span>
 			</button>

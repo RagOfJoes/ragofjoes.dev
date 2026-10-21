@@ -45,7 +45,7 @@ export function ProjectsListPanel({ className, ...props }: ProjectsListPanelProp
 							>
 								{({ isActive }) => (
 									<>
-										<FolderIcon state={isActive ? "open" : "closed"} />
+										<FolderIcon isOpen={isActive} />
 
 										<span className="font-sans text-sm font-medium select-none">
 											{project.name}
