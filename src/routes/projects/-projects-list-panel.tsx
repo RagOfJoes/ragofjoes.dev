@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useParams } from "@tanstack/react-router";
 import { type HTMLMotionProps, motion } from "motion/react";
 
 import { FolderIcon } from "@/components/folder-icon";
@@ -11,6 +11,8 @@ export type ProjectsListPanelProps = HTMLMotionProps<"section">;
 
 /** A static window: striped frame, mono title bar, and a bordered body. */
 export function ProjectsListPanel({ className, ...props }: ProjectsListPanelProps) {
+	const { slug } = useParams({ strict: false });
+
 	return (
 		<motion.section
 			{...props}
@@ -30,31 +32,35 @@ export function ProjectsListPanel({ className, ...props }: ProjectsListPanelProp
 
 			<div className="min-h-0 flex-1 overflow-hidden rounded-sm border bg-background p-1">
 				<ul className="no-scrollbar inline-flex h-full w-full flex-col overflow-y-auto">
-					{PROJECTS.map((project) => (
-						<li key={project.slug} className="inline-flex w-full">
-							<Link
-								className={cn(
-									"inline-flex w-full items-center gap-2 border-b py-1",
+					{PROJECTS.map((project) => {
+						const isSelected = project.slug === slug;
 
-									"aria-[current=page]:bg-foreground aria-[current=page]:text-background aria-[current=page]:[--folder-fill:var(--color-foreground)]",
-									"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden focus-visible:[--folder-fill:var(--color-foreground)]",
-									"hover:bg-foreground hover:text-background hover:[--folder-fill:var(--color-foreground)]",
-								)}
-								params={{ slug: project.slug }}
-								to="/projects/$slug"
-							>
-								{({ isActive }) => (
-									<>
-										<FolderIcon isOpen={isActive} />
+						return (
+							<li key={project.slug} className="inline-flex w-full">
+								{/* Picking the selected project again closes it */}
+								<Link
+									{...(isSelected
+										? { to: "/projects" }
+										: { params: { slug: project.slug }, to: "/projects/$slug" })}
+									className={cn(
+										"inline-flex w-full items-center gap-2 border-b py-1",
 
-										<span className="font-sans text-sm font-medium select-none">
-											{project.name}
-										</span>
-									</>
-								)}
-							</Link>
-						</li>
-					))}
+										"aria-[current=page]:bg-foreground aria-[current=page]:text-background aria-[current=page]:[--folder-fill:var(--color-foreground)]",
+										"focus-visible:bg-foreground focus-visible:text-background focus-visible:outline-hidden focus-visible:[--folder-fill:var(--color-foreground)]",
+										"hover:bg-foreground hover:text-background hover:[--folder-fill:var(--color-foreground)]",
+									)}
+									aria-current={isSelected ? "page" : undefined}
+								>
+									<FolderIcon isOpen={isSelected} />
+
+									<span className="font-sans text-sm font-medium select-none">
+										{project.name}
+										{isSelected && <span className="sr-only">, close project</span>}
+									</span>
+								</Link>
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 		</motion.section>
