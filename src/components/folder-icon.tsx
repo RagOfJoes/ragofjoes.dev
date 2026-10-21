@@ -16,6 +16,8 @@ export type FolderIconProps = {
  * measures a layout animation (the windows), which made the open flaps flicker
  * whenever a window was brought to the front.
  */
+// Drawn on a 16-unit grid with 1px strokes on half units, so at its 16px size
+// every line lands on a whole pixel and stays crisp on 1x displays
 export function FolderIcon({ className, isOpen = false }: FolderIconProps) {
 	return (
 		<svg
@@ -26,27 +28,27 @@ export function FolderIcon({ className, isOpen = false }: FolderIconProps) {
 			stroke="currentColor"
 			strokeLinecap="round"
 			strokeLinejoin="round"
-			strokeWidth={1.5}
-			viewBox="0 0 24 24"
+			strokeWidth={1}
+			viewBox="0 0 16 16"
 		>
 			{/* Back */}
-			<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+			<path d="M2.5 13.5h11a1 1 0 0 0 1-1v-7a1 1 0 0 0-1-1H8L6.5 2.5h-4a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1Z" />
 
 			{/* Paper: rises as the flap opens */}
 			<rect
 				className={cn(
-					"translate-y-1 fill-(--folder-fill,var(--color-background)) transition-transform duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+					"translate-y-[3px] fill-(--folder-fill,var(--color-background)) transition-transform duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
 
-					"group-data-[open=false]/folder:in-[a:focus-visible,a:hover,button:focus-visible,button:hover]:translate-y-[2.5px]",
+					"group-data-[open=false]/folder:in-[a:focus-visible,a:hover,button:focus-visible,button:hover]:translate-y-0.5",
 					"group-data-[open=true]/folder:translate-y-0",
 					"group-data-[open=true]/folder:in-[a:focus-visible,a:hover,button:focus-visible,button:hover]:translate-y-px",
 					"motion-reduce:transition-none",
 				)}
-				height={10}
-				rx={1}
-				width={14}
-				x={5}
-				y={5}
+				height={6}
+				rx={0.5}
+				width={9}
+				x={3.5}
+				y={3.5}
 			/>
 
 			{/* Front flap: tilts back from its bottom edge */}
@@ -59,7 +61,7 @@ export function FolderIcon({ className, isOpen = false }: FolderIconProps) {
 					"group-data-[open=true]/folder:in-[a:focus-visible,a:hover,button:focus-visible,button:hover]:transform-[scaleY(0.86)_skewX(-14deg)]",
 					"motion-reduce:transition-none",
 				)}
-				d="M2 9h20v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2Z"
+				d="M1.5 6.5h13v6a1 1 0 0 1-1 1h-11a1 1 0 0 1-1-1Z"
 			/>
 		</svg>
 	);
