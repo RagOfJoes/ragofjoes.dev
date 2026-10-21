@@ -15,7 +15,6 @@ const OG_IMAGE = {
 	height: "630",
 	width: "1200",
 };
-const TITLE = `${SITE.name} • ${SITE.jobTitle}`;
 
 const STRUCTURED_DATA = [
 	{
@@ -86,7 +85,7 @@ export const Route = createRootRoute({
 				{ name: "viewport", content: "width=device-width,initial-scale=1.0,minimum-scale=1.0" },
 				...getSeoMeta({
 					description: SITE.description,
-					title: isNotFound ? `Not Found • ${SITE.name}` : TITLE,
+					title: isNotFound ? `Not Found • ${SITE.name}` : SITE.name,
 				}),
 				{
 					name: "keywords",
