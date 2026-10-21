@@ -1,5 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 
+import { getSeoMeta } from "@/lib/seo";
+
 import { PROJECTS } from "./-projects";
 import { ProjectsDetailPanel } from "./-projects-detail-panel";
 import { ProjectsNotFoundPanel } from "./-projects-not-found-panel";
@@ -14,7 +16,12 @@ export const Route = createFileRoute("/projects/$slug")({
 		return project;
 	},
 	head: ({ loaderData }) => ({
-		meta: loaderData ? [{ title: `${loaderData.name} • Victor Ragojos` }] : [],
+		meta: loaderData
+			? getSeoMeta({
+					description: loaderData.description,
+					title: `${loaderData.name} • Victor Ragojos`,
+				})
+			: [{ title: "Not Found • Victor Ragojos" }],
 	}),
 	component: RouteComponent,
 	notFoundComponent: () => <ProjectsNotFoundPanel />,

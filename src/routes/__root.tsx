@@ -1,14 +1,21 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
-import { createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { createRootRoute, HeadContent, rootRouteId, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 
 import { Header } from "@/components/header";
 import { IconProvider } from "@/components/icon-provider";
 import { IntroProvider } from "@/components/intro";
 import { SITE } from "@/lib/constants";
+import { getSeoMeta } from "@/lib/seo";
 import appCss from "@/styles/base.css?url";
 
-const OG_IMAGE = `${SITE.url}/og.png`;
+const OG_IMAGE = {
+	url: `${SITE.url}/og.png`,
+	alt: "Victor Ragojos in large type on a blue grid, beside a sketch of a lounging cat",
+	height: "630",
+	width: "1200",
+};
+const TITLE = `${SITE.name} • ${SITE.jobTitle}`;
 
 const STRUCTURED_DATA = [
 	{
@@ -17,9 +24,26 @@ const STRUCTURED_DATA = [
 		"@id": `${SITE.url}/#person`,
 		name: SITE.name,
 		url: `${SITE.url}/`,
-		jobTitle: "Lead Frontend Engineer",
+		jobTitle: SITE.jobTitle,
+		email: "mailto:jobs@ragofjoes.dev",
+		address: {
+			"@type": "PostalAddress",
+			addressLocality: "San Francisco",
+			addressRegion: "CA",
+			addressCountry: "US",
+		},
+		knowsAbout: [
+			"Frontend Engineering",
+			"TypeScript",
+			"React",
+			"TanStack",
+			"Go",
+			"gRPC",
+			"PostgreSQL",
+			"Docker",
+		],
 		sameAs: [
-			"https://github.com/ragofjoes",
+			"https://github.com/RagOfJoes",
 			"https://linkedin.com/in/ragofjoes",
 			"https://letterboxd.com/ragofjoes",
 		],
@@ -50,32 +74,41 @@ const STRUCTURED_DATA = [
 export const Route = createRootRoute({
 	head: ({ matches }) => {
 		const canonicalUrl = `${SITE.url}${matches.at(-1)?.pathname ?? "/"}`;
+		// A route's loader threw `notFound()`, or no route matched the URL at all
+		// (only the root matched)
+		const isNotFound =
+			matches.some((match) => match.status === "notFound") ||
+			matches.at(-1)?.routeId === rootRouteId;
 
 		return {
 			meta: [
 				{ charSet: "utf-8" },
 				{ name: "viewport", content: "width=device-width,initial-scale=1.0,minimum-scale=1.0" },
-				{ title: SITE.name },
-				{ name: "description", content: SITE.description },
+				...getSeoMeta({
+					description: SITE.description,
+					title: isNotFound ? `Not Found • ${SITE.name}` : TITLE,
+				}),
 				{
 					name: "keywords",
-					content: "ragofjoes,victor,ragojos,victor ragojos,portfolio,software engineer,developer",
+					content:
+						"victor ragojos,ragofjoes,senior software engineer,frontend engineer,software engineer,react,typescript,tanstack,san francisco,bay area,portfolio",
 				},
-				{ name: "robots", content: "index,follow" },
-				{ name: "theme-color", content: "#121113" },
+				{ name: "robots", content: isNotFound ? "noindex" : "index,follow" },
+				// `--background` (src/styles/base.css) as hex; keep in sync, and with site.webmanifest
+				{ name: "theme-color", content: "#2f52ff" },
 				{ name: "application-name", content: "RagOfJoes" },
 
 				{ property: "og:type", content: "website" },
 				{ property: "og:site_name", content: SITE.name },
-				{ property: "og:title", content: SITE.name },
-				{ property: "og:description", content: SITE.description },
-				{ property: "og:image", content: OG_IMAGE },
+				{ property: "og:image", content: OG_IMAGE.url },
+				{ property: "og:image:alt", content: OG_IMAGE.alt },
+				{ property: "og:image:height", content: OG_IMAGE.height },
+				{ property: "og:image:width", content: OG_IMAGE.width },
 				{ property: "og:url", content: canonicalUrl },
 
 				{ name: "twitter:card", content: "summary_large_image" },
-				{ name: "twitter:title", content: SITE.name },
-				{ name: "twitter:description", content: SITE.description },
-				{ name: "twitter:image", content: OG_IMAGE },
+				{ name: "twitter:image", content: OG_IMAGE.url },
+				{ name: "twitter:image:alt", content: OG_IMAGE.alt },
 				{ property: "twitter:domain", content: "ragofjoes.dev" },
 				{ property: "twitter:url", content: canonicalUrl },
 			],

@@ -2,8 +2,9 @@ import type { Transition, Variants } from "motion/react";
 
 export const SITE = {
 	name: "Victor Ragojos",
+	jobTitle: "Senior Software Engineer",
 	description:
-		"Portfolio of Victor Ragojos, senior software engineer building secure, scalable systems and thoughtful AI assisted user experiences. Based in the Bay Area.",
+		"Portfolio of Victor Ragojos, a senior software engineer in San Francisco focused on frontend engineering, design, and the systems behind thoughtful products.",
 	url: "https://www.ragofjoes.dev",
 } as const;
 

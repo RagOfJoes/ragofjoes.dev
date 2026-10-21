@@ -7,11 +7,16 @@ import { AnimatedGrid } from "@/components/animated-grid";
 import { useIntroContext } from "@/components/intro";
 import { cn } from "@/lib/cn";
 import { PANEL_ANIMATIONS } from "@/lib/constants";
+import { getSeoMeta } from "@/lib/seo";
 import { ProjectsListPanel } from "@/routes/projects/-projects-list-panel";
 
 export const Route = createFileRoute("/projects")({
 	head: () => ({
-		meta: [{ title: "Projects • Victor Ragojos" }],
+		meta: getSeoMeta({
+			description:
+				"Projects by Victor Ragojos, from multiplayer web games to the infrastructure behind them.",
+			title: "Projects • Victor Ragojos",
+		}),
 	}),
 	component: RouteComponent,
 });
