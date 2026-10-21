@@ -1,21 +1,39 @@
-/* The integration's default injected base.css file */
-@import "tailwindcss";
+@import "tailwindcss" source(none);
+/* Tailwind v4 replacement for the `tailwindcss-animate` plugin used on main:
+   `animate-in`, `fade-in`, `zoom-in-90`, etc. */
+@import "tw-animate-css";
 
-@plugin "tailwindcss-animate";
+@source "../**/*.{ts,tsx}";
+
+/* Palette carried over from main. Single scheme, no dark variant. Text on a
+   `primary` fill is `primary-foreground`; de-emphasised text is
+   `muted-foreground`. */
+:root {
+	--background: oklch(0.5372 0.2564 267.12);
+	--border: oklch(0.6563 0.1821 265.62);
+	--foreground: oklch(1 0 0);
+
+	--muted-foreground: oklch(0.8126 0.0933 268.18);
+
+	--primary: oklch(0.7214 0.1337 49.98);
+	--primary-foreground: oklch(0.1797 0.0043 308.19);
+}
+
+/* `inline` makes utilities emit var(--primary) rather than var(--color-primary),
+   so a token can be overridden on any element and its subtree follows. */
+@theme inline {
+	--color-background: var(--background);
+	--color-border: var(--border);
+	--color-foreground: var(--foreground);
+	--color-muted-foreground: var(--muted-foreground);
+	--color-primary: var(--primary);
+	--color-primary-foreground: var(--primary-foreground);
+}
 
 @theme {
 	--font-*: initial;
-	--font-mono: "JetBrainsMono-Variable", sans-serif;
-	--font-sans: "GeneralSans-Variable", sans-serif, system-ui;
-
-	--color-background: oklch(0.5372 0.2564 267.12);
-	--color-border: oklch(0.6563 0.1821 265.62);
-	--color-foreground: oklch(1 0 0);
-
-	--color-muted-foreground: oklch(0.8126 0.0933 268.18);
-
-	--color-primary: oklch(0.7214 0.1337 49.98);
-	--color-primary-foreground: oklch(0.1797 0.0043 308.19);
+	--font-mono: "JetBrainsMono-Variable", ui-monospace, monospace;
+	--font-sans: "GeneralSans-Variable", ui-sans-serif, system-ui, sans-serif;
 
 	--animate-slide-left: slide-left 8s linear infinite;
 
@@ -29,108 +47,79 @@
 	}
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+@font-face {
+	font-family: "GeneralSans-Variable";
+	src:
+		url("/fonts/GeneralSans/GeneralSans-Variable.woff2") format("woff2"),
+		url("/fonts/GeneralSans/GeneralSans-Variable.woff") format("woff"),
+		url("/fonts/GeneralSans/GeneralSans-Variable.ttf") format("truetype");
+	font-weight: 200 700;
+	font-display: swap;
+	font-style: normal;
+}
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+@font-face {
+	font-family: "JetBrainsMono-Variable";
+	src:
+		url("/fonts/JetBrainsMono/JetBrainsMono-Variable.woff2") format("woff2"),
+		url("/fonts/JetBrainsMono/JetBrainsMono-Variable.woff") format("woff"),
+		url("/fonts/JetBrainsMono/JetBrainsMono-Variable.ttf") format("truetype");
+	font-weight: 200 700;
+	font-display: swap;
+	font-style: normal;
+}
+
 @layer base {
 	*,
 	::after,
 	::before,
 	::backdrop,
 	::file-selector-button {
-		border-color: oklch(0.6563 0.1821 265.62);
+		border-color: var(--border);
+	}
+
+	::selection {
+		@apply bg-foreground text-background;
+	}
+
+	html {
+		@apply scroll-smooth antialiased;
+	}
+
+	body {
+		@apply bg-background font-sans text-foreground;
+	}
+
+	button:not(:disabled),
+	[role="button"]:not(:disabled) {
+		cursor: pointer;
 	}
 }
 
-@layer base {
-	@font-face {
-		font-family: "GeneralSans-Variable";
-		src:
-			url("/fonts/GeneralSans/GeneralSans-Variable.woff2") format("woff2"),
-			url("/fonts/GeneralSans/GeneralSans-Variable.woff") format("woff"),
-			url("/fonts/GeneralSans/GeneralSans-Variable.ttf") format("truetype");
-		font-weight: 200 700;
-		font-display: swap;
-		font-style: normal;
-	}
+/* Hide scrollbar */
+@utility no-scrollbar {
+	scrollbar-width: none;
 
-	@font-face {
-		font-family: "JetBrainsMono-Variable";
-		src:
-			url("/fonts/JetBrainsMono/JetBrainsMono-Variable.woff2") format("woff2"),
-			url("/fonts/JetBrainsMono/JetBrainsMono-Variable.woff") format("woff"),
-			url("/fonts/JetBrainsMono/JetBrainsMono-Variable.ttf") format("truetype");
-		font-weight: 200 700;
-		font-display: swap;
-		font-style: normal;
-	}
-}
-
-@layer utilities {
-	/* Hide scrollbar for Chrome, Safari and Opera */
-	.no-scrollbar::-webkit-scrollbar {
+	&::-webkit-scrollbar {
 		display: none;
 	}
+}
 
-	/* Hide scrollbar for IE, Edge and Firefox */
-	.no-scrollbar {
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
-	}
+/* Backdrop for the graph-paper grid; the lines themselves are drawn by
+   AnimatedGrid (src/components/animated-grid.tsx). */
+@utility bg-grid {
+	background-color: var(--color-background);
+}
 
-	.bg-grid {
-		background-color: var(--color-background);
-		background-image:
-			repeating-linear-gradient(
-				to bottom,
-				transparent,
-				transparent calc(90px - 1px),
-				var(--color-border) calc(90px - 1px),
-				var(--color-border) 90px
-			),
-			repeating-linear-gradient(
-				to right,
-				transparent,
-				transparent calc(90px - 1px),
-				var(--color-border) calc(90px - 1px),
-				var(--color-border) 90px
-			),
-			repeating-linear-gradient(
-				to bottom,
-				transparent,
-				transparent calc(18px - 1px),
-				color-mix(in oklch, var(--color-border) 40%, transparent) calc(18px - 1px),
-				color-mix(in oklch, var(--color-border) 40%, transparent) 18px
-			),
-			repeating-linear-gradient(
-				to right,
-				transparent,
-				transparent calc(18px - 1px),
-				color-mix(in oklch, var(--color-border) 40%, transparent) calc(18px - 1px),
-				color-mix(in oklch, var(--color-border) 40%, transparent) 18px
-			);
-		background-size:
-			90px 90px,
-			90px 90px,
-			18px 18px,
-			18px 18px;
-	}
-
-	.bg-striped {
-		background-attachment: fixed;
-		background-color: var(--color-background);
-		background-image: repeating-linear-gradient(
-			315deg,
-			var(--color-border) 0,
-			var(--color-border) 1px,
-			transparent 0,
-			transparent 50%
-		);
-		background-size: 10px 10px;
-	}
+@utility bg-striped {
+	background-attachment: fixed;
+	background-color: var(--color-background);
+	background-image: repeating-linear-gradient(
+		315deg,
+		var(--color-border) 0,
+		var(--color-border) 1px,
+		transparent 0,
+		transparent 50%
+	);
+	background-size: 10px 10px;
 }
