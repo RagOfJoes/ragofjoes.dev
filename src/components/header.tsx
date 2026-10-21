@@ -71,6 +71,13 @@ export function Header() {
 					</li>
 
 					<li className="inline-flex h-full items-center">
+						<Link className={NAV_LINK_CLASS_NAME} to="/projects">
+							<span>Projects</span>
+							<span className="sr-only">Go to projects page</span>
+						</Link>
+					</li>
+
+					<li className="inline-flex h-full items-center">
 						<a className={NAV_LINK_CLASS_NAME} href="/resume.pdf">
 							<span>Resume</span>
 							<span className="sr-only">View resume</span>
