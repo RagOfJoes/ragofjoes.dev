@@ -73,14 +73,40 @@ export default defineConfig({
 			// fixes SSR issues with Vite 8:
 			// https://discord.com/channels/719702312431386674/1490005967067414608/1490634230458224751
 			traceDeps: ["react", "react-dom"],
-			/**
-			 * TODO(security): Review production security headers before deployment.
-			 *
-			 * App-level policies such as CSP, Permissions-Policy, X-Frame-Options /
-			 * frame-ancestors, COOP, Referrer-Policy, and X-Content-Type-Options are
-			 * intentionally not configured here because safe values depend on the app's
-			 * embedding requirements, browser APIs, integrations, and content.
-			 */
+			// Security headers on every response. Nitro turns these into Vercel's
+			// config when deploying there. Production only, so the CSP stays out of the
+			// way of Vite's dev server and the devtools. HSTS is left to Vercel, which
+			// already sends it.
+			routeRules:
+				process.env.NODE_ENV === "production"
+					? {
+							"/**": {
+								headers: {
+									// Inline scripts: TanStack Start's hydration data. Inline styles:
+									// React/Motion style attributes
+									"Content-Security-Policy": [
+										"default-src 'self'",
+										"base-uri 'self'",
+										"connect-src 'self'",
+										"font-src 'self'",
+										"form-action 'self'",
+										"frame-ancestors 'none'",
+										"img-src 'self' data:",
+										"object-src 'none'",
+										"script-src 'self' 'unsafe-inline'",
+										"style-src 'self' 'unsafe-inline'",
+										"upgrade-insecure-requests",
+									].join("; "),
+									"Cross-Origin-Opener-Policy": "same-origin",
+									"Permissions-Policy":
+										"camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
+									"Referrer-Policy": "strict-origin-when-cross-origin",
+									"X-Content-Type-Options": "nosniff",
+									"X-Frame-Options": "DENY",
+								},
+							},
+						}
+					: {},
 		}),
 		viteReact(),
 		// https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#react-compiler
