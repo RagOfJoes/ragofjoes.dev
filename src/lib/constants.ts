@@ -25,7 +25,7 @@ export const PANEL_ANIMATIONS = {
 	} satisfies Variants,
 } as const;
 
-/** Jiji's photos, for his gallery in the About window. */
+/** Jiji's photos, for her gallery in the About window. */
 export const JIJI_PHOTOS: ImageViewerPopupProps[] = [
 	{
 		alt: "Film critic Jiji",

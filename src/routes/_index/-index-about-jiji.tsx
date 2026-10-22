@@ -4,7 +4,7 @@ import { ImageViewer } from "@/components/image-viewer";
 import { cn } from "@/lib/cn";
 import { JIJI_PHOTOS } from "@/lib/constants";
 
-/** "Jiji" in the About panel, opening his gallery: a masonry grid of photos. */
+/** "Jiji" in the About panel, opening her gallery: a masonry grid of photos. */
 export function IndexAboutJiji() {
 	return (
 		<Dialog>
