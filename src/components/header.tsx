@@ -45,6 +45,7 @@ export function Header() {
 
 							"[&>div]:rounded-full",
 							"[&>img]:rounded-full",
+							"max-sm:hidden",
 						)}
 						src="/android-chrome-192x192.png?v=2"
 					/>
