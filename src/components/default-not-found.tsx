@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import { motion } from "motion/react";
 
 import { AnimatedGrid } from "@/components/animated-grid";
@@ -66,7 +66,7 @@ export function DefaultNotFound() {
 						>
 							<span className="font-mono text-xs font-medium uppercase">Take Me Home</span>
 
-							<ArrowRight
+							<ArrowRightIcon
 								className={cn(
 									"size-3.5 transition-transform",
 

@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 
 import { ScrollArea } from "@base-ui/react/scroll-area";
-import { Maximize2, Minimize2, Move, RotateCcw, X } from "lucide-react";
+import { Maximize2Icon, Minimize2Icon, MoveIcon, RotateCcwIcon, XIcon } from "lucide-react";
 import { type HTMLMotionProps, motion, useMotionValue } from "motion/react";
 
 import { cn } from "@/lib/cn";
@@ -82,7 +82,7 @@ export function WindowsTitle({ children, className, ...props }: ComponentProps<"
 
 	return (
 		<div className="inline-flex h-full items-center gap-1">
-			<Move
+			<MoveIcon
 				className={cn(
 					"size-3.5",
 
@@ -135,7 +135,7 @@ export function WindowsReset() {
 			onClick={() => reset(value)}
 			type="button"
 		>
-			<RotateCcw className="size-2.5" />
+			<RotateCcwIcon className="size-2.5" />
 		</button>
 	);
 }
@@ -157,14 +157,14 @@ export function WindowsFullscreen() {
 			onClick={() => toggleFullscreen(value)}
 			type="button"
 		>
-			<Maximize2
+			<Maximize2Icon
 				className={cn(
 					"size-2.5",
 
 					"group-data-[fullscreen=true]/window:hidden",
 				)}
 			/>
-			<Minimize2
+			<Minimize2Icon
 				className={cn(
 					"hidden size-2.5",
 
@@ -192,7 +192,7 @@ export function WindowsClose() {
 			onClick={() => close(value)}
 			type="button"
 		>
-			<X className="size-3" />
+			<XIcon className="size-3" />
 		</button>
 	);
 }

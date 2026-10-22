@@ -1,6 +1,6 @@
 import { ScrollArea } from "@base-ui/react";
 import { Link } from "@tanstack/react-router";
-import { X } from "lucide-react";
+import { XIcon } from "lucide-react";
 import { type HTMLMotionProps, motion } from "motion/react";
 
 import { Image } from "@/components/image";
@@ -40,7 +40,7 @@ export function ProjectsDetailPanel({ className, project, ...props }: ProjectsDe
 					)}
 					to="/projects"
 				>
-					<X className="size-3" />
+					<XIcon className="size-3" />
 				</Link>
 			</div>
 

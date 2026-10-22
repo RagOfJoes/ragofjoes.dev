@@ -1,5 +1,5 @@
 import { Link, useParams } from "@tanstack/react-router";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRightIcon, XIcon } from "lucide-react";
 import { type HTMLMotionProps, motion } from "motion/react";
 
 import { cn } from "@/lib/cn";
@@ -36,7 +36,7 @@ export function ProjectsNotFoundPanel({ className, ...props }: ProjectsNotFoundP
 					)}
 					to="/projects"
 				>
-					<X className="size-3" />
+					<XIcon className="size-3" />
 				</Link>
 			</div>
 
@@ -71,7 +71,7 @@ export function ProjectsNotFoundPanel({ className, ...props }: ProjectsNotFoundP
 				>
 					<span className="font-mono text-xs font-medium uppercase">View All Projects</span>
 
-					<ArrowRight
+					<ArrowRightIcon
 						className={cn(
 							"size-3.5 transition-transform",
 

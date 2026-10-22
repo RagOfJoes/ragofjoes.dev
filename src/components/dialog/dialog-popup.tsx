@@ -2,7 +2,7 @@ import { type ComponentProps, useCallback } from "react";
 
 import { Dialog as BaseDialog } from "@base-ui/react/dialog";
 import { ScrollArea } from "@base-ui/react/scroll-area";
-import { X } from "lucide-react";
+import { XIcon } from "lucide-react";
 
 import { cn } from "@/lib/cn";
 
@@ -142,7 +142,7 @@ export function DialogClose({ className, ...props }: BaseDialog.Close.Props) {
 				className,
 			)}
 		>
-			<X className="size-3" />
+			<XIcon className="size-3" />
 		</BaseDialog.Close>
 	);
 }
