@@ -77,8 +77,12 @@ export default defineConfig({
 			// config when deploying there. Production only, so the CSP stays out of the
 			// way of Vite's dev server and the devtools. HSTS is left to Vercel, which
 			// already sends it.
-			routeRules:
-				process.env.NODE_ENV === "production"
+			routeRules: {
+				// The resume's old address, which links out there still point to
+				"/resume.pdf": {
+					redirect: { status: 301, to: "/Victor-Ragojos-Resume.pdf" },
+				},
+				...(process.env.NODE_ENV === "production"
 					? {
 							"/**": {
 								headers: {
@@ -105,8 +109,18 @@ export default defineConfig({
 									"X-Frame-Options": "DENY",
 								},
 							},
+							// The resume page prints the PDF by loading it into a hidden frame, so the
+							// site itself may frame it. Its own CSP is just that: anything stricter
+							// can stop the browser's PDF viewer
+							"/Victor-Ragojos-Resume.pdf": {
+								headers: {
+									"Content-Security-Policy": "frame-ancestors 'self'",
+									"X-Frame-Options": "SAMEORIGIN",
+								},
+							},
 						}
-					: {},
+					: {}),
+			},
 		}),
 		viteReact(),
 		// https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#react-compiler

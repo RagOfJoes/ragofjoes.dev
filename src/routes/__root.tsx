@@ -5,6 +5,7 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { Header } from "@/components/header";
 import { IconProvider } from "@/components/icon-provider";
 import { IntroProvider } from "@/components/intro";
+import { cn } from "@/lib/cn";
 import { SITE } from "@/lib/constants";
 import { getSeoMeta } from "@/lib/seo";
 import appCss from "@/styles/base.css?url";
@@ -137,7 +138,13 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 				<HeadContent />
 			</head>
 
-			<body className="flex h-dvh w-dvw flex-col overflow-hidden overscroll-none font-normal">
+			<body
+				className={cn(
+					"flex h-dvh w-dvw flex-col overflow-hidden overscroll-none font-normal",
+
+					"print:block print:h-auto print:w-auto print:overflow-visible",
+				)}
+			>
 				<IntroProvider>
 					<IconProvider>
 						<Header />

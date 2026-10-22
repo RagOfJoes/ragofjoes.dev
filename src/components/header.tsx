@@ -16,7 +16,13 @@ const NAV_LINK_CLASS_NAME = cn(
 
 export function Header() {
 	return (
-		<header className="grid w-full grid-cols-12 gap-2 p-2">
+		<header
+			className={cn(
+				"grid w-full grid-cols-12 gap-2 p-2",
+
+				"print:hidden",
+			)}
+		>
 			<div
 				className={cn(
 					"col-span-4",
@@ -77,10 +83,10 @@ export function Header() {
 					</li>
 
 					<li className="inline-flex h-full items-center">
-						<a className={NAV_LINK_CLASS_NAME} href="/resume.pdf">
+						<Link className={NAV_LINK_CLASS_NAME} to="/resume">
 							<span>Resume</span>
-							<span className="sr-only">View resume</span>
-						</a>
+							<span className="sr-only">Go to resume page</span>
+						</Link>
 					</li>
 				</ul>
 			</nav>

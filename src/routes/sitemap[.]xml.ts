@@ -3,7 +3,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SITE } from "@/lib/constants";
 import { PROJECTS } from "@/routes/projects/-projects";
 
-const PATHS = ["/", "/projects", ...PROJECTS.map((project) => `/projects/${project.slug}`)];
+const PATHS = [
+	"/",
+	"/projects",
+	...PROJECTS.map((project) => `/projects/${project.slug}`),
+	"/resume",
+];
 
 export const Route = createFileRoute("/sitemap.xml")({
 	server: {
