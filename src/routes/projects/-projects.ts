@@ -1,4 +1,4 @@
-import type { ImageProps } from "@/components/image";
+import type { ImageViewerPopupProps } from "@/components/image-viewer";
 
 export type Project = {
 	slug: string;
@@ -10,7 +10,7 @@ export type Project = {
 	source?: string;
 	stack: string[];
 
-	images: (Pick<ImageProps, "src"> & { alt: string; height: number; width: number })[];
+	images: ImageViewerPopupProps[];
 };
 export const PROJECTS: Project[] = [
 	{

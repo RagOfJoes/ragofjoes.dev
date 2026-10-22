@@ -1,5 +1,7 @@
 import { Windows } from "@/components/windows";
 
+import { IndexAboutJiji } from "./-index-about-jiji";
+
 export function IndexAbout() {
 	return (
 		<Windows.Panel className="shrink-[0.3]" value="About">
@@ -28,8 +30,7 @@ export function IndexAbout() {
 				<p>
 					Outside of engineering, he enjoys film, music, rock climbing, and finding new creative
 					outlets. He also spends an unreasonable amount of time spoiling his cat,{" "}
-					{/* TODO: open the Jiji gallery dialog */}
-					<strong className="font-semibold">Jiji</strong>.
+					<IndexAboutJiji />.
 				</p>
 			</Windows.Content>
 		</Windows.Panel>

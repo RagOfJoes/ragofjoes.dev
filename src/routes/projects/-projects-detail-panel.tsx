@@ -4,6 +4,7 @@ import { X } from "lucide-react";
 import { type HTMLMotionProps, motion } from "motion/react";
 
 import { Image } from "@/components/image";
+import { ImageViewer } from "@/components/image-viewer";
 import { cn } from "@/lib/cn";
 import { PANEL_ANIMATIONS } from "@/lib/constants";
 
@@ -124,17 +125,24 @@ export function ProjectsDetailPanel({ className, project, ...props }: ProjectsDe
 										key={image.src}
 										className="col-span-1 flex aspect-square items-center justify-center bg-foreground/10 p-4"
 									>
-										{/* TODO: zoom in on click (image dialog) */}
-										<Image
-											{...image}
-											className="select-none"
-											decoding="async"
-											fetchPriority={index === 0 ? "high" : "low"}
-											loading={index === 0 ? "eager" : "lazy"}
-											// A column of the screenshots: half of two thirds of the panel from
-											// `lg`, else half of it
-											sizes="(min-width: 1024px) 25vw, 50vw"
-										/>
+										<ImageViewer>
+											<ImageViewer.Trigger
+												style={{ aspectRatio: `${image.width} / ${image.height}` }}
+											>
+												<Image
+													{...image}
+													className="h-full select-none"
+													decoding="async"
+													fetchPriority={index === 0 ? "high" : "low"}
+													loading={index === 0 ? "eager" : "lazy"}
+													// A column of the screenshots: half of two thirds of the panel from
+													// `lg`, else half of it
+													sizes="(min-width: 1024px) 25vw, 50vw"
+												/>
+											</ImageViewer.Trigger>
+
+											<ImageViewer.Popup {...image} />
+										</ImageViewer>
 									</div>
 								))}
 							</ScrollArea.Content>
