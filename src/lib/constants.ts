@@ -8,6 +8,9 @@ export const SITE = {
 	url: "https://www.ragofjoes.dev",
 } as const;
 
+/** Widths `pnpm images` writes thumbnails of each image at, for `srcset`. */
+export const IMAGE_WIDTHS = [640, 1280];
+
 /** How windows and panels open and close, and move when reset. */
 export const PANEL_ANIMATIONS = {
 	/** Delay (s) between windows and panels opening one after another after the intro. */

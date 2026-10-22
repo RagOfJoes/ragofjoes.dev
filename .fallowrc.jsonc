@@ -1,7 +1,7 @@
 {
 	// https://docs.fallow.tools/configuration/overview
 	"$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
-	"entry": ["src/router.tsx"],
+	"entry": ["src/router.tsx", "scripts/*.ts"],
 	"ignorePatterns": ["**/*.generated.ts", "**/*.d.ts", "**/*.gen.*"],
 	"ignoreDependencies": [
 		"@types/node",

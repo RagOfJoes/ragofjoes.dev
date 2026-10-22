@@ -131,6 +131,9 @@ export function ProjectsDetailPanel({ className, project, ...props }: ProjectsDe
 											decoding="async"
 											fetchPriority={index === 0 ? "high" : "low"}
 											loading={index === 0 ? "eager" : "lazy"}
+											// A column of the screenshots: half of two thirds of the panel from
+											// `lg`, else half of it
+											sizes="(min-width: 1024px) 25vw, 50vw"
 										/>
 									</div>
 								))}

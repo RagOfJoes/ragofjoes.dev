@@ -40,7 +40,6 @@ export function Header() {
 							"[&>div]:rounded-full",
 							"[&>img]:rounded-full",
 						)}
-						palette={["#81889D", "#0D0E13", "#171F4A", "#020505", "#6E7283"]}
 						src="/android-chrome-192x192.png?v=2"
 					/>
 

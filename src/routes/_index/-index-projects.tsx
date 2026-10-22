@@ -7,7 +7,7 @@ import { cn } from "@/lib/cn";
 type Slide = {
 	slug: string;
 	title: string;
-	image: Pick<ImageProps, "height" | "palette" | "src" | "width">;
+	image: Pick<ImageProps, "height" | "src" | "width">;
 };
 
 const SLIDES: Slide[] = [
@@ -18,7 +18,6 @@ const SLIDES: Slide[] = [
 			src: "/puzzlely-cover.png",
 			height: 630,
 			width: 1200,
-			palette: ["#EBBDBD", "#2D2936", "#1E1B28", "#E8BBBA", "#EBBDBC"],
 		},
 	},
 	{
@@ -28,7 +27,6 @@ const SLIDES: Slide[] = [
 			src: "/puzzlely-home-page.png",
 			height: 2160,
 			width: 3840,
-			palette: ["#1A1825", "#15141F", "#333039", "#948888", "#1B1A27"],
 		},
 	},
 	{
@@ -38,7 +36,6 @@ const SLIDES: Slide[] = [
 			src: "/puzzlely-user-page.png",
 			height: 2160,
 			width: 3840,
-			palette: ["#1A1825", "#15141F", "#333039", "#948888", "#1B1A27"],
 		},
 	},
 ];
@@ -102,6 +99,8 @@ export function IndexProjects() {
 												decoding="async"
 												fetchPriority="low"
 												loading="lazy"
+												// 80px tall (`h-20`)
+												sizes="160px"
 											/>
 										</Link>
 									</li>

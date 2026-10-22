@@ -10,7 +10,7 @@ export type Project = {
 	source?: string;
 	stack: string[];
 
-	images: (Pick<ImageProps, "height" | "palette" | "src" | "width"> & { alt: string })[];
+	images: (Pick<ImageProps, "src"> & { alt: string; height: number; width: number })[];
 };
 export const PROJECTS: Project[] = [
 	{
@@ -40,30 +40,26 @@ export const PROJECTS: Project[] = [
 			{
 				alt: "Puzzlely Cover",
 				src: "/puzzlely-cover.png",
-				height: 2160,
-				width: 3840,
-				palette: ["#EBBDBD", "#2D2936", "#1E1B28", "#E8BBBA", "#EBBDBC"],
+				height: 630,
+				width: 1200,
 			},
 			{
 				alt: "Puzzlely Home Page",
 				src: "/puzzlely-home-page.png",
 				height: 2160,
 				width: 3840,
-				palette: ["#1A1825", "#15141F", "#333039", "#948888", "#1B1A27"],
 			},
 			{
 				alt: "Puzzlely User Page",
 				src: "/puzzlely-user-page.png",
 				height: 2160,
 				width: 3840,
-				palette: ["#1A1825", "#15141F", "#333039", "#948888", "#1B1A27"],
 			},
 			{
 				alt: "Puzzlely Create Page",
 				src: "/puzzlely-create-page.png",
 				height: 2160,
 				width: 3840,
-				palette: ["#1A1825", "#15141F", "#333039", "#948888", "#1B1A27"],
 			},
 		],
 	},
