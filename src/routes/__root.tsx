@@ -1,6 +1,7 @@
 import { TanStackDevtools } from "@tanstack/react-devtools";
 import { createRootRoute, HeadContent, rootRouteId, Scripts } from "@tanstack/react-router";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { Analytics } from "@vercel/analytics/react";
 
 import { Header } from "@/components/header";
 import { IconProvider } from "@/components/icon-provider";
@@ -156,6 +157,10 @@ function RootDocument({ children }: { readonly children: React.ReactNode }) {
 				<TanStackDevtools
 					plugins={[{ name: "TanStack Router", render: <TanStackRouterDevtoolsPanel /> }]}
 				/>
+
+				{/* Vercel Web Analytics: page views, including client-side navigations.
+				    Its script and reports are on the site's own domain (`/_vercel/insights`) */}
+				<Analytics />
 
 				<Scripts />
 			</body>
