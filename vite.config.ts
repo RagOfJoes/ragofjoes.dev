@@ -103,7 +103,7 @@ export default defineConfig({
 									].join("; "),
 									"Cross-Origin-Opener-Policy": "same-origin",
 									"Permissions-Policy":
-										"camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()",
+										"camera=(), microphone=(), geolocation=(), payment=(), usb=()",
 									"Referrer-Policy": "strict-origin-when-cross-origin",
 									"X-Content-Type-Options": "nosniff",
 									"X-Frame-Options": "DENY",
