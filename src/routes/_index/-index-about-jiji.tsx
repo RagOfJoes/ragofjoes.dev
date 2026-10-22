@@ -1,96 +1,10 @@
 import { Dialog } from "@/components/dialog";
 import { Image } from "@/components/image";
-import { ImageViewer, type ImageViewerPopupProps } from "@/components/image-viewer";
+import { ImageViewer } from "@/components/image-viewer";
 import { cn } from "@/lib/cn";
+import { JIJI_PHOTOS } from "@/lib/constants";
 
-const PHOTOS: ImageViewerPopupProps[] = [
-	{
-		alt: "Film critic Jiji",
-		src: "/jiji/jiji-17.jpg",
-		height: 3840,
-		width: 2160,
-	},
-	{
-		alt: "Flatbread Jiji",
-		src: "/jiji/jiji-18.jpg",
-		height: 2160,
-		width: 2160,
-	},
-	{
-		alt: "Baby Jiji",
-		src: "/jiji/jiji-1.jpg",
-		height: 1008,
-		width: 1344,
-	},
-	{
-		alt: "Sitting Jiji",
-		src: "/jiji/jiji-2.jpg",
-		height: 1344,
-		width: 1008,
-	},
-	{
-		alt: "Oblivious Jiji",
-		src: "/jiji/jiji-5.jpg",
-		height: 1344,
-		width: 1008,
-	},
-	{
-		alt: "Why she look like that?",
-		src: "/jiji/jiji-6.jpg",
-		height: 1344,
-		width: 1008,
-	},
-	{
-		alt: "Window Jiji",
-		src: "/jiji/jiji-7.jpg",
-		height: 2016,
-		width: 1512,
-	},
-	{
-		alt: "Bookworm Jiji",
-		src: "/jiji/jiji-8.jpg",
-		height: 1344,
-		width: 1008,
-	},
-	{
-		alt: "Hunter Jiji",
-		src: "/jiji/jiji-9.jpg",
-		height: 1344,
-		width: 756,
-	},
-	{
-		alt: "Hotdog Jiji",
-		src: "/jiji/jiji-10.jpg",
-		height: 1344,
-		width: 756,
-	},
-	{
-		alt: "Bed Monster Jiji",
-		src: "/jiji/jiji-12.jpg",
-		height: 1512,
-		width: 1512,
-	},
-	{
-		alt: "Puppy Eyes Jiji",
-		src: "/jiji/jiji-13.jpg",
-		height: 1344,
-		width: 756,
-	},
-	{
-		alt: "Eepy Jiji",
-		src: "/jiji/jiji-14.jpg",
-		height: 1512,
-		width: 1512,
-	},
-	{
-		alt: "Angry Jiji",
-		src: "/jiji/jiji-16.jpg",
-		height: 1512,
-		width: 1512,
-	},
-];
-
-/** "Jiji" in the About panel, opening his gallery: a masonry grid of photos. */
+/** "Jiji" in the About panel, opening her gallery: a masonry grid of photos. */
 export function IndexAboutJiji() {
 	return (
 		<Dialog>
@@ -123,7 +37,7 @@ export function IndexAboutJiji() {
 							"sm:columns-3",
 						)}
 					>
-						{PHOTOS.map((photo, index) => (
+						{JIJI_PHOTOS.map((photo, index) => (
 							<li
 								key={photo.src}
 								className={cn(

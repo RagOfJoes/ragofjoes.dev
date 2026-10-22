@@ -14,7 +14,7 @@
 		"lint": "vp lint --type-aware --type-check",
 		"lint:fix": "vp lint --type-aware --type-check --fix",
 		"preview": "vp preview",
-		"start": "node --env-file-if-exists=.env .output/server/index.mjs",
+		"start": "node .output/server/index.mjs",
 		"tanstack": "vpx @tanstack/cli@latest",
 		"test": "vp test",
 		"images": "node scripts/images.ts",

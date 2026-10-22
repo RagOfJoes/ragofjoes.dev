@@ -1,5 +1,7 @@
 import type { Transition, Variants } from "motion/react";
 
+import type { ImageViewerPopupProps } from "@/components/image-viewer";
+
 export const SITE = {
 	name: "Victor Ragojos",
 	jobTitle: "Senior Software Engineer",
@@ -22,6 +24,94 @@ export const PANEL_ANIMATIONS = {
 		closed: { opacity: 0, scale: 0.9, transitionEnd: { visibility: "hidden" } },
 	} satisfies Variants,
 } as const;
+
+/** Jiji's photos, for her gallery in the About window. */
+export const JIJI_PHOTOS: ImageViewerPopupProps[] = [
+	{
+		alt: "Film critic Jiji",
+		src: "/jiji/jiji-17.jpg",
+		height: 3840,
+		width: 2160,
+	},
+	{
+		alt: "Flatbread Jiji",
+		src: "/jiji/jiji-18.jpg",
+		height: 2160,
+		width: 2160,
+	},
+	{
+		alt: "Baby Jiji",
+		src: "/jiji/jiji-1.jpg",
+		height: 1008,
+		width: 1344,
+	},
+	{
+		alt: "Sitting Jiji",
+		src: "/jiji/jiji-2.jpg",
+		height: 1344,
+		width: 1008,
+	},
+	{
+		alt: "Oblivious Jiji",
+		src: "/jiji/jiji-5.jpg",
+		height: 1344,
+		width: 1008,
+	},
+	{
+		alt: "Why she look like that?",
+		src: "/jiji/jiji-6.jpg",
+		height: 1344,
+		width: 1008,
+	},
+	{
+		alt: "Window Jiji",
+		src: "/jiji/jiji-7.jpg",
+		height: 2016,
+		width: 1512,
+	},
+	{
+		alt: "Bookworm Jiji",
+		src: "/jiji/jiji-8.jpg",
+		height: 1344,
+		width: 1008,
+	},
+	{
+		alt: "Hunter Jiji",
+		src: "/jiji/jiji-9.jpg",
+		height: 1344,
+		width: 756,
+	},
+	{
+		alt: "Hotdog Jiji",
+		src: "/jiji/jiji-10.jpg",
+		height: 1344,
+		width: 756,
+	},
+	{
+		alt: "Bed Monster Jiji",
+		src: "/jiji/jiji-12.jpg",
+		height: 1512,
+		width: 1512,
+	},
+	{
+		alt: "Puppy Eyes Jiji",
+		src: "/jiji/jiji-13.jpg",
+		height: 1344,
+		width: 756,
+	},
+	{
+		alt: "Eepy Jiji",
+		src: "/jiji/jiji-14.jpg",
+		height: 1512,
+		width: 1512,
+	},
+	{
+		alt: "Angry Jiji",
+		src: "/jiji/jiji-16.jpg",
+		height: 1512,
+		width: 1512,
+	},
+];
 
 /**
  * The resume, shared by the `/resume` page and the home page's Experience
