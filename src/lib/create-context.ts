@@ -1,31 +1,32 @@
-import type { ContextProviderComponent, Context as SolidContext } from "solid-js";
-import { createContext as createSolidContext, useContext as useSolidContext } from "solid-js";
+import type { Context, Provider } from "react";
+import { createContext as createReactContext, useContext as useReactContext } from "react";
 
 export type CreateContextArgs<T> = {
-	defaultValue?: T | undefined;
-	hookName?: string | undefined;
-	errorMessage?: string | undefined;
+	defaultValue?: T;
+	hookName?: string;
+	errorMessage?: string;
 	name: string;
-	providerName?: string | undefined;
-	strict?: boolean | undefined;
+	providerName?: string;
+	strict?: boolean;
 };
 
-export type CreateContextReturn<T> = [ContextProviderComponent<T>, () => T, SolidContext<T>];
+export type CreateContextReturn<T> = [Provider<T>, () => T, Context<T>];
 
-export function createContext<T>(args: CreateContextArgs<T>): CreateContextReturn<T> {
+export function createContext<T>(args: CreateContextArgs<T>) {
 	const {
 		defaultValue,
+		name,
 		strict = true,
 		hookName = "useContext",
-		name,
 		providerName = "Provider",
 		errorMessage,
 	} = args;
 
-	const Context = createSolidContext(defaultValue, { name });
+	const Context = createReactContext<T | undefined>(defaultValue);
+	Context.displayName = name;
 
 	const useContext = () => {
-		const context = useSolidContext(Context);
+		const context = useReactContext(Context);
 
 		if (!context && strict) {
 			const error = new Error(
@@ -34,6 +35,7 @@ export function createContext<T>(args: CreateContextArgs<T>): CreateContextRetur
 			);
 
 			error.name = "ContextError";
+			Error.captureStackTrace(error, useContext);
 
 			throw error;
 		}

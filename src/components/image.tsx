@@ -1,74 +1,79 @@
-import { createSignal, onMount, splitProps } from "solid-js";
-import type { JSX } from "solid-js";
+import { type ComponentProps, useCallback, useState } from "react";
 
 import { cn } from "@/lib/cn";
+import { IMAGE_WIDTHS } from "@/lib/constants";
 
-export type ImageProps = JSX.ImgHTMLAttributes<HTMLImageElement> & {
-	palette: [one: string, two: string, three: string, four: string, five: string];
+export type ImageProps = Omit<ComponentProps<"img">, "alt" | "ref" | "src"> & {
+	alt: string;
+	src: string;
 };
 
-export function Image(props: ImageProps) {
-	const [split, local] = splitProps(props, ["class", "palette"]);
+/**
+ * `<img>` that fades in over a tiny, blurry copy of itself. Uses the copies
+ * `pnpm images <files>` writes, found by the image's path (`/jiji/photo.jpg`):
+ * - `/placeholders/jiji/photo.webp`: the blurry copy
+ * - `/thumbnails/<width>/jiji/photo.webp`: smaller copies offered through
+ *   `srcset`, when `sizes` (how wide the image shows) and `width` (the
+ *   original's) are given
+ */
+export function Image({ alt, className, onLoad, sizes, src, width, ...props }: ImageProps) {
+	const [isReady, toggleIsReady] = useState(false);
 
-	let ref!: HTMLImageElement;
+	// The path without its extension and any query (e.g. a cache-busting `?v=2`)
+	const name = src.replace(/\.[^./?]+(\?.*)?$/, "");
+	const placeholder = `/placeholders${name}.webp`;
+	// Only the copies narrower than the original exist
+	const srcSet =
+		sizes && width
+			? [
+					...IMAGE_WIDTHS.filter((size) => size < Number(width)).map(
+						(size) => `/thumbnails/${size}${name}.webp ${size}w`,
+					),
+					`${src} ${width}w`,
+				].join(", ")
+			: undefined;
 
-	const [isReady, toggleIsReady] = createSignal(false);
-
-	onMount(() => {
-		if (!ref.complete || ref.naturalWidth <= 0) {
-			return;
+	// A cached image can finish loading before hydration attaches `onLoad`, so
+	// check on mount as well.
+	const ref = useCallback((node: HTMLImageElement | null) => {
+		if (node?.complete && node.naturalWidth > 0) {
+			toggleIsReady(true);
 		}
-
-		toggleIsReady(true);
-	});
+	}, []);
 
 	return (
 		<div
-			class={cn(
-				"group/image relative block w-full outline-none",
-
-				split.class,
-			)}
-			data-is-loading={!isReady()}
-			style={{
-				"--palette-one": split.palette[0],
-				"--palette-two": split.palette[1],
-				"--palette-three": split.palette[2],
-				"--palette-four": split.palette[3],
-				"--palette-five": split.palette[4],
-			}}
+			className={cn("group/image relative block w-full outline-none", className)}
+			data-is-loading={!isReady}
 		>
 			<img
-				{...local}
-				class={cn(
+				{...props}
+				alt={alt}
+				sizes={sizes}
+				src={src}
+				srcSet={srcSet}
+				width={width}
+				className={cn(
 					"block h-full w-auto opacity-0 transition-opacity duration-500 outline-none",
 
 					"group-data-[is-loading=false]/image:opacity-100",
 				)}
-				onLoad={() => {
-					if (isReady()) {
-						return;
-					}
-
+				onLoad={(e) => {
 					toggleIsReady(true);
+					onLoad?.(e);
 				}}
 				ref={ref}
 			/>
 
 			<div
-				class={cn(
-					"pointer-events-none absolute inset-0 backdrop-blur-lg transition-opacity duration-500",
+				className={cn(
+					"pointer-events-none absolute inset-0 transition-opacity duration-500",
 
 					"group-data-[is-loading=false]/image:opacity-0",
 				)}
 				style={{
-					"background-color": "var(--palette-five)",
-					"background-image": [
-						"radial-gradient(ellipse at 20% 20%, var(--palette-one) 0%, transparent 60%)",
-						"radial-gradient(ellipse at 80% 15%, var(--palette-two) 0%, transparent 55%)",
-						"radial-gradient(ellipse at 75% 80%, var(--palette-three) 0%, transparent 60%)",
-						"radial-gradient(ellipse at 15% 85%, var(--palette-four) 0%, transparent 55%)",
-					].join(", "),
+					backgroundImage: `url(${placeholder})`,
+					backgroundSize: "100% 100%",
 				}}
 			/>
 		</div>

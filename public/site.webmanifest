@@ -1,7 +1,7 @@
 {
 	"name": "Victor Ragojos",
 	"short_name": "Victor Ragojos",
-	"start_url": "https://www.ragofjoes.dev/",
+	"start_url": "/",
 	"display": "standalone",
 	"background_color": "#2f52ff",
 	"theme_color": "#2f52ff",

@@ -1,4 +1,19 @@
 allowBuilds:
-  esbuild: false
-  sharp: false
-  unrs-resolver: false
+  esbuild: true
+
+# https://pnpm.io/settings#minimumreleaseage
+# https://pnpm.io/supply-chain-security#delay-dependency-updates
+minimumReleaseAge: 1440
+
+# Save exact versions to package.json instead of broad ranges
+savePrefix: ""
+
+# `vite` is aliased to Vite+'s core build; keep the alias from being overridden
+# and stop peers that ask for upstream vite from failing the install.
+overrides:
+  vite: "npm:@voidzero-dev/vite-plus-core@1.3.0"
+peerDependencyRules:
+  allowAny:
+    - vite
+  allowedVersions:
+    vite: "*"
